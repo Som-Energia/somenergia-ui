@@ -1,9 +1,8 @@
 import { Box } from '@mui/material'
-import useAplicationMetadata from '../hooks/ApplicationMetadata'
-import '../loading.css'
+import './style.css'
 
 const Loading = () => {
-  const { logo } = useAplicationMetadata()
+  const logo = '/logo.svg'
   return (
     <Box
       sx={{
