@@ -1,8 +1,8 @@
-import { Box } from '@mui/material'
+import Logo from '../../src/assets/logo.svg'
+import Box from '@mui/material/Box'
 import './style.css'
 
-const Loading = () => {
-  const logo = '/logo.svg'
+export const Loading = () => {
   return (
     <Box
       sx={{
@@ -18,7 +18,7 @@ const Loading = () => {
     >
       <div className="ring">
         <img
-          src={logo}
+          src={Logo}
           style={{
             maxHeight: '7rem',
             marginTop: '0.5rem',
@@ -29,5 +29,3 @@ const Loading = () => {
     </Box>
   )
 }
-
-export default Loading
