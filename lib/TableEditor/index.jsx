@@ -26,7 +26,7 @@ import InputBase from '@mui/material/InputBase'
 import CircularProgress from '@mui/material/CircularProgress'
 import { styled, alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
-import i18n from '../i18n/i18n'
+import i18n from '../i18n'
 
 /* eslint-enable */
 
