@@ -1,4 +1,4 @@
-import { Loading } from '../../lib/Loading'
+import Loading from '../../lib/Loading'
 
 export default {
   title: 'Components/AmazingLoading✨',
