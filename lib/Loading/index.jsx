@@ -2,7 +2,7 @@ import Logo from '../../src/assets/logo.svg'
 import Box from '@mui/material/Box'
 import './style.css'
 
-export default Loading = () => {
+export default function Loading() {
   return (
     <Box
       sx={{
