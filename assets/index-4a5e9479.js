@@ -1,0 +1,16 @@
+import{j as n}from"./jsx-runtime-ffb262ed.js";import{M as r,d as i}from"./index-0f910a32.js";import{u as m}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-7dc6c6bb.js";import"../sb-preview/runtime.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-6f09c02c.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./assertThisInitialized-33acfce7.js";import"./_baseIsEqual-2876b81a.js";import"./index-d966cdf0.js";import"./index-356e4a49.js";const s=`# somenergia-ui
+
+Common components for Som Energia UI projects
+
+[Components Documentation](https://som-energia.github.io/somenergia-ui)
+
+## Install
+
+npm install --save @somenergia/somenergia-ui
+
+
+
+
+
+`;function e(t){return n.jsxs(n.Fragment,{children:[n.jsx(r,{title:"Getting Started"}),`
+`,n.jsx(i,{children:s})]})}function b(t={}){const{wrapper:o}=Object.assign({},m(),t.components);return o?n.jsx(o,Object.assign({},t,{children:n.jsx(e,t)})):e()}export{b as default};
