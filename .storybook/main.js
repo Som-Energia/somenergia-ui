@@ -13,7 +13,8 @@ const config = {
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
-    '@storybook/themes'
+    '@storybook/addon-mdx-gfm',
+    '@storybook/addon-controls',
   ],
   framework: {
     name: '@storybook/react-vite',

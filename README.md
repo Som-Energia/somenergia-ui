@@ -1,7 +1,13 @@
 # somenergia-ui
 
-Common components for Som Energia UI projects
+Common React/MUI components for Som Energia UI projects
 
-[Components Documentation](https://som-energia.github.io/somenergia-ui)
+[Documentation](https://som-energia.github.io/somenergia-ui)
+
+## Install
+
+npm install --save @somenergia/somenergia-ui
+
+
 
 

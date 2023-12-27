@@ -1,6 +1,7 @@
 # Change log
 
-## Unreleased
+## somenergia-ui 0.1.0
 
 - First version
-- Includes Loading and TableEditor extracted from somrepresenta-oficinavirtual
+- Includes components: Loading and TableEditor from somrepresenta-oficinavirtual
+- Manages translations and themes
