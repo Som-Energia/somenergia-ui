@@ -21,7 +21,9 @@ export default defineConfig({
       external: [
         // Should match all direct imports to 3rd party modules
         /^react/,
-        /@mui/,
+        /^@mui/,
+        /^i18next/,
+        /prop-types/,
       ],
       // create modlue A/B/module from lib/A/B/module.jsx
       input: Object.fromEntries(
