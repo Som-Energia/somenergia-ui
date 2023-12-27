@@ -641,17 +641,18 @@ TableEditor.propTypes = {
   columns: ColumnsType,
   /** List of actions to be applied in global, context is the whole set of rows */
   actions: ActionsType,
-  /** List of actions available for each single row, row is passed to */
+  /** List of actions available for each single row, row data is passed the handler. */
   itemActions: ActionsType,
+  /** Action to be executed when clicked, row data is passed. If not defined and selection enabled, default action is to select the row. */
   defaultAction: PropTypes.func,
-  /** Actions to apply to selected rows. Selection ui is not shown if none provided */
+  /** Actions to apply to selected rows. Selection ui is not shown if none provided. The action function receives a list of row identifiers. */
   selectionActions: ActionsType,
   /** Data field to be used as row identifier (default 'id'). Values must be unique. */
   idField: PropTypes.string,
   /** Default page size. Default -1 meaning not paginated */
   defaultPageSize: PropTypes.number,
-  /** If available, a page size chooser will be presented to the user */
-  pageSizes: PropTypes.arrayOf(PropTypes.number) /**< Array of page sizes*/,
+  /** Array of available page sizes. If provided, a page size chooser will be presented to the user */
+  pageSizes: PropTypes.arrayOf(PropTypes.number),
   /** Set to true to activate loading status */
   loading: PropTypes.bool,
   /** Node to show in case of no data is to be presented */
