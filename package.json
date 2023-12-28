@@ -1,7 +1,7 @@
 {
   "name": "@somenergia/somenergia-ui",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Common React components for Som Energia projects",
   "license": "AGPL-3.0",
   "homepage": "https://som-energia.github.io/somenergia-ui/",
@@ -32,7 +32,8 @@
   },
   "peerdependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.0"
   },
   "devDependencies": {
     "@modyfi/vite-plugin-yaml": "^1.0.4",
@@ -59,6 +60,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.0",
     "storybook": "^7.6.6",
     "vite": "^4.4",
     "vite-plugin-svgr": "^4.2.0"
@@ -71,7 +73,6 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.9",
     "i18next-browser-languagedetector": "^7.2.0",
     "react-confetti-explosion": "^2.1.2",
-    "react-i18next": "^14.0.0",
     "styled-components": "^6.1.2"
   }
 }
