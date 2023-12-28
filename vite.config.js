@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import viteyaml from '@modyfi/vite-plugin-yaml'
 import svgr from 'vite-plugin-svgr'
 import { join, resolve, relative, extname } from 'path'
-import glob from 'glob'
+import { glob } from 'glob'
 import { fileURLToPath } from 'node:url'
 import pkg from './package.json'
 
