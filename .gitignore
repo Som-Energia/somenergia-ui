@@ -1,3 +1,6 @@
+.vite
+package-lock.json
+storybook-static/
 # Logs
 logs
 *.log
