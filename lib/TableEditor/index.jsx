@@ -71,7 +71,7 @@ function Loading({ nCols = 3 }) {
 function ActionButtons(props) {
   const { actions, context, ...rest } = props
   return (
-    <div style={{ display: 'flex', flex: 'row no-wrap', justifyContent: 'right' }}>
+    <div style={{ display: 'flex', flex: 'row nowrap', justifyContent: 'right' }}>
       {actions.map((action, i) => {
         return (
           <Tooltip title={action.title} key={i}>
