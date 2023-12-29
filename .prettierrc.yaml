@@ -3,6 +3,8 @@ singleQuote: true
 printWidth: 90
 endOfLine: auto
 semi: false
+useTabs: false
+tabWidth: 2
 options:
   editorConfig: true
 # Possible values:
