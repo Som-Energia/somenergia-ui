@@ -507,9 +507,10 @@ function TableEditor(props) {
                       <TableRow
                         sx={{
                           '& td': {
-                            paddingBlock: isItemFiltered ? 0 : 'inherited',
-                            marginBlock: isItemFiltered ? 0 : 'inherited',
-                            border: isItemFiltered ? 0 : 'inherited',
+                            paddingBlock: isItemFiltered ? 0 : undefined,
+                            marginBlock: isItemFiltered ? 0 : undefined,
+                            border: isItemFiltered ? 0 : undefined,
+                            transition: '1s padding margin all',
                           },
                         }}
                         hover
@@ -575,9 +576,18 @@ function TableEditor(props) {
                     )
                   })
               )}
-              {nFilteredRows > 0 && (
-                <TableRow>
-                  <TableCell colSpan={nTableColumns}>
+              <TableRow
+                sx={{
+                  '& td': {
+                    paddingBlock: nFilteredRows <= 0 ? 0 : undefined,
+                    marginBlock: nFilteredRows <= 0 ? 0 : undefined,
+                    border: nFilteredRows <= 0 ? 0 : undefined,
+                    transition: '1s padding margin all',
+                  },
+                }}
+              >
+                <TableCell colSpan={nTableColumns}>
+                  <Collapse in={nFilteredRows > 0} component={null}>
                     <Box
                       sx={{
                         display: 'flex',
@@ -595,9 +605,9 @@ function TableEditor(props) {
                         {t('TABLE_EDITOR.CLEAR_FILTER')}
                       </Button>
                     </Box>
-                  </TableCell>
-                </TableRow>
-              )}
+                  </Collapse>
+                </TableCell>
+              </TableRow>
               {emptyRows > 0 && (
                 <TableRow
                   style={{
