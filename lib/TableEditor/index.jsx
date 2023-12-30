@@ -295,7 +295,7 @@ function EnhancedTableToolbar(props) {
           variant="subtitle1"
           component="div"
         >
-          {t('TABLE_EDITOR.N_SELECTED', { numSelected })}
+          {t('TABLE_EDITOR.N_SELECTED', { count: numSelected })}
         </Typography>
       ) : (
         <Box sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
@@ -595,7 +595,7 @@ function TableEditor(props) {
                       }}
                     >
                       <div>
-                        {t('TABLE_EDITOR.N_ITEMS_FILTERED', { n: nFilteredRows })}
+                        {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nFilteredRows })}
                       </div>
                       <Button
                         size="small"
