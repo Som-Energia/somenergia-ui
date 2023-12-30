@@ -1,1 +1,13 @@
-{}
+TABLE_EDITOR:
+  LOADING: Estem carregant dades...
+  SELECT_ALL: Selecciona-ho tot
+  ACTIONS: Accions
+  SORTED_DESCENDING: Ordre descendent
+  SORTED_ASCENDING: Ordre ascendent
+  N_SELECTED_one: '{{count}} element seleccionat'
+  N_SELECTED_other: '{{count}} elements seleccionats'
+  PLACEHOLDER_SEARCH: Busca...
+  LABEL_SEARCH: Busca
+  N_ITEMS_FILTERED_one: La cerca està ocultant un element
+  N_ITEMS_FILTERED_other: La cerca està ocultant {{count}} elements
+  CLEAR_FILTER: Mostra'ls tots
