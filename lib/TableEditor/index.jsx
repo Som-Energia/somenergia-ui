@@ -73,21 +73,19 @@ function ActionButtons(props) {
   return (
     <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'right' }}>
       {actions.map((action, i) => {
-        return (
+        return action.view ? (
+          action.view(context)
+        ) : (
           <Tooltip title={action.title} key={i}>
-            {action.view ? (
-              action.view(context)
-            ) : (
-              <IconButton
-                {...rest}
-                onClick={(ev) => {
-                  ev.stopPropagation()
-                  action.handler && action.handler(context)
-                }}
-              >
-                {action.icon}
-              </IconButton>
-            )}
+            <IconButton
+              {...rest}
+              onClick={(ev) => {
+                ev.stopPropagation()
+                action.handler && action.handler(context)
+              }}
+            >
+              {action.icon}
+            </IconButton>
           </Tooltip>
         )
       })}
