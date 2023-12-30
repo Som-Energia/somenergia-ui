@@ -461,17 +461,6 @@ function TableEditor(props) {
           actions={actions}
           selectionActions={selectionActions}
         />
-        {pageSizes.length !== 0 && (
-          <TablePagination
-            rowsPerPageOptions={pageSizes}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        )}
         <TableContainer>
           <Table aria-labelledby="tableTitle" size={'small'} stickyHeader>
             <EnhancedTableHead
@@ -624,6 +613,17 @@ function TableEditor(props) {
             </TableBody>
           </Table>
         </TableContainer>
+        {pageSizes.length !== 0 && (
+          <TablePagination
+            rowsPerPageOptions={pageSizes}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        )}
       </Paper>
     </Box>
   )
