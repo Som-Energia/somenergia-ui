@@ -2,9 +2,14 @@
 
 ## Unreleased
 
+- Fixed duplication of modules causing multiple problems
+    - Translations on production build disappeared due to duplicated i18next-react instance
+    - In some occasions react simbols were not found
 - TableEditor:
     - Singular texts for filter and selected items
     - Breaking change: noDataPlaceHolder should not include TR/TD wrapping
+    - Pagination moved back down
+    - Catalan translation
 
 ## somenergia-ui 0.1.5 2023-12-29
 
