@@ -1,7 +1,8 @@
-import { ThemeProvider, CssBaseline } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
 import SomEnergiaTheme from '../lib/SomEnergiaTheme'
-import { createTheme } from '@mui/material/styles'
+import '../lib/i18n'
 
 const preview = {
   parameters: {
