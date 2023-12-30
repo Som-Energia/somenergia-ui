@@ -1,5 +1,25 @@
 # Change log
 
+## somenergia-ui 0.1.5 2023-12-29
+
+- TableEditor:
+    - Softer filter animation (padding, borders and the filter counter row changed abruptly)
+    - Fix: some styles were misspelled.
+- Loading:
+    - Parametrization and simplification
+    - Fix: Removed bad keyframe selector warning
+        - Some weird interaction with other styles
+          made the browser complaint on the transform
+          rotate animation. Using `rotate` instead.
+    - Fix: On some circumstances the ball and the line dealigned
+        - Now they are attached to the same animated parent.
+          this eases the layout.
+        - All children made concentric and absolute positioned.
+- Duplicate all dependencies are peer dependencies
+- Fix: glob package broke interface
+- Main application styles clean up
+- CI: Publish on tag
+
 ## somenergia-ui 0.1.4 2023-12-28
 
 - Packaging metadata
