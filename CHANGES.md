@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## somenergia-ui 0.1.6 2023-12-30
 
 - Fixed duplication of modules causing multiple problems
     - Translations on production build disappeared due to duplicated i18next-react instance
