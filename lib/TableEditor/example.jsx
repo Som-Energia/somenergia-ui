@@ -23,6 +23,7 @@ export default function Example(params) {
   const [hasSelection, haveSelection] = React.useState(true)
   const [hasItemActions, haveItemActions] = React.useState(true)
   const [hasGlobalActions, haveGlobalActions] = React.useState(true)
+  const [hasCustomNoData, haveCustomNoData] = React.useState(true)
   const [pageSizes, setPageSizes] = React.useState('')
   const [rows, setRows] = React.useState([])
   const [log, setLog] = React.useState('')
@@ -160,6 +161,12 @@ export default function Example(params) {
             'Global actions',
             'Actions applied globally',
           ],
+          [
+            hasCustomNoData,
+            haveCustomNoData,
+            'noDataPlaceHolder ',
+            'A custom element for no data',
+          ],
           [isLoading, beLoading, 'Loading'],
         ].map(([getter, setter, label, description], i) => (
           <FormControlLabel
@@ -217,11 +224,11 @@ export default function Example(params) {
         idField={idField}
         loading={isLoading}
         noDataPlaceHolder={
-          <TableRow>
-            <TableCell colSpan={4} sx={{ textAlign: 'center' }}>
-              <Typography variant="h4">{'No items found'}</Typography>
-            </TableCell>
-          </TableRow>
+          hasCustomNoData ? (
+            <Typography sx={{ textAlign: 'center' }} variant="h4">
+              {'No items found'}
+            </Typography>
+          ) : undefined
         }
       ></TableEditor>
     </>

@@ -1,5 +1,11 @@
 # Change log
 
+## Unreleased
+
+- TableEditor:
+    - Singular texts for filter and selected items
+    - Breaking change: noDataPlaceHolder should not include TR/TD wrapping
+
 ## somenergia-ui 0.1.5 2023-12-29
 
 - TableEditor:

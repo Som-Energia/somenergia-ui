@@ -489,7 +489,11 @@ function TableEditor(props) {
               {loading ? (
                 <Loading nCols={nTableColumns} />
               ) : rows.length === 0 ? (
-                noDataPlaceHolder
+                noDataPlaceHolder && (
+                  <TableRow>
+                    <TableCell colSpan={nTableColumns}>{noDataPlaceHolder}</TableCell>
+                  </TableRow>
+                )
               ) : (
                 stableSort(rows, getComparator(order, orderBy))
                   .slice(
