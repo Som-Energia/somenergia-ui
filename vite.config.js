@@ -45,8 +45,9 @@ export default defineConfig({
         entryFileNames: '[name].[format].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
         manualChunks: (id) => {
+          //if (id.includes('node_modules'))
+          //  return id.toString().split('node_modules/')[1].split('/')[0].toString()
           if (id.includes('node_modules')) return 'vendor'
-          //return id.toString().split('node_modules/')[1].split('/')[0].toString()
         },
       },
     },
