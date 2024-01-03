@@ -630,9 +630,9 @@ function TableEditor(props) {
 const ColumnsType = PropTypes.arrayOf(
   PropTypes.shape({
     /** The field to be search in rows */
-    id: PropTypes.string.required,
+    id: PropTypes.string.isRequired,
     /** The field label to show on the column header */
-    label: PropTypes.string.required,
+    label: PropTypes.string.isRequired,
     /** When truish aligns right instead of left */
     numeric: PropTypes.boolean,
     /** When truish, the field is considered for searches */
