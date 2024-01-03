@@ -1,5 +1,10 @@
 # Change log
 
+## somenergia-ui 0.1.7 2024-01-03
+
+- Fix: proptypes required -> isRequired
+- Docs: how to add dependencies
+
 ## somenergia-ui 0.1.6 2023-12-30
 
 - Fixed duplication of modules causing multiple problems
