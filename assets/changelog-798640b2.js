@@ -1,4 +1,9 @@
-import{j as n}from"./jsx-runtime-ffb262ed.js";import{M as i,d as o}from"./index-f3147ae3.js";import{u as r}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-77333b4d.js";import"../sb-preview/runtime.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-6f09c02c.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./assertThisInitialized-33acfce7.js";import"./_baseIsEqual-39aea10f.js";import"./index-45304ab3.js";import"./index-356e4a49.js";const s=`# Change log
+import{j as n}from"./jsx-runtime-ffb262ed.js";import{M as t,d as o}from"./index-823812c3.js";import{u as r}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-84a496cf.js";import"../sb-preview/runtime.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-6f09c02c.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./assertThisInitialized-33acfce7.js";import"./_baseIsEqual-39aea10f.js";import"./index-45304ab3.js";import"./index-356e4a49.js";const s=`# Change log
+
+## somenergia-ui 0.1.7 2024-01-03
+
+- Fix: proptypes required -> isRequired
+- Docs: how to add dependencies
 
 ## somenergia-ui 0.1.6 2023-12-30
 
@@ -46,5 +51,5 @@ import{j as n}from"./jsx-runtime-ffb262ed.js";import{M as i,d as o}from"./index-
 - First version
 - Includes components: Loading and TableEditor from somrepresenta-oficinavirtual
 - Manages translations and themes
-`;function t(e){return n.jsxs(n.Fragment,{children:[n.jsx(i,{title:"Changelog"}),`
-`,n.jsx(o,{children:s})]})}function F(e={}){const{wrapper:a}=Object.assign({},r(),e.components);return a?n.jsx(a,Object.assign({},e,{children:n.jsx(t,e)})):t()}export{F as default};
+`;function i(e){return n.jsxs(n.Fragment,{children:[n.jsx(t,{title:"Changelog"}),`
+`,n.jsx(o,{children:s})]})}function k(e={}){const{wrapper:a}=Object.assign({},r(),e.components);return a?n.jsx(a,Object.assign({},e,{children:n.jsx(i,e)})):i()}export{k as default};
