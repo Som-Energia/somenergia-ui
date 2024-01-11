@@ -1,5 +1,10 @@
 # Change log
 
+## somenergia-ui 0.2.0 2024-01-11
+
+- New component SnackbarMessages
+- New service: messages
+
 ## somenergia-ui 0.1.7 2024-01-03
 
 - Fix: proptypes required -> isRequired
