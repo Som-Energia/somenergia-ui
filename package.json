@@ -10,7 +10,9 @@
     "url": "https://github.com/Som-Energia/somenergia-ui.git"
   },
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "module": "./dist/index.es.js",
   "exports": {
     ".": {
@@ -80,5 +82,9 @@
     "storybook": "^7.6.6",
     "vite": "^4.4",
     "vite-plugin-svgr": "^4.2.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "recharts": "^2.10.4"
   }
 }
