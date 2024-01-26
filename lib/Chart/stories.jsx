@@ -17,7 +17,8 @@ export const BarChart = {
         fills: { P1: '#FFC300', P2: '#900C3F', P3: '#581845' },
       },
       legend: true,
-      type: 'BAR'
+      type: 'BAR',
+      lang: 'ca',
   },
 };
 
@@ -26,7 +27,8 @@ export const LineChart = {
     period: 'DAILY',
       data: data,
       legend: true,
-      type: 'LINE'
+      type: 'LINE',
+      lang: 'gl',
   },
 };
 
@@ -37,5 +39,6 @@ export const LineChartCompare = {
       legend: true,
       compareData: compareData,
       type: 'LINE',
+      lang: 'eu',
   },
 };

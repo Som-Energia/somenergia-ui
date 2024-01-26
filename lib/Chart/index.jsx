@@ -14,11 +14,11 @@ import {
   Line
 } from 'recharts'
 
-import { formatTooltipLabel, formatXAxis, ticksFromData, domainFromData, formatDecimal, formatTooltip, mergeData} from './dataFormat'
+import { formatTooltipLabel, formatXAxis, ticksFromData, domainFromData, formatDecimal, formatTooltip, mergeData, setChartLang} from './dataFormat'
 
-function Chart({ data, period, legend = false, compareData, type }) {
-  
+function Chart({ data, period, legend = false, compareData, type, lang }) {
   const getChartType = (type, data, period, legend, compareData) => {
+    setChartLang(lang)
     if (type === 'LINE') {
       const mixedData = mergeData(data, compareData)
       return (
@@ -128,6 +128,7 @@ Chart.propTypes = {
   legend: PropTypes.boolean || PropTypes.any,
   compareData: PropTypes.array || null,
   type: PropTypes.string,
+  lang: PropTypes.string,
 }
 
 export default Chart
