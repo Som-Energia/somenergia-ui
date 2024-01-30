@@ -44,7 +44,9 @@
     "react-confetti-explosion": ">=2.1.2",
     "react-dom": ">=18.2.0",
     "react-i18next": ">=14.0.0",
-    "styled-components": ">=6.1.2"
+    "styled-components": ">=6.1.2",
+    "dayjs": "^1.11.10",
+    "recharts": "^2.10.4"
   },
   "devDependencies": {
     "@emotion/react": ">=11.11.1",
@@ -81,9 +83,7 @@
     "react-i18next": "^14.0.0",
     "storybook": "^7.6.6",
     "vite": "^4.4",
-    "vite-plugin-svgr": "^4.2.0"
-  },
-  "dependencies": {
+    "vite-plugin-svgr": "^4.2.0",
     "dayjs": "^1.11.10",
     "recharts": "^2.10.4"
   }

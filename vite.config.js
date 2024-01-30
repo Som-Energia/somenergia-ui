@@ -27,6 +27,8 @@ export default defineConfig({
         'i18next',
         'i18next-browser-languagedetector',
         'prop-types',
+        /^dayjs/,
+        'recharts',
         /^@mui/,
         /node_modules/,
       ],
