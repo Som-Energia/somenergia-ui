@@ -11,10 +11,19 @@ import {
   Legend,
   LineChart,
   BarChart,
-  Line
+  Line,
 } from 'recharts'
 
-import { formatTooltipLabel, formatXAxis, ticksFromData, domainFromData, formatDecimal, formatTooltip, mergeData, setChartLang} from './dataFormat'
+import {
+  formatTooltipLabel,
+  formatXAxis,
+  ticksFromData,
+  domainFromData,
+  formatDecimal,
+  formatTooltip,
+  mergeData,
+  setChartLang,
+} from './dataFormat'
 
 function Chart({ data, period, legend = false, compareData, type, lang }) {
   const getChartType = (type, data, period, legend, compareData) => {
