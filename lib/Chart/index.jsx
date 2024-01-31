@@ -134,7 +134,7 @@ function Chart({ data, period, legend = false, compareData, type, lang }) {
 Chart.propTypes = {
   data: PropTypes.array || PropTypes.object,
   period: PropTypes.string,
-  legend: PropTypes.boolean || PropTypes.any,
+  legend: PropTypes.bool || PropTypes.any,
   compareData: PropTypes.array || null,
   type: PropTypes.string,
   lang: PropTypes.string,
