@@ -29,6 +29,7 @@ export default defineConfig({
         'prop-types',
         /^dayjs/,
         'recharts',
+        'styled-components',
         /^@mui/,
         /node_modules/,
       ],
