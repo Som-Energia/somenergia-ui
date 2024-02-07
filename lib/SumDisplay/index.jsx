@@ -28,7 +28,7 @@ export const labelTotalPeriod = (period) => {
 function SumDisplay(props) {
   const {
     period,
-    currentDate,
+    currentDate = false,
     totalKwh,
     compareDate = false,
     compareTotalKwh = false,
@@ -36,11 +36,13 @@ function SumDisplay(props) {
   const { t } = useTranslation()
   return (
     <CounterWrapper>
-      <Counter
-        value={totalKwh}
-        title={t(labelTotalPeriod(period))}
-        date={dayjs(currentDate).format('DD/MM/YYYY')}
-      />
+      {currentDate && (
+        <Counter
+          value={totalKwh}
+          title={t(labelTotalPeriod(period))}
+          date={dayjs(currentDate).format('DD/MM/YYYY')}
+        />
+      )}
       {compareDate && (
         <Counter
           value={compareTotalKwh}

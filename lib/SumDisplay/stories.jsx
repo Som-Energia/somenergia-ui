@@ -23,3 +23,13 @@ export const DisplaySumWithComparation = {
     compareTotalKwh: 6
   }
 }
+
+export const DisplayComparasionSum = {
+  args: {
+    currentDate: false,
+    period: 'DAILY',
+    compareDate: '04/02/2024',
+    compareTotalKwh: 6
+  }
+}
+
