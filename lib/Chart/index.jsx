@@ -49,7 +49,7 @@ function Chart({ data, period, legend = false, compareData, type, lang }) {
             axisLine={false}
             tickCount={8}
             tickLine={false}
-            tickFormatter={(tickItem) => `${formatDecimal(tickItem / 1000)}`}
+            tickFormatter={(tickItem) => `${formatDecimal(tickItem)}`}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
           >
             <Label value="kWh" angle={-90} position="insideLeft" fill="#969696" />
