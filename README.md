@@ -6,7 +6,9 @@ Common React/MUI components for Som Energia UI projects
 
 ## Install
 
+```bash
 npm install --save @somenergia/somenergia-ui
+```
 
 ## Adding dependencies
 
@@ -16,3 +18,28 @@ npm install --save @somenergia/somenergia-ui
 - If the build creates a `vendor-***.js` as output, means that you failed to filter it
 - To know wich module is generating the `vendor-***.js`, you can get the name of the library
 by uncomenting the code in `vite-config.js` (`build.rollupOptions.output.manualChunks`)
+
+## Using unreleased components in another project
+
+First build the library locally
+
+```bash
+npm run build
+```
+
+From the other project run:
+
+```bash
+npm install ../somenergia-ui
+```
+
+## Release process
+
+- Update version package.json and CHANGES.md
+- Tag the release somenergia-ui-M.m.p
+- On pushing the version tag, automated CI will publish the package in npm
+- Right now the storybook of the CI is failing so the following command must be run by hand
+
+```bash
+npm run deploy-storybook
+```

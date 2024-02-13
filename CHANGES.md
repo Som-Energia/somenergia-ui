@@ -1,5 +1,10 @@
 # Change log
 
+## unrealeased
+
+- New component: Chart
+- New components: SumDisplay
+
 ## somenergia-ui 0.2.0 2024-01-11
 
 - New component SnackbarMessages
