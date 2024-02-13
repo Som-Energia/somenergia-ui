@@ -1,6 +1,6 @@
 # Change log
 
-## unrealeased
+## somenergia-ui 0.3.0 2024-02-13
 
 - New component: Chart
 - New components: SumDisplay
