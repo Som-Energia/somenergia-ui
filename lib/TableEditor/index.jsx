@@ -634,9 +634,9 @@ const ColumnsType = PropTypes.arrayOf(
     /** The field label to show on the column header */
     label: PropTypes.string.isRequired,
     /** When truish aligns right instead of left */
-    numeric: PropTypes.boolean,
+    numeric: PropTypes.bool,
     /** When truish, the field is considered for searches */
-    searchable: PropTypes.boolean,
+    searchable: PropTypes.bool,
     /** A functor receiving the full row object and returning the cell content.
       By default, stringifies the value of the field refered by `id`,
       unless such value is null or undefined which are turned into '-'. */

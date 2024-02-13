@@ -11,3 +11,8 @@ TABLE_EDITOR:
   N_ITEMS_FILTERED_one: La busqueda oculta 1 elemento
   N_ITEMS_FILTERED_other: La busqueda oculta {{count}} elementos
   CLEAR_FILTER: Mostrar todos
+SUMDISPLAY:
+  TOTAL_DAILY: Total diario
+  TOTAL_WEEKLY: Total semanal
+  TOTAL_MONTHLY: Total mensual
+  TOTAL_YEARLY: Total anual
