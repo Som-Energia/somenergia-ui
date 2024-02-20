@@ -1,5 +1,9 @@
 # Change log
 
+## somenergia-ui 0.3.1 2024-02-20
+
+- Fix: chart tooltip for 0 values
+
 ## somenergia-ui 0.3.0 2024-02-13
 
 - New component: Chart
