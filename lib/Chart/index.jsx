@@ -24,8 +24,18 @@ import {
   mergeData,
   setChartLang,
 } from './dataFormat'
+import { CustomTooltip } from './CustomTooltip'
 
-function Chart({ data, period, legend = false, compareData, type, lang }) {
+function Chart({
+  data,
+  period,
+  legend = false,
+  compareData,
+  type,
+  lang,
+  Ylegend = 'kWh',
+  showTooltipKeys = true,
+}) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
     if (type === 'LINE') {
@@ -52,10 +62,10 @@ function Chart({ data, period, legend = false, compareData, type, lang }) {
             tickFormatter={(tickItem) => `${formatDecimal(tickItem)}`}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
           >
-            <Label value="kWh" angle={-90} position="insideLeft" fill="#969696" />
+            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
           </YAxis>
           <Tooltip
-            formatter={formatTooltip}
+            formatter={(value) => formatTooltip(value, Ylegend)}
             labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart')}
             contentStyle={{ fontWeight: 'bold' }}
           />
@@ -83,11 +93,14 @@ function Chart({ data, period, legend = false, compareData, type, lang }) {
       return (
         <BarChart width={730} height={250} data={data.periods}>
           <CartesianGrid stroke="#616161" strokeWidth={0.5} vertical={false} />
+          <XAxis dataKey="range" padding={{ left: 24, right: 24 }} hide />
           <XAxis
             dataKey="date"
             tickFormatter={(tickItem) => formatXAxis(period, tickItem)}
             tick={{ fontSize: '1rem', transform: 'translate(0, 8)' }}
             padding={{ left: 24, right: 24 }}
+            scale="band"
+            xAxisId="values"
           />
           <YAxis
             type="number"
@@ -98,13 +111,13 @@ function Chart({ data, period, legend = false, compareData, type, lang }) {
             tickLine={false}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
           >
-            <Label value="kWh" angle={-90} position="insideLeft" fill="#969696" />
+            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
           </YAxis>
-
           <Tooltip
-            labelFormatter={(value) => formatTooltipLabel(period, value)}
+            content={
+              <CustomTooltip Ylegend={Ylegend} showTooltipKeys={showTooltipKeys} />
+            }
             cursor={{ fill: '#f2f2f2bb' }}
-            contentStyle={{ fontWeight: 'bold' }}
           />
           {legend && <Legend />}
           {data.keys.map((element) => {
@@ -138,6 +151,8 @@ Chart.propTypes = {
   compareData: PropTypes.array || null,
   type: PropTypes.string,
   lang: PropTypes.string,
+  Ylegend: PropTypes.string,
+  showTooltipKeys: PropTypes.bool
 }
 
 export default Chart
