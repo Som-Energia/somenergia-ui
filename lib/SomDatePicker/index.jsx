@@ -13,7 +13,6 @@ import minMax from 'dayjs/plugin/minMax'
 dayjs.extend(minMax)
 
 export default function SomDatePicker({
-  color = '#96b633',
   firstDate = dayjs().subtract(7, 'day'),
   lastDate = dayjs().add(1, 'day'),
   period = 'DAILY',
@@ -46,7 +45,7 @@ export default function SomDatePicker({
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Button onClick={prevTimeWindow}>
-          <ArrowBackIosOutlinedIcon sx={{ color: color }} />
+          <ArrowBackIosOutlinedIcon />
         </Button>
         <DatePicker
           value={currentTime}
@@ -56,14 +55,13 @@ export default function SomDatePicker({
           format="DD/MM/YYYY"
         ></DatePicker>
         <Button onClick={nextTimeWindow}>
-          <ArrowForwardIosOutlinedIcon sx={{ color: color }} />
+          <ArrowForwardIosOutlinedIcon />
         </Button>
       </LocalizationProvider>
     </Box>
   )
 }
 SomDatePicker.propTypes = {
-  color: PropTypes.string,
   firstDate: dayjs,
   lastDate: dayjs,
   period: PropTypes.string,
