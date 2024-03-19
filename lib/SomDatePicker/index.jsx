@@ -1,12 +1,12 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
-import { Button } from '@mui/material'
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-material'
+import { Box, Button } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
+
 import { useState } from 'react'
 import minMax from 'dayjs/plugin/minMax'
 
@@ -16,7 +16,6 @@ export default function SomDatePicker({
   firstDate = dayjs().subtract(7, 'day'),
   lastDate = dayjs().add(1, 'day'),
   period = 'DAILY',
-  sx,
 }) {
   const dayjsperiods = {
     DAILY: 'd',
@@ -40,12 +39,11 @@ export default function SomDatePicker({
     <Box
       sx={{
         display: 'flex',
-        ...sx,
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Button onClick={prevTimeWindow}>
-          <ArrowBackIosOutlinedIcon />
+          <ArrowBackIosOutlined />
         </Button>
         <DatePicker
           value={currentTime}
@@ -55,7 +53,7 @@ export default function SomDatePicker({
           format="DD/MM/YYYY"
         ></DatePicker>
         <Button onClick={nextTimeWindow}>
-          <ArrowForwardIosOutlinedIcon />
+          <ArrowForwardIosOutlined />
         </Button>
       </LocalizationProvider>
     </Box>
@@ -65,5 +63,4 @@ SomDatePicker.propTypes = {
   firstDate: dayjs,
   lastDate: dayjs,
   period: PropTypes.string,
-  sx: PropTypes.object,
 }
