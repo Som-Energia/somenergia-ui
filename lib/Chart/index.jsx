@@ -12,6 +12,7 @@ import {
   LineChart,
   BarChart,
   Line,
+  ReferenceLine,
 } from 'recharts'
 
 import {
@@ -35,6 +36,7 @@ function Chart({
   lang,
   Ylegend = 'kWh',
   showTooltipKeys = true,
+  referenceLineData
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
@@ -120,6 +122,7 @@ function Chart({
             cursor={{ fill: '#f2f2f2bb' }}
           />
           {legend && <Legend />}
+
           {data.keys.map((element) => {
             return (
               <Bar
@@ -130,6 +133,17 @@ function Chart({
               />
             )
           })}
+          {referenceLineData && referenceLineData.map((element) => {
+            return (
+              <ReferenceLine
+                y={element.value}
+                stroke={element.color}
+                strokeDasharray={element.stroke}
+                strokeWidth={element.strokeWidth}
+              />
+            )
+            })
+          }
         </BarChart>
       )
     }
@@ -152,7 +166,8 @@ Chart.propTypes = {
   type: PropTypes.string,
   lang: PropTypes.string,
   Ylegend: PropTypes.string,
-  showTooltipKeys: PropTypes.bool
+  showTooltipKeys: PropTypes.bool,
+  referenceLineData: PropTypes.array || null,
 }
 
 export default Chart
