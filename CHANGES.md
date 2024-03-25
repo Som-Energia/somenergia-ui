@@ -1,5 +1,12 @@
 # Change log
 
+## somenergia-ui-0.3.2 2024-03-25
+
+- BarChart changes:
+  - Bars between x lines
+  - Changes in tooltip (add possibility to hide the keys in tooltip)
+  - Enable to pass the Y legend
+
 ## somenergia-ui 0.3.1 2024-02-20
 
 - Fix: chart tooltip for 0 values
