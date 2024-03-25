@@ -4,7 +4,7 @@ import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-materi
 import { Box, Button } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs from 'dayjs'
 
 import { useState } from 'react'
@@ -51,6 +51,10 @@ export default function SomDatePicker({
           minDate={dayjs(firstDate)}
           maxDate={dayjs(lastDate)}
           format="DD/MM/YYYY"
+          sx={{
+            backgroundColor: 'white',
+            borderRadius: '4px',
+          }}
         ></DatePicker>
         <Button onClick={nextTimeWindow}>
           <ArrowForwardIosOutlined />
