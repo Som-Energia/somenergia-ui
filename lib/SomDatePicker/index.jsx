@@ -23,7 +23,7 @@ export default function SomDatePicker({
     MONTHLY: 'M',
     YEARLY: 'y',
   }
-  const [currentTime, setCurrentTime] = useState(dayjs(firstDate))
+  const [currentTime, setCurrentTime] = useState(dayjs())
 
   function prevTimeWindow() {
     setCurrentTime(
