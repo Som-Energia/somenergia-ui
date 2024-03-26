@@ -1,16 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CounterWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
-
 const CounterBox = styled.div`
-  border-width: 0 1px 0 0;
-  border-radius: 0px;
-  border-style: solid;
-  padding: 4px 8px;
+  padding: 2px 4px;
   color: '#4D4D4D';
   align-items: center;
   text-align: center;
@@ -20,11 +12,11 @@ const CounterBox = styled.div`
 const CounterValue = styled.div`
   font-size: 1.5rem;
   font-weight: 400;
-  padding: 0 4px 0 8px;;
+  padding: 0 4px 0 8px;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
-  .units { 
+  .units {
     font-size: 0.8rem;
   }
 `
@@ -43,17 +35,17 @@ const CounterDetail = styled.div`
 `
 
 function Total(props) {
-  const { value, description} = props
+  const { value, description } = props
   return (
-      <CounterBox>
-        <CounterValue>
-          <span>{value}</span>
-          <span className="units">€/kWh</span>
-        </CounterValue>
-        <CounterDetail>
-          <div className="">{description}</div>
-        </CounterDetail>
-      </CounterBox>
+    <CounterBox>
+      <CounterValue>
+        <span>{value}</span>
+        <span className="units">€/kWh</span>
+      </CounterValue>
+      <CounterDetail>
+        <div className="">{description}</div>
+      </CounterDetail>
+    </CounterBox>
   )
 }
 

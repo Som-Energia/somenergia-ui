@@ -26,6 +26,7 @@ import {
   setChartLang,
 } from './dataFormat'
 import { CustomTooltip } from './CustomTooltip'
+import { CustomLegend } from './CustomLegend'
 
 function Chart({
   data,
@@ -121,8 +122,13 @@ function Chart({
             }
             cursor={{ fill: '#f2f2f2bb' }}
           />
-          {legend && <Legend />}
 
+          {legend && !referenceLineData && <Legend/>}
+          {legend && referenceLineData &&
+            <Legend
+              content={<CustomLegend referenceLineData={referenceLineData}/>}
+            />
+          }
           {data.keys.map((element) => {
             return (
               <Bar
@@ -133,6 +139,7 @@ function Chart({
               />
             )
           })}
+
           {referenceLineData && referenceLineData.map((element) => {
             return (
               <ReferenceLine
@@ -140,11 +147,13 @@ function Chart({
                 stroke={element.color}
                 strokeDasharray={element.stroke}
                 strokeWidth={element.strokeWidth}
+                text={element.text}
               />
             )
             })
           }
-        </BarChart>
+
+          </BarChart>
       )
     }
   }

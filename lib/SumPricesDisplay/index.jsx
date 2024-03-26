@@ -1,17 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import Total from './Total'
 import { useTranslation } from 'react-i18next'
+import Stack from '@mui/material/Stack'
+import Divider from '@mui/material/Divider'
+import { useTheme, useMediaQuery } from '@mui/material'
 
-const CounterWrapper = styled.div`
-  display: flex;
-  & > div {
-    margin-left: 8px;
-  }
-  div:last-child {
-    border: none;
-  }
-`
 export const labelTotal = (type) => {
   switch (type) {
     case 'MIN':
@@ -28,22 +21,28 @@ export const labelTotal = (type) => {
 }
 
 function SumPricesDisplay(props) {
-  const {
-    totalPrices
-  } = props
+  const { totalPrices } = props
   const { t } = useTranslation()
+  const theme = useTheme()
+
   return (
-    <CounterWrapper>
-      {Object.entries(totalPrices).map(([type, totalPriceKwh]) => {
-        console.log(totalPriceKwh, type, t(labelTotal(type)));
-        return (
-          <Total
-            value={totalPriceKwh}
-            description={t(labelTotal(type))}
-          />
-        )
+    <Stack
+      direction={{ xs: 'column', md: 'row' }}
+      divider={
+        <Divider
+          orientation={
+            useMediaQuery(theme.breakpoints.down('md'))
+              ? 'horizontal'
+              : 'vertical'
+          }
+          flexItem
+        />
+      }
+    >
+      {Object.entries(totalPrices).map(([type, totalPriceKwh], index) => {
+        return <Total value={totalPriceKwh} description={t(labelTotal(type))} />
       })}
-    </CounterWrapper>
+    </Stack>
   )
 }
 

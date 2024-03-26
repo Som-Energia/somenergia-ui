@@ -21,17 +21,21 @@ export const BarChart = {
     lang: 'ca',
     referenceLineData: [
       {
-        value: 10,
-        color: 'blue',
-        stroke: '3 3',
-        strokeWidth: 2,
-      },
-      {
         value: 15,
         color: 'blue',
         stroke: '0',
         strokeWidth: 2,
-      }
+        isFront: false,
+        text: 'Mitjana dels 24 preus del dia',
+      },
+      {
+        value: 10,
+        color: 'blue',
+        stroke: '3 3',
+        strokeWidth: 2,
+        isFront: false,
+        text: 'Mitjana últims 7 dies',
+      },
     ]
   },
 };
