@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-material'
-import { Box, Button } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import dayjs from 'dayjs'
-
-import { useState } from 'react'
+import dayjs, { Dayjs } from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
 
 dayjs.extend(minMax)
@@ -16,6 +15,8 @@ export default function SomDatePicker({
   firstDate = dayjs().subtract(7, 'day'),
   lastDate = dayjs().add(1, 'day'),
   period = 'DAILY',
+  currentTime = dayjs(),
+  setCurrentTime,
 }) {
   const dayjsperiods = {
     DAILY: 'd',
@@ -23,16 +24,15 @@ export default function SomDatePicker({
     MONTHLY: 'M',
     YEARLY: 'y',
   }
-  const [currentTime, setCurrentTime] = useState(dayjs())
 
   function prevTimeWindow() {
-    setCurrentTime(
-      dayjs.max(dayjs(firstDate), currentTime.subtract(1, dayjsperiods[period])),
-    )
+    const prev = currentTime.subtract(1, dayjsperiods[period])
+    setCurrentTime(dayjs.max(firstDate, prev))
   }
 
   function nextTimeWindow() {
-    setCurrentTime(dayjs.min(dayjs(lastDate), currentTime.add(1, dayjsperiods[period])))
+    const next = currentTime.add(1, dayjsperiods[period])
+    setCurrentTime(dayjs.min(lastDate, next))
   }
 
   return (
@@ -47,7 +47,9 @@ export default function SomDatePicker({
         </Button>
         <DatePicker
           value={currentTime}
-          onChange={setCurrentTime}
+          onChange={(newValue) => {
+            setCurrentTime(newValue)
+          }}
           minDate={dayjs(firstDate)}
           maxDate={dayjs(lastDate)}
           format="DD/MM/YYYY"
@@ -64,7 +66,9 @@ export default function SomDatePicker({
   )
 }
 SomDatePicker.propTypes = {
-  firstDate: dayjs,
-  lastDate: dayjs,
+  firstDate: Dayjs,
+  lastDate: Dayjs,
   period: PropTypes.string,
+  currentTime: Dayjs,
+  setCurrentTime: PropTypes.func,
 }

@@ -1,4 +1,5 @@
-import SomDatePicker from './'
+import SomDatePicker from '.'
+import SomDatePickerExample from './example'
 
 export default {
   title: 'Components/SomDatePicker',
@@ -9,4 +10,6 @@ export default {
   tags: ['autodocs'],
 }
 
-export const Primary = {}
+export const Example = {
+  render: () => <SomDatePickerExample />,
+}
