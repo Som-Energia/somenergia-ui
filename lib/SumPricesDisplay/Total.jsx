@@ -35,15 +35,15 @@ const CounterDetail = styled.div`
 `
 
 function Total(props) {
-  const { value, description } = props
+  const { value, unit, description } = props
   return (
     <CounterBox>
       <CounterValue>
         <span>{value}</span>
-        <span className="units">€/kWh</span>
+        <span className="units">{unit}</span>
       </CounterValue>
       <CounterDetail>
-        <div className="">{description}</div>
+        <div>{description}</div>
       </CounterDetail>
     </CounterBox>
   )
