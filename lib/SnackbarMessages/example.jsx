@@ -60,7 +60,6 @@ function SenderButton({ f }) {
   )
 }
 
-console.log('cargando lazy laziando')
 export default function Example() {
   const [horizontal, setHorizontal] = React.useState('')
   const [vertical, setVertical] = React.useState('')

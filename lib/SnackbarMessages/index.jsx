@@ -37,7 +37,6 @@ export default function SnackbarMessages(props) {
     ...extra
   } = props
   const [messages, setMessages] = React.useState([])
-  const [current, setCurrent] = React.useState(undefined)
   React.useEffect(() => {
     const unsubscribe = subscribe((incoming) => {
       setMessages((messages) => [...messages, { id: messageid++, ...incoming }])
