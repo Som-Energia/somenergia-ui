@@ -1,28 +1,11 @@
 import React from 'react'
 import Total from './Total'
-import { useTranslation } from 'react-i18next'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import { useTheme, useMediaQuery } from '@mui/material'
 
-export const labelTotal = (type) => {
-  switch (type) {
-    case 'MIN':
-      return 'SUMPRICESDISPLAY.TOTAL_MIN'
-    case 'MAX':
-      return 'SUMPRICESDISPLAY.TOTAL_MAX'
-    case 'AVERAGE':
-      return 'SUMPRICESDISPLAY.TOTAL_AVERAGE'
-    case 'WEEKLY_AVERAGE':
-      return 'SUMPRICESDISPLAY.TOTAL_WEEKLY_AVERAGE'
-    default:
-      return ''
-  }
-}
-
 function SumPricesDisplay(props) {
   const { totalPrices } = props
-  const { t } = useTranslation()
   const theme = useTheme()
 
   return (
@@ -39,8 +22,8 @@ function SumPricesDisplay(props) {
         />
       }
     >
-      {Object.entries(totalPrices).map(([type, totalPriceKwh], index) => {
-        return <Total value={totalPriceKwh} description={t(labelTotal(type))} />
+      {totalPrices.map((element, index) => {
+        return <Total key={index} unit={element.unit} value={element.value} description={element.description} />
       })}
     </Stack>
   )

@@ -1,31 +1,5 @@
 import SumPricesDisplay from '.'
 
-// const totalPrices = [
-//   {
-//     type: 'MIN',
-//     totalPriceKwh: '0,148228'
-//   },
-//   {
-//     type: 'MAX',
-//     totalPriceKwh: '0,267025'
-//   },
-//   {
-//     type: 'AVERAGE',
-//     totalPriceKwh: '0,192623'
-//   },
-//   {
-//     type: 'WEEKLY_AVERAGE',
-//     totalPriceKwh: '0,159804'
-//   }
-// ]
-
-const totalPrices = {
-  'MIN': '0,148228',
-  'MAX': '0,267025',
-  'AVERAGE': '0,192623',
-  'WEEKLY_AVERAGE': '0,159804'
-}
-
 export default {
   title: 'Components/FascinatingSumPricesDisplay🧮',
   component: SumPricesDisplay,
@@ -34,8 +8,27 @@ export default {
 
 export const DisplaySumPrices = {
   args: {
-    totalPrices
+    totalPrices: [
+      {
+        description: 'PRECIO MÍNIMO',
+        unit: '€/kWh',
+        value: '0,148228'
+      },
+      {
+        description: 'PRECIO MÁXIMO',
+        unit: '€/kWh',
+        value: '0,267025'
+      },
+      {
+        description: 'PROMEDIO DEL DIA',
+        unit: '€/kWh',
+        value: '0,192623'
+      },
+      {
+        description: 'PROMEDIO ÚLTIMOS 7 DÍAS',
+        unit: '€/kWh',
+        value: '0,159804'
+      }
+    ]
   }
 }
-
-
