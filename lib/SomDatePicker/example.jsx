@@ -5,5 +5,11 @@ import SomDatePicker from '.'
 export default function SomDatePickerExample() {
   const [date, setDate] = React.useState(dayjs())
 
-  return <SomDatePicker currentTime={date} setCurrentTime={setDate} />
+  return (
+    <SomDatePicker
+      period={'DAILY'}
+      currentTime={date}
+      setCurrentTime={setDate}
+    />
+  )
 }

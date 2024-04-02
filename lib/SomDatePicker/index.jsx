@@ -8,6 +8,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs, { Dayjs } from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
+import { i18n } from '../i18n'
 
 dayjs.extend(minMax)
 
@@ -41,7 +42,7 @@ export default function SomDatePicker({
         display: 'flex',
       }}
     >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
         <Button onClick={prevTimeWindow}>
           <ArrowBackIosOutlined />
         </Button>
