@@ -169,15 +169,15 @@ function Chart({
 }
 
 Chart.propTypes = {
-  data: PropTypes.array || PropTypes.object,
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   period: PropTypes.string,
-  legend: PropTypes.bool || PropTypes.any,
-  compareData: PropTypes.array || null,
+  legend: PropTypes.oneOfType([PropTypes.bool, PropTypes.any]),
+  compareData: PropTypes.oneOfType([PropTypes.array, null]),
   type: PropTypes.string,
   lang: PropTypes.string,
   Ylegend: PropTypes.string,
   showTooltipKeys: PropTypes.bool,
-  referenceLineData: PropTypes.array || null,
+  referenceLineData: PropTypes.oneOfType([PropTypes.array, null]),
 }
 
 export default Chart
