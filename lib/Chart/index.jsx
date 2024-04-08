@@ -140,9 +140,10 @@ function Chart({
             )
           })}
 
-          {referenceLineData && referenceLineData.map((element) => {
+          {referenceLineData && referenceLineData.map((element, index) => {
             return (
               <ReferenceLine
+                key={index}
                 y={element.value}
                 stroke={element.color}
                 strokeDasharray={element.stroke}
