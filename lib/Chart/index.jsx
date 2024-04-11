@@ -172,12 +172,12 @@ Chart.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   period: PropTypes.string,
   legend: PropTypes.oneOfType([PropTypes.bool, PropTypes.any]),
-  compareData: PropTypes.oneOfType([PropTypes.array, null]),
+  compareData: PropTypes.oneOfType([PropTypes.array]),
   type: PropTypes.string,
   lang: PropTypes.string,
   Ylegend: PropTypes.string,
   showTooltipKeys: PropTypes.bool,
-  referenceLineData: PropTypes.oneOfType([PropTypes.array, null]),
+  referenceLineData: PropTypes.oneOfType([PropTypes.array]),
 }
 
 export default Chart

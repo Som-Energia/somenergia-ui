@@ -67,9 +67,9 @@ export default function SomDatePicker({
   )
 }
 SomDatePicker.propTypes = {
-  firstDate: Dayjs,
-  lastDate: Dayjs,
+  firstDate: () => {},
+  lastDate: () => {},
   period: PropTypes.string,
-  currentTime: Dayjs,
+  currentTime: () => {},
   setCurrentTime: PropTypes.func,
 }
