@@ -1,5 +1,14 @@
 # Change log
 
+## somenergia-ui-0.4.0 2024-04-15
+
+- New component: SomDatePicker
+- New component: DizzyError (cuca marejada)
+- New component: SumPricesDisplay
+- Chart: added reference lines
+- Chart: added custom legend
+- Cypress test for SomDatePicker
+
 ## somenergia-ui-0.3.2 2024-03-25
 
 - BarChart changes:
