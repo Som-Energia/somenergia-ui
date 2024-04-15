@@ -13,8 +13,8 @@ import { i18n } from '../i18n'
 dayjs.extend(minMax)
 
 export default function SomDatePicker({
-  firstDate = dayjs().subtract(7, 'day'),
-  lastDate = dayjs().add(1, 'day'),
+  firstDate = null,
+  lastDate = null,
   period = 'DAILY',
   currentTime = dayjs(),
   setCurrentTime,
@@ -43,7 +43,7 @@ export default function SomDatePicker({
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
-        <Button onClick={prevTimeWindow}>
+        <Button onClick={prevTimeWindow} data-cy="prev-button">
           <ArrowBackIosOutlined />
         </Button>
         <DatePicker
@@ -59,7 +59,7 @@ export default function SomDatePicker({
             borderRadius: '4px',
           }}
         ></DatePicker>
-        <Button onClick={nextTimeWindow}>
+        <Button onClick={nextTimeWindow} data-cy="next-button">
           <ArrowForwardIosOutlined />
         </Button>
       </LocalizationProvider>
