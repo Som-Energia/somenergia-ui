@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
-import { Box, Paper, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 import dayjs from 'dayjs'
 
 export const CustomTooltip = ({ active, payload, Ylegend, showTooltipKeys }) => {

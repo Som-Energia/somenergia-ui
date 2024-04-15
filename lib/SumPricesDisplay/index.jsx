@@ -2,7 +2,8 @@ import React from 'react'
 import Total from './Total'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
-import { useTheme, useMediaQuery } from '@mui/material'
+import useTheme from '@mui/system/useTheme'
+import useMediaQuery from '@mui/system/useMediaQuery'
 
 function SumPricesDisplay(props) {
   const { totalPrices } = props
