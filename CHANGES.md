@@ -1,5 +1,10 @@
 # Change log
 
+## somenergia-ui-0.4.1 2024-04-16
+
+- Fix: formatDecimal with 2 decimals by default
+parametrized
+
 ## somenergia-ui-0.4.0 2024-04-15
 
 - New component: SomDatePicker
