@@ -37,7 +37,8 @@ function Chart({
   lang,
   Ylegend = 'kWh',
   showTooltipKeys = true,
-  referenceLineData
+  referenceLineData,
+  numberOfDecimals
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
@@ -113,6 +114,7 @@ function Chart({
             width={75}
             tickLine={false}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
+            tickFormatter={(tickItem) => `${formatDecimal(tickItem, numberOfDecimals)}`}
           >
             <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
           </YAxis>
