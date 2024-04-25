@@ -1,7 +1,7 @@
 {
   "name": "@somenergia/somenergia-ui",
   "private": false,
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Common React components for Som Energia projects",
   "license": "AGPL-3.0",
   "homepage": "https://som-energia.github.io/somenergia-ui/",
@@ -55,7 +55,7 @@
     "@emotion/react": ">=11.11.1",
     "@emotion/styled": ">=11.11.0",
     "@modyfi/vite-plugin-yaml": "^1.0.4",
-    "@mui/icons-material": "^5.15.15",
+    "@mui/icons-material": ">=5.15.9",
     "@mui/material": "^5.15.14",
     "@mui/x-date-pickers": "^6.19.7",
     "@mui/styled-engine-sc": ">=6.0.0-alpha.9",

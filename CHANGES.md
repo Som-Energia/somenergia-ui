@@ -1,5 +1,13 @@
 # Change log
 
+## somenergia-ui-0.4.2 2024-04-25
+- Build:
+    - Fix: Add missing `devDependencies`
+    - Fix: node version github action
+
+- Chart
+    - Fix: Parameterize decimal separator establishing `,` as default value
+
 ## somenergia-ui-0.4.1 2024-04-16
 
 - Fix: formatDecimal with 2 decimals by default
