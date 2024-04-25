@@ -38,7 +38,8 @@ function Chart({
   Ylegend = 'kWh',
   showTooltipKeys = true,
   referenceLineData,
-  numberOfDecimals
+  numberOfDecimals,
+  decimalSeparator
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
