@@ -1,5 +1,11 @@
 # Change log
 
+## Unreleased
+- Chart
+    - Parameterize tickcounter and max yAxis value
+- Date picker
+    - Fix: add min width
+
 ## somenergia-ui-0.4.2 2024-04-25
 - Build:
     - Fix: Add missing `devDependencies`
