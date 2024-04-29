@@ -57,6 +57,7 @@ export default function SomDatePicker({
           sx={{
             backgroundColor: 'white',
             borderRadius: '4px',
+            minWidth: '100px',
           }}
         ></DatePicker>
         <Button onClick={nextTimeWindow} data-cy="next-button">
