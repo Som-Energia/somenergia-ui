@@ -36,7 +36,40 @@ export const BarChart = {
         isFront: false,
         text: 'Mitjana últims 7 dies',
       },
-    ]
+    ],
+  },
+};
+
+export const BarChartWeeklyReferenceLineOverMaxYValue = {
+  args: {
+    period: 'MONTHLY',
+    data: {
+      periods: [{ values: 100, date: new Date().getTime(), P1: 20, P2: 30, P3: 50 }],
+      keys: ['P1', 'P2', 'P3'],
+      fills: { P1: '#FFC300', P2: '#900C3F', P3: '#581845' },
+    },
+    legend: true,
+    type: 'BAR',
+    lang: 'ca',
+    referenceLineData: [
+      {
+        value: 15,
+        color: 'blue',
+        stroke: '0',
+        strokeWidth: 2,
+        isFront: false,
+        text: 'Mitjana dels 24 preus del dia',
+      },
+      {
+        value: 150,
+        color: 'blue',
+        stroke: '3 3',
+        strokeWidth: 2,
+        isFront: false,
+        text: 'Mitjana últims 7 dies',
+      },
+    ],
+    maxYAxisValue: parseFloat((150 + 150 / 7).toFixed(2)),
   },
 };
 
