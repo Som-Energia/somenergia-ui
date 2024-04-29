@@ -39,7 +39,9 @@ function Chart({
   showTooltipKeys = true,
   referenceLineData,
   numberOfDecimals,
-  decimalSeparator
+  decimalSeparator,
+  maxYAxisValue = 'auto',
+  tickCountValue = 7,
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
@@ -109,9 +111,9 @@ function Chart({
           />
           <YAxis
             type="number"
-            domain={[0, 'auto']}
+            domain={[0, maxYAxisValue]}
             axisLine={false}
-            tickCount={7}
+            tickCount={tickCountValue}
             width={75}
             tickLine={false}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
