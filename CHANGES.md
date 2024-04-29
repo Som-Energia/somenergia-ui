@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## somenergia-ui-0.4.3 2024-04-29
 - Chart
     - Parameterize tickcounter and max yAxis value
 - Date picker
