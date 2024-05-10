@@ -1,5 +1,9 @@
 # Change log
 
+## somenergia-ui-0.4.4 2024-05-10
+- SomDatePicker
+    - Parameterize styles
+
 ## somenergia-ui-0.4.3 2024-04-29
 - Chart
     - Parameterize tickcounter and max yAxis value
