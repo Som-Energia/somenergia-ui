@@ -1,4 +1,5 @@
 name: Publish Package to npmjs
+
 on:
   release:
     types: [published]
@@ -6,19 +7,36 @@ on:
   push:
     tags:
       - 'somenergia-ui-[0-9]+.[0-9]+.[0-9]+'
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Git Config
+        run: |
+          git config --global user.name "webapps"
+          git config --global user.email "webapps@somenergia.coop"
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install
-      - run: npm run build
-      - run: npm publish
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm run deploy-storybook
+
+      - name: Deploy Storybook
+        run: npm run deploy-storybook
