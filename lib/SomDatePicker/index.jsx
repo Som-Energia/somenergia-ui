@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import dayjs  from 'dayjs'
+import dayjs from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
 import { i18n } from '../i18n'
 
@@ -18,6 +18,7 @@ export default function SomDatePicker({
   period = 'DAILY',
   currentTime = dayjs(),
   setCurrentTime,
+  styles = {},
 }) {
   const dayjsperiods = {
     DAILY: 'd',
@@ -40,6 +41,7 @@ export default function SomDatePicker({
     <Box
       sx={{
         display: 'flex',
+        ...styles.container,
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
@@ -57,9 +59,9 @@ export default function SomDatePicker({
           sx={{
             backgroundColor: 'white',
             borderRadius: '4px',
-            minWidth: '100px',
+            ...styles.datePicker,
           }}
-        ></DatePicker>
+        />
         <Button onClick={nextTimeWindow} data-cy="next-button">
           <ArrowForwardIosOutlined />
         </Button>
@@ -67,10 +69,15 @@ export default function SomDatePicker({
     </Box>
   )
 }
+
 SomDatePicker.propTypes = {
-  firstDate: () => {},
-  lastDate: () => {},
+  firstDate: PropTypes.any,
+  lastDate: PropTypes.any,
   period: PropTypes.string,
-  currentTime: () => {},
+  currentTime: PropTypes.any,
   setCurrentTime: PropTypes.func,
+  styles: PropTypes.shape({
+    container: PropTypes.object,
+    datePicker: PropTypes.object,
+  }),
 }
