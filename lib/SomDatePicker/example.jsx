@@ -10,6 +10,13 @@ export default function SomDatePickerExample() {
       period={'DAILY'}
       currentTime={date}
       setCurrentTime={setDate}
+      styles={{
+        datePicker: {
+          border: '1px solid darkblue',
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.6)',
+          minWidth: '110px',
+        },
+      }}
     />
   )
 }
