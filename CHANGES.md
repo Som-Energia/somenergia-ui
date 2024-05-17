@@ -1,5 +1,11 @@
 # Change log
 
+
+## somenergia-ui-0.4.5 2024-05-17
+- CustomToolTip
+    - Fix: Use `,` as default decimal separator
+
+
 ## somenergia-ui-0.4.4 2024-05-10
 - SomDatePicker
     - Parameterize styles
