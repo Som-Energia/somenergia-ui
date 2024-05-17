@@ -35,7 +35,7 @@ export const CustomTooltip = ({ active, payload, Ylegend, showTooltipKeys }) => 
                 key={index}
                 sx={{ color: pld.fill, fontWeight: 'bold' }}
               >
-                {(showTooltipKeys && pld.dataKey + ': ') + pld.value + ' ' + Ylegend}
+                {(showTooltipKeys ? pld.dataKey + ': ' : '') + pld.value.toString().replace('.', ',') + ' ' + Ylegend}
               </Typography>
             ))}
           </Box>
