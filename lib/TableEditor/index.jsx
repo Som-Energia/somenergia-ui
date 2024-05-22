@@ -262,19 +262,16 @@ EnhancedTableHead.propTypes = {
   hasCheckbox: PropTypes.bool.isRequired,
 }
 
-function EnhancedTableToolbar(props) {
+function EnhancedTableToolbar({
+  title,
+  selected,
+  numSelected,
+  onSearchEdited,
+  search,
+  actions,
+  selectionActions,
+}) {
   const { t } = useTranslation()
-
-  const {
-    title,
-    selected,
-    numSelected,
-    onSearchEdited,
-    search,
-    actions,
-    selectionActions,
-  } = props
-
   return (
     <Toolbar
       sx={{
