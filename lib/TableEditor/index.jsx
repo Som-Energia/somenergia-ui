@@ -74,7 +74,7 @@ function ActionButtons(props) {
     <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'right' }}>
       {actions.map((action, i) => {
         return action.view ? (
-          action.view(context)
+          <React.Fragment key={i}>{action.view(context)}</React.Fragment>
         ) : (
           <Tooltip title={action.title} key={i}>
             <IconButton
