@@ -15,7 +15,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
-import Skeleton from '@mui/material/Skeleton'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import Tooltip from '@mui/material/Tooltip'
@@ -23,50 +22,14 @@ import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 import { visuallyHidden } from '@mui/utils'
 import InputBase from '@mui/material/InputBase'
-import CircularProgress from '@mui/material/CircularProgress'
 import { styled, alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
+import Loading from './Loading'
 import i18n from '../i18n'
 
 /* eslint-enable */
 
 const denseRowHeight = 33
-
-function Loading({ nCols = 3 }) {
-  const { t } = useTranslation()
-  const nRows = 3
-  return (
-    <>
-      {Array(nRows)
-        .fill()
-        .map((row) => (
-          <TableRow key={row}>
-            {Array(nCols)
-              .fill()
-              .map((v, i) => (
-                <TableCell key={i}>
-                  <Skeleton animation="wave" height="2rem" />
-                </TableCell>
-              ))}
-          </TableRow>
-        ))}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <CircularProgress />
-      </div>
-    </>
-  )
-}
 
 function ActionButtons(props) {
   const { actions, context, ...rest } = props
