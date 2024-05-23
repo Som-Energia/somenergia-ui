@@ -438,6 +438,14 @@ function TableEditor(props) {
       : page > 0
       ? Math.max(0, (1 + page) * rowsPerPage - rows.length)
       : 0
+  const sortedRows = React.useMemo(() => {
+    if (loading) return []
+    if (!rows) return []
+    return stableSort(rows, getComparator(order, orderBy)).slice(
+      pageSizes.length === 0 ? 0 : page * rowsPerPage,
+      pageSizes.length === 0 ? rows.length : page * rowsPerPage + rowsPerPage,
+    )
+  }, [rows, order, orderBy, pageSizes, rowsPerPage, page])
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -474,30 +482,23 @@ function TableEditor(props) {
                   </TableRow>
                 )
               ) : (
-                stableSort(rows, getComparator(order, orderBy))
-                  .slice(
-                    pageSizes.length === 0 ? 0 : page * rowsPerPage,
-                    pageSizes.length === 0
-                      ? rows.length
-                      : page * rowsPerPage + rowsPerPage,
+                sortedRows.map((row, index) => {
+                  const id = row[idField]
+                  return (
+                    <ItemRow
+                      key={id}
+                      idField={idField}
+                      row={row}
+                      selected={isSelected(id)}
+                      hidden={hiddenIds.has(id)}
+                      columns={columns}
+                      actions={itemActions}
+                      selectable={selectionActions.length !== 0}
+                      handleSelect={handleSelect}
+                      handleClick={handleClick}
+                    />
                   )
-                  .map((row, index) => {
-                    const id = row[idField]
-                    return (
-                      <ItemRow
-                        key={id}
-                        idField={idField}
-                        row={row}
-                        selected={isSelected(id)}
-                        hidden={hiddenIds.has(id)}
-                        columns={columns}
-                        actions={itemActions}
-                        selectable={selectionActions.length !== 0}
-                        handleSelect={handleSelect}
-                        handleClick={handleClick}
-                      />
-                    )
-                    /*
+                  /*
                     const isItemSelected = isSelected(row[idField])
                     const labelId = `enhanced-table-checkbox-${row[idField]}`
                     const isItemFiltered = hiddenIds.has(row[idField])
@@ -575,7 +576,7 @@ function TableEditor(props) {
                       </TableRow>
                     )
 */
-                  })
+                })
               )}
               <TableRow
                 sx={{
