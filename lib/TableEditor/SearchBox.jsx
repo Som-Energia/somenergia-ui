@@ -3,6 +3,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import { styled, alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
 
+// TODO: Migrate styled -> sx
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
