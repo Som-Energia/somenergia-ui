@@ -91,6 +91,35 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
+function collapseStyle(hidden) {
+  return {
+    ...(hidden
+      ? {
+          borderBlock: 0,
+          opacity: 0,
+          overflow: 'hidden',
+        }
+      : undefined),
+    transitionProperty: 'border, margin, padding, opacity',
+    transitionDuration: '1s',
+    '& > td': {
+      ...(hidden
+        ? {
+            //scale: '1 0',
+            paddingBlock: 0,
+            borderBlock: 0,
+          }
+        : undefined),
+      transitionDuration: '1s',
+      transitionProperty: 'border, margin, padding, scale',
+    },
+    '& > td > *': {
+      maxHeight: hidden ? 0 : undefined,
+      transition: '1s max-height ease-out',
+    },
+  }
+}
+
 const ItemRow = React.memo(
   ({
     row,
@@ -103,32 +132,12 @@ const ItemRow = React.memo(
     handleClick,
     handleSelect,
   }) => {
-    console.log('r')
     const id = row[idField]
     const labelId = `enhanced-table-checkbox-${id}`
 
     const result = (
       <TableRow
-        sx={{
-          marginBlock: hidden ? 0 : undefined,
-          paddingBlock: hidden ? 0 : undefined,
-          borderBlock: hidden ? 0 : undefined,
-          opacity: hidden ? 0 : undefined,
-          overflow: hidden ? 'hidden' : undefined,
-          transition: '1s all',
-          '& > td': {
-            scale: hidden? "1 0" : undefined,
-            paddingBlock: hidden ? 0 : undefined,
-            marginBlock: hidden ? 0 : undefined,
-            borderBlock: hidden ? 0 : undefined,
-            transition: '1s all',
-            overflow: 'hidden',
-          },
-          '& > td > *': {
-            maxHeight: hidden ? 0 : undefined,
-            transition: '1s all',
-          },
-        }}
+        sx={collapseStyle(hidden)}
         hover
         onClick={(event) => handleClick(id)}
         role="checkbox"
@@ -160,7 +169,7 @@ const ItemRow = React.memo(
             <TableCell
               align={column.numeric ? 'right' : 'left'}
               key={`${column.id}_${id}`}
-              padding={(i === 0 && selectable) || hidden ? 'none' : 'normal'}
+              padding={i === 0 && selectable ? 'none' : 'normal'}
             >
               <Box>
                 {column.view
@@ -437,7 +446,7 @@ function TableEditor(props) {
     return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
   }, [rows, search])
 
-  const nFilteredRows = hiddenIds.length
+  const nHiddenRows = hiddenIds.size
   const nTableColumns =
     columns.length + (itemActions.length ? 1 : 0) + (selectionActions.length ? 1 : 0)
 
@@ -510,47 +519,40 @@ function TableEditor(props) {
                   )
                 })
               )}
-              <TableRow
-                sx={{
-                  '& td': {
-                    paddingBlock: nFilteredRows <= 0 ? 0 : undefined,
-                    marginBlock: nFilteredRows <= 0 ? 0 : undefined,
-                    border: nFilteredRows <= 0 ? 0 : undefined,
-                    transition: '1s padding margin all',
-                  },
-                }}
-              >
+              {
+                // KLUDGE: When paging, last page must have filling rows
+                // to keep the last page at the same height
+                emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: denseRowHeight * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={nTableColumns} />
+                  </TableRow>
+                )
+              }
+              <TableRow sx={collapseStyle(nHiddenRows <= 0)}>
                 <TableCell colSpan={nTableColumns}>
-                  <Collapse in={nFilteredRows > 0} component={null}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div>
+                      {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nHiddenRows })}
+                    </div>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={() => setSearch('')}
                     >
-                      <div>
-                        {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nFilteredRows })}
-                      </div>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        onClick={() => setSearch('')}
-                      >
-                        {t('TABLE_EDITOR.CLEAR_FILTER')}
-                      </Button>
-                    </Box>
-                  </Collapse>
+                      {t('TABLE_EDITOR.CLEAR_FILTER')}
+                    </Button>
+                  </Box>
                 </TableCell>
               </TableRow>
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: denseRowHeight * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={nTableColumns} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
