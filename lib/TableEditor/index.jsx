@@ -91,86 +91,89 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
-function ItemRow({
-  row,
-  idField,
-  selected,
-  hidden,
-  columns,
-  selectable,
-  actions,
-  handleClick,
-  handleSelect,
-}) {
-  const id = row[idField]
-  const labelId = `enhanced-table-checkbox-${id}`
+const ItemRow = React.memo(
+  ({
+    row,
+    idField,
+    selected,
+    hidden,
+    columns,
+    selectable,
+    actions,
+    handleClick,
+    handleSelect,
+  }) => {
+    console.log('r')
+    const id = row[idField]
+    const labelId = `enhanced-table-checkbox-${id}`
 
-  const result = (
-    <TableRow
-      sx={{
-        '& td': {
-          paddingBlock: hidden ? 0 : undefined,
-          marginBlock: hidden ? 0 : undefined,
-          border: hidden ? 0 : undefined,
-          transition: '1s padding margin border',
-        },
-      }}
-      hover
-      onClick={(event) => handleClick(id)}
-      role="checkbox"
-      aria-checked={selected}
-      tabIndex={-1}
-      selected={selected}
-      id={labelId}
-    >
-      {selectable && (
-        <TableCell padding="checkbox">
-          <Collapse in={!hidden}>
-            <Checkbox
-              sx={{ padding: 0 }}
-              color="primary"
-              checked={selected}
-              onClick={(e) => {
-                handleSelect(id)
-                e.stopPropagation()
-              }}
-              inputProps={{
-                'aria-labelledby': labelId,
-              }}
-            />
-          </Collapse>
-        </TableCell>
-      )}
-      {columns.map((column, i) => {
-        return (
-          <TableCell
-            align={column.numeric ? 'right' : 'left'}
-            key={`${column.id}_${id}`}
-            padding={i !== 0 || !selectable ? 'normal' : 'none'}
-          >
-            <Collapse in={!hidden} component={null}>
-              {column.view
-                ? column.view(row)
-                : row[column.id] === undefined
-                ? '-'
-                : row[column.id] === null
-                ? '-'
-                : row[column.id]}
+    const result = (
+      <TableRow
+        sx={{
+          '& td': {
+            paddingBlock: hidden ? 0 : undefined,
+            marginBlock: hidden ? 0 : undefined,
+            border: hidden ? 0 : undefined,
+            transition: '1s padding margin border',
+          },
+        }}
+        hover
+        onClick={(event) => handleClick(id)}
+        role="checkbox"
+        aria-checked={selected}
+        tabIndex={-1}
+        selected={selected}
+        id={labelId}
+      >
+        {selectable && (
+          <TableCell padding="checkbox">
+            <Collapse in={!hidden}>
+              <Checkbox
+                sx={{ padding: 0 }}
+                color="primary"
+                checked={selected}
+                onClick={(e) => {
+                  handleSelect(id)
+                  e.stopPropagation()
+                }}
+                inputProps={{
+                  'aria-labelledby': labelId,
+                }}
+              />
             </Collapse>
           </TableCell>
-        )
-      })}
-      {actions.length !== 0 && (
-        <TableCell>
-          <Collapse in={!hidden} component={null}>
-            <ActionButtons size="small" actions={actions} context={row} />
-          </Collapse>
-        </TableCell>
-      )}
-    </TableRow>
-  )
-  return result
-}
+        )}
+        {columns.map((column, i) => {
+          return (
+            <TableCell
+              align={column.numeric ? 'right' : 'left'}
+              key={`${column.id}_${id}`}
+              padding={i !== 0 || !selectable ? 'normal' : 'none'}
+            >
+              <Collapse in={!hidden} component={null}>
+                {column.view
+                  ? column.view(row)
+                  : row[column.id] === undefined
+                  ? '-'
+                  : row[column.id] === null
+                  ? '-'
+                  : row[column.id]}
+              </Collapse>
+            </TableCell>
+          )
+        })}
+        {actions.length !== 0 && (
+          <TableCell>
+            <Collapse in={!hidden} component={null}>
+              <ActionButtons size="small" actions={actions} context={row} />
+            </Collapse>
+          </TableCell>
+        )}
+      </TableRow>
+    )
+    return result
+  },
+)
 
 // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
