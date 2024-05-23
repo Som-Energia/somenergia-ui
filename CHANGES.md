@@ -1,25 +1,42 @@
 # Change log
 
+## Unreleased
+
+- TableEditor: Optimized to work well with 200 rows
+    - InnerRow as component to isolate unrequired row renders
+    - Memoizing rows to avoid such unrequired rerenders
+    - Using custom css instead slow Mui Collapse
+    - Sorting and paging cached with useMemo
+    - Handlers defined with useCallback
+    - Using lambda based setX state changes, to avoid single
+      row callbacks to depend on all the rows.
+    - Using sets for selected and filtered
+    - Extracted inner components as files
+
 ## somenergia-ui-0.4.6 2024-06-10
+
 - CustomToolTip
     - Fix: Add alpha channel, and set to 1, to avoid opacity
 
 ## somenergia-ui-0.4.5 2024-05-17
+
 - CustomToolTip
     - Fix: Use `,` as default decimal separator
 
-
 ## somenergia-ui-0.4.4 2024-05-10
+
 - SomDatePicker
     - Parameterize styles
 
 ## somenergia-ui-0.4.3 2024-04-29
+
 - Chart
     - Parameterize tickcounter and max yAxis value
 - Date picker
     - Fix: add min width
 
 ## somenergia-ui-0.4.2 2024-04-25
+
 - Build:
     - Fix: Add missing `devDependencies`
     - Fix: node version github action
