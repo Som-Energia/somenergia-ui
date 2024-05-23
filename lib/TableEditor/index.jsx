@@ -91,6 +91,87 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
+function ItemRow({
+  row,
+  idField,
+  selected,
+  hidden,
+  columns,
+  selectable,
+  actions,
+  handleClick,
+  handleSelect,
+}) {
+  const id = row[idField]
+  const labelId = `enhanced-table-checkbox-${id}`
+
+  const result = (
+    <TableRow
+      sx={{
+        '& td': {
+          paddingBlock: hidden ? 0 : undefined,
+          marginBlock: hidden ? 0 : undefined,
+          border: hidden ? 0 : undefined,
+          transition: '1s padding margin border',
+        },
+      }}
+      hover
+      onClick={(event) => handleClick(id)}
+      role="checkbox"
+      aria-checked={selected}
+      tabIndex={-1}
+      selected={selected}
+      id={labelId}
+    >
+      {selectable && (
+        <TableCell padding="checkbox">
+          <Collapse in={!hidden}>
+            <Checkbox
+              sx={{ padding: 0 }}
+              color="primary"
+              checked={selected}
+              onClick={(e) => {
+                handleSelect(id)
+                e.stopPropagation()
+              }}
+              inputProps={{
+                'aria-labelledby': labelId,
+              }}
+            />
+          </Collapse>
+        </TableCell>
+      )}
+      {columns.map((column, i) => {
+        return (
+          <TableCell
+            align={column.numeric ? 'right' : 'left'}
+            key={`${column.id}_${id}`}
+            padding={i !== 0 || !selectable ? 'normal' : 'none'}
+          >
+            <Collapse in={!hidden} component={null}>
+              {column.view
+                ? column.view(row)
+                : row[column.id] === undefined
+                ? '-'
+                : row[column.id] === null
+                ? '-'
+                : row[column.id]}
+            </Collapse>
+          </TableCell>
+        )
+      })}
+      {actions.length !== 0 && (
+        <TableCell>
+          <Collapse in={!hidden} component={null}>
+            <ActionButtons size="small" actions={actions} context={row} />
+          </Collapse>
+        </TableCell>
+      )}
+    </TableRow>
+  )
+  return result
+}
+
 // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
@@ -329,7 +410,7 @@ function TableEditor(props) {
 
   const isSelected = (id) => selected.indexOf(id) !== -1
   // TODO: Reconcile filtering with pagination when we use pagination back
-  const isFiltered = (row) => {
+  const isFilteredOut = (row) => {
     if (!search) return false
     for (const i in columns) {
       const column = columns[i]
@@ -340,7 +421,11 @@ function TableEditor(props) {
     return true
   }
 
-  const nFilteredRows = rows.filter(isFiltered).length
+  const hiddenIds = React.useMemo(() => {
+    return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
+  }, [rows, search])
+
+  const nFilteredRows = hiddenIds.length
   const nTableColumns =
     columns.length + (itemActions.length ? 1 : 0) + (selectionActions.length ? 1 : 0)
 
@@ -395,9 +480,26 @@ function TableEditor(props) {
                       : page * rowsPerPage + rowsPerPage,
                   )
                   .map((row, index) => {
+                    const id = row[idField]
+                    return (
+                      <ItemRow
+                        key={id}
+                        idField={idField}
+                        row={row}
+                        selected={isSelected(id)}
+                        hidden={hiddenIds.has(id)}
+                        columns={columns}
+                        actions={itemActions}
+                        selectable={selectionActions.length !== 0}
+                        handleSelect={handleSelect}
+                        handleClick={handleClick}
+                      />
+                    )
+                    /*
                     const isItemSelected = isSelected(row[idField])
-                    const labelId = `enhanced-table-checkbox-${index}`
-                    const isItemFiltered = isFiltered(row)
+                    const labelId = `enhanced-table-checkbox-${row[idField]}`
+                    const isItemFiltered = hiddenIds.has(row[idField])
+                    console.log('r')
 
                     return (
                       <TableRow
@@ -470,6 +572,7 @@ function TableEditor(props) {
                         )}
                       </TableRow>
                     )
+*/
                   })
               )}
               <TableRow
