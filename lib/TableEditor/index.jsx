@@ -372,35 +372,34 @@ function TableEditor(props) {
     }
     setSelected([])
   }
-
-  const handleClick = (id) => {
-    if (defaultAction) return defaultAction(id)
-    handleSelect(id)
-  }
-
-  const handleSelect = (id) => {
+  const handleSelect = React.useCallback((id) => {
     if (selectionActions.length === 0) {
       return
     }
+    setSelected((selected) => {
+      const selectedIndex = selected.indexOf(id)
+      let newSelected = []
 
-    const selectedIndex = selected.indexOf(id)
-    let newSelected = []
+      if (selectedIndex === -1) {
+        newSelected = newSelected.concat(selected, id)
+      } else if (selectedIndex === 0) {
+        newSelected = newSelected.concat(selected.slice(1))
+      } else if (selectedIndex === selected.length - 1) {
+        newSelected = newSelected.concat(selected.slice(0, -1))
+      } else if (selectedIndex > 0) {
+        newSelected = newSelected.concat(
+          selected.slice(0, selectedIndex),
+          selected.slice(selectedIndex + 1),
+        )
+      }
+      return newSelected
+    })
+  }, [])
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id)
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1))
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1))
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      )
-    }
-
-    setSelected(newSelected)
-  }
+  const handleClick = React.useCallback((id) => {
+    if (defaultAction) return defaultAction(id)
+    handleSelect(id)
+  }, []) // TODO: use useCallback for defaultAction and add it as dependency
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
