@@ -110,11 +110,23 @@ const ItemRow = React.memo(
     const result = (
       <TableRow
         sx={{
-          '& td': {
+          marginBlock: hidden ? 0 : undefined,
+          paddingBlock: hidden ? 0 : undefined,
+          borderBlock: hidden ? 0 : undefined,
+          opacity: hidden ? 0 : undefined,
+          overflow: hidden ? 'hidden' : undefined,
+          transition: '1s all',
+          '& > td': {
+            scale: hidden? "1 0" : undefined,
             paddingBlock: hidden ? 0 : undefined,
             marginBlock: hidden ? 0 : undefined,
-            border: hidden ? 0 : undefined,
-            transition: '1s padding margin border',
+            borderBlock: hidden ? 0 : undefined,
+            transition: '1s all',
+            overflow: 'hidden',
+          },
+          '& > td > *': {
+            maxHeight: hidden ? 0 : undefined,
+            transition: '1s all',
           },
         }}
         hover
@@ -127,7 +139,7 @@ const ItemRow = React.memo(
       >
         {selectable && (
           <TableCell padding="checkbox">
-            <Collapse in={!hidden}>
+            <Box>
               <Checkbox
                 sx={{ padding: 0 }}
                 color="primary"
@@ -140,7 +152,7 @@ const ItemRow = React.memo(
                   'aria-labelledby': labelId,
                 }}
               />
-            </Collapse>
+            </Box>
           </TableCell>
         )}
         {columns.map((column, i) => {
@@ -148,9 +160,9 @@ const ItemRow = React.memo(
             <TableCell
               align={column.numeric ? 'right' : 'left'}
               key={`${column.id}_${id}`}
-              padding={i !== 0 || !selectable ? 'normal' : 'none'}
+              padding={(i === 0 && selectable) || hidden ? 'none' : 'normal'}
             >
-              <Collapse in={!hidden} component={null}>
+              <Box>
                 {column.view
                   ? column.view(row)
                   : row[column.id] === undefined
@@ -158,15 +170,13 @@ const ItemRow = React.memo(
                   : row[column.id] === null
                   ? '-'
                   : row[column.id]}
-              </Collapse>
+              </Box>
             </TableCell>
           )
         })}
         {actions.length !== 0 && (
           <TableCell>
-            <Collapse in={!hidden} component={null}>
-              <ActionButtons size="small" actions={actions} context={row} />
-            </Collapse>
+            <ActionButtons size="small" actions={actions} context={row} />
           </TableCell>
         )}
       </TableRow>
