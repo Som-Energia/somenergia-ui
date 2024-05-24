@@ -208,11 +208,10 @@ function TableEditor(props) {
   const deselectAll = () => setSelected(new Set())
   const toggleSelect = (id) =>
     setSelected(
-      (selected) =>
-        new Set(
-          selected.has(id) ? [...selected].filter((x) => x !== id) : [...selected, id],
-        ),
-    )
+      (selected) => {
+        const res = new Set(selected)
+        return res.has(id)?res.delete(id):res.add(id)
+      })
   const isSelected = (id) => selected.has(id)
   const nSelected = selected.size
 
