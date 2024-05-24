@@ -6,8 +6,8 @@
     - InnerRow as component to isolate unrequired row renders
     - Memoizing rows to avoid such unrequired rerenders
     - Using custom css instead slow Mui Collapse
-    - Sorting and paging cached with useMemo
-    - Handlers defined with useCallback
+    - Cache sorting and paging with useMemo
+    - Handlers defined with useCallback to avoid rerenders
     - Using lambda based setX state changes, to avoid single
       row callbacks to depend on all the rows.
     - Using sets for selected and filtered

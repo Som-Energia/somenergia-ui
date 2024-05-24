@@ -11,7 +11,6 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
-import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
@@ -284,7 +283,10 @@ function TableEditor(props) {
   const deselectAll = () => setSelected(new Set())
   const toggleSelect = (id) =>
     setSelected(
-      (selected) => new Set(selected.has(id) ? selected.delete(id) : [...selected, id]),
+      (selected) =>
+        new Set(
+          selected.has(id) ? [...selected].filter((x) => x !== id) : [...selected, id],
+        ),
     )
   const isSelected = (id) => selected.has(id)
   const nSelected = selected.size
@@ -293,16 +295,13 @@ function TableEditor(props) {
     event.target.checked ? selectAll() : deselectAll()
   }
   const handleSelect = React.useCallback((id) => {
-    if (selectionActions.length === 0) {
-      return
-    }
     toggleSelect(id)
   }, [])
 
   const handleClick = React.useCallback((id) => {
     if (defaultAction) return defaultAction(id)
     handleSelect(id)
-  }, []) // TODO: use useCallback for defaultAction and add it as dependency
+  }, [defaultAction, handleSelect])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -314,7 +313,7 @@ function TableEditor(props) {
   }
 
   // TODO: Reconcile filtering with pagination when we use pagination back
-  const isFilteredOut = (row) => {
+  const isFilteredOut = React.useCallback((row) => {
     if (!search) return false
     for (const i in columns) {
       const column = columns[i]
@@ -323,11 +322,11 @@ function TableEditor(props) {
       if (fieldContent.toLowerCase().includes(search.toLowerCase())) return false
     }
     return true
-  }
+  }, [search, columns])
 
   const hiddenIds = React.useMemo(() => {
     return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
-  }, [rows, search])
+  }, [rows, idField, isFilteredOut])
   const nHiddenRows = hiddenIds.size
 
   const nTableColumns =
@@ -348,7 +347,7 @@ function TableEditor(props) {
       pageSizes.length === 0 ? 0 : page * rowsPerPage,
       pageSizes.length === 0 ? rows.length : page * rowsPerPage + rowsPerPage,
     )
-  }, [rows, order, orderBy, pageSizes, rowsPerPage, page])
+  }, [rows, order, orderBy, pageSizes, rowsPerPage, page, loading])
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -484,7 +483,7 @@ TableEditor.propTypes = {
   actions: ActionsType,
   /** List of actions available for each single row, row data is passed the handler. */
   itemActions: ActionsType,
-  /** Action to be executed when clicked, row data is passed. If not defined and selection enabled, default action is to select the row. */
+  /** Action to be executed when clicked, row data is passed. If not defined and selection enabled, default action is to select the row. Remember to use useCallback or it will trigger full table redraws */
   defaultAction: PropTypes.func,
   /** Actions to apply to selected rows. Selection ui is not shown if none provided. The action function receives a list of row identifiers. */
   selectionActions: ActionsType,
