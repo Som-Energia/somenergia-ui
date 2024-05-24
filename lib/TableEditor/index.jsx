@@ -1,6 +1,6 @@
 /// TableEditor: A full featured opinionated table component.
 
-import * as React from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
@@ -11,64 +11,18 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
-import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
-import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 import { visuallyHidden } from '@mui/utils'
-import { alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
 import Loading from './Loading'
-import SearchBox from './SearchBox'
+import TableToolbar from './TableToolbar'
+import ActionButtons, {ActionsType} from './ActionButtons'
 import i18n from '../i18n'
 
-/* eslint-enable */
-
 const denseRowHeight = 33
-
-function ActionButtons(props) {
-  const { actions, context, ...rest } = props
-  return (
-    <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'right' }}>
-      {actions.map((action, i) => {
-        return action.view ? (
-          <React.Fragment key={i}>{action.view(context)}</React.Fragment>
-        ) : (
-          <Tooltip title={action.title} key={i}>
-            <IconButton
-              {...rest}
-              onClick={(ev) => {
-                ev.stopPropagation()
-                action.handler && action.handler(context)
-              }}
-            >
-              {action.icon}
-            </IconButton>
-          </Tooltip>
-        )
-      })}
-    </div>
-  )
-}
-const ActionsType = PropTypes.arrayOf(
-  PropTypes.shape({
-    /** The tooltip text of the option*/
-    title: PropTypes.string.isRequired,
-    /** an icon for the action icon button */
-    icon: PropTypes.element,
-    /** handler: function to be called with the subject as parameter */
-    handler: PropTypes.func,
-    /** functor receiving the context and returning an alternative for the default icon button */
-    view: PropTypes.func,
-  }),
-)
-ActionButtons.propTypes = {
-  actions: ActionsType,
-}
 
 function descendingComparator(a, b, orderBy) {
   function define(v) {
@@ -285,64 +239,6 @@ EnhancedTableHead.propTypes = {
   hasCheckbox: PropTypes.bool.isRequired,
 }
 
-function EnhancedTableToolbar({
-  title,
-  selected,
-  numSelected,
-  setSearch,
-  search,
-  actions,
-  selectionActions,
-}) {
-  const { t } = useTranslation()
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {t('TABLE_EDITOR.N_SELECTED', { count: numSelected })}
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-          {title}
-        </Box>
-      )}
-
-      <Box variant="h6" id="Filter" component="div">
-        <SearchBox {...{ setSearch, search }} />
-      </Box>
-      <Box sx={{ flex: '1 1 100%' }}></Box>
-      <ActionButtons
-        actions={numSelected > 0 && selectionActions ? selectionActions : actions}
-        context={selected}
-      />
-    </Toolbar>
-  )
-}
-
-EnhancedTableToolbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  numSelected: PropTypes.number.isRequired,
-  search: PropTypes.string,
-  selected: PropTypes.arrayOf(PropTypes.string),
-  setSearch: PropTypes.func,
-  actions: ActionsType,
-  selectionActions: ActionsType,
-}
-
 /**
 A full featured opinionated table component.
 
@@ -456,7 +352,7 @@ function TableEditor(props) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar
+        <TableToolbar
           title={title}
           numSelected={nSelected}
           selected={selected}
