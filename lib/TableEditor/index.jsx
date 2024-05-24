@@ -372,7 +372,7 @@ function TableEditor(props) {
   const { t } = useTranslation()
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('name')
-  const [selected, setSelected] = React.useState([])
+  const [selected, setSelected] = React.useState(new Set())
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(defaultPageSize)
   const [search, setSearch] = React.useState('')
@@ -383,23 +383,23 @@ function TableEditor(props) {
     setOrderBy(property)
   }
 
+  const selectAll = () => setSelected(new Set(rows.map((r) => r[idField])))
+  const deselectAll = () => setSelected(new Set())
+  const toggleSelect = (id) =>
+    setSelected(
+      (selected) => new Set(selected.has(id) ? selected.delete(id) : [...selected, id]),
+    )
+  const isSelected = (id) => selected.has(id)
+  const nSelected = selected.size
+
   const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((row) => row[idField])
-      setSelected(newSelected)
-      return
-    }
-    setSelected([])
+    event.target.checked ? selectAll() : deselectAll()
   }
   const handleSelect = React.useCallback((id) => {
     if (selectionActions.length === 0) {
       return
     }
-    setSelected((selected) => {
-      const wasSelected = selected.indexOf(id) !== -1
-      if (!wasSelected) return [...selected, id]
-      return selected.filter((x)=>x!==id)
-    })
+    toggleSelect(id)
   }, [])
 
   const handleClick = React.useCallback((id) => {
@@ -416,7 +416,6 @@ function TableEditor(props) {
     setPage(0)
   }
 
-  const isSelected = (id) => selected.indexOf(id) !== -1
   // TODO: Reconcile filtering with pagination when we use pagination back
   const isFilteredOut = (row) => {
     if (!search) return false
@@ -432,8 +431,8 @@ function TableEditor(props) {
   const hiddenIds = React.useMemo(() => {
     return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
   }, [rows, search])
-
   const nHiddenRows = hiddenIds.size
+
   const nTableColumns =
     columns.length + (itemActions.length ? 1 : 0) + (selectionActions.length ? 1 : 0)
 
@@ -444,6 +443,7 @@ function TableEditor(props) {
       : page > 0
       ? Math.max(0, (1 + page) * rowsPerPage - rows.length)
       : 0
+
   const sortedRows = React.useMemo(() => {
     if (loading) return []
     if (!rows) return []
@@ -458,7 +458,7 @@ function TableEditor(props) {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar
           title={title}
-          numSelected={selected.length}
+          numSelected={nSelected}
           selected={selected}
           search={search}
           setSearch={setSearch}
@@ -469,7 +469,7 @@ function TableEditor(props) {
           <Table aria-labelledby="tableTitle" size={'small'} stickyHeader>
             <EnhancedTableHead
               columns={columns}
-              numSelected={selected.length}
+              numSelected={nSelected}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
