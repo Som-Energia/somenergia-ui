@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
+import ActionsType from './proptypes'
 
 export default function ActionButtons(props) {
   const { actions, context, ...rest } = props
@@ -27,20 +27,7 @@ export default function ActionButtons(props) {
     </div>
   )
 }
-const ActionsType = PropTypes.arrayOf(
-  PropTypes.shape({
-    /** The tooltip text of the option*/
-    title: PropTypes.string.isRequired,
-    /** an icon for the action icon button */
-    icon: PropTypes.element,
-    /** handler: function to be called with the subject as parameter */
-    handler: PropTypes.func,
-    /** functor receiving the context and returning an alternative for the default icon button */
-    view: PropTypes.func,
-  }),
-)
 ActionButtons.propTypes = {
   actions: ActionsType,
 }
 
-export {ActionsType}

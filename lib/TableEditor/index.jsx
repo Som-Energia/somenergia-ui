@@ -17,9 +17,10 @@ import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import { visuallyHidden } from '@mui/utils'
 import { useTranslation } from 'react-i18next'
+import ActionsType from './proptypes'
+import ActionButtons from './ActionButtons'
 import Loading from './Loading'
 import TableToolbar from './TableToolbar'
-import ActionButtons, {ActionsType} from './ActionButtons'
 import i18n from '../i18n'
 
 const denseRowHeight = 33
