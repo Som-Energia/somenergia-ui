@@ -7,19 +7,18 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import { visuallyHidden } from '@mui/utils'
 import { useTranslation } from 'react-i18next'
-import ActionsType from './proptypes'
+import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'
 import Loading from './Loading'
 import TableToolbar from './TableToolbar'
+import TableHead from './TableHead'
 import i18n from '../i18n'
 
 const denseRowHeight = 33
@@ -164,80 +163,6 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0])
 }
 
-function EnhancedTableHead({
-  columns,
-  onSelectAllClick,
-  order,
-  orderBy,
-  numSelected,
-  rowCount,
-  onRequestSort,
-  hasCheckbox,
-  hasItemActions,
-}) {
-  const { t } = useTranslation()
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property)
-  }
-
-  return (
-    <TableHead>
-      <TableRow>
-        {hasCheckbox && (
-          <TableCell padding="checkbox">
-            <Checkbox
-              color="primary"
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={rowCount > 0 && numSelected === rowCount}
-              onChange={onSelectAllClick}
-              inputProps={{
-                'aria-label': t('TABLE_EDITOR.SELECT_ALL'),
-              }}
-            />
-          </TableCell>
-        )}
-        {columns.map((column, i) => (
-          <TableCell
-            key={column.id}
-            align={column.numeric ? 'right' : 'left'}
-            padding={i == 0 && hasCheckbox ? 'none' : 'normal'}
-            sortDirection={orderBy === column.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === column.id}
-              direction={orderBy === column.id ? order : 'asc'}
-              onClick={createSortHandler(column.id)}
-            >
-              {column.label}
-              {orderBy === column.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc'
-                    ? t('TABLE_EDITOR.SORTED_DESCENDING')
-                    : t('TABLE_EDITOR.SORTED_ASCENDING')}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-        {hasItemActions && (
-          <TableCell key={'action'} align={'right'} padding={'normal'}>
-            {t('TABLE_EDITOR.ACTIONS')}
-          </TableCell>
-        )}
-      </TableRow>
-    </TableHead>
-  )
-}
-
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-  hasCheckbox: PropTypes.bool.isRequired,
-}
 
 /**
 A full featured opinionated table component.
@@ -363,7 +288,7 @@ function TableEditor(props) {
         />
         <TableContainer>
           <Table aria-labelledby="tableTitle" size={'small'} stickyHeader>
-            <EnhancedTableHead
+            <TableHead
               columns={columns}
               numSelected={nSelected}
               order={order}

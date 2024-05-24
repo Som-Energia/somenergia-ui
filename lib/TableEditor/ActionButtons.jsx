@@ -1,7 +1,7 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import ActionsType from './proptypes'
+import { ActionsType } from './proptypes'
 
 export default function ActionButtons(props) {
   const { actions, context, ...rest } = props
@@ -30,4 +30,3 @@ export default function ActionButtons(props) {
 ActionButtons.propTypes = {
   actions: ActionsType,
 }
-

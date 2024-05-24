@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
-import ActionsType from './proptypes'
+import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'
 import SearchBox from './SearchBox'
 
