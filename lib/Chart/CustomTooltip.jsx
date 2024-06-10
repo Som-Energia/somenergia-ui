@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import dayjs from 'dayjs'
+import { alpha } from "@mui/system/colorManipulator";
 
 export const CustomTooltip = ({ active, payload, Ylegend, showTooltipKeys }) => {
   if (active && payload && payload.length) {
@@ -33,7 +34,7 @@ export const CustomTooltip = ({ active, payload, Ylegend, showTooltipKeys }) => 
               <Typography
                 variant="subtitle1"
                 key={index}
-                sx={{ color: pld.fill, fontWeight: 'bold' }}
+                sx={{ color: alpha(pld.fill, 1), fontWeight: 'bold' }}
               >
                 {(showTooltipKeys ? pld.dataKey + ': ' : '') + pld.value.toString().replace('.', ',') + ' ' + Ylegend}
               </Typography>
