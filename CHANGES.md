@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## somenergia-ui-0.4.6 2024-06-10
 - CustomToolTip
     - Fix: Add alpha channel, and set to 1, to avoid opacity
 
