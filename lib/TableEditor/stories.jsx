@@ -86,3 +86,23 @@ export const Default = {
 export const Exemple = {
   render: () => <TableEditorExample />,
 }
+
+const longRows = Array.from({length: 200}, (_, i)=>(
+  {
+    contract_number: i+'',
+    installation_name: 'installation '+i,
+    power: 2000+i,
+  }
+))
+
+export const LongTable = {
+  args: {
+    title: "Long table",
+    idField: 'contract_number',
+    columns,
+    rows: longRows,
+    actions,
+    itemActions,
+    selectionActions,
+  },
+}

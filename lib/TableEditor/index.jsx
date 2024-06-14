@@ -1,154 +1,27 @@
 /// TableEditor: A full featured opinionated table component.
 
-import * as React from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
-import Skeleton from '@mui/material/Skeleton'
-import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
-import Tooltip from '@mui/material/Tooltip'
-import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 import { visuallyHidden } from '@mui/utils'
-import InputBase from '@mui/material/InputBase'
-import CircularProgress from '@mui/material/CircularProgress'
-import { styled, alpha } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
+import { ActionsType } from './proptypes'
+import ActionButtons from './ActionButtons'
+import Loading from './Loading'
+import TableToolbar from './TableToolbar'
+import TableHead from './TableHead'
 import i18n from '../i18n'
 
-/* eslint-enable */
-
 const denseRowHeight = 33
-
-function Loading({ nCols = 3 }) {
-  const { t } = useTranslation()
-  const nRows = 3
-  return (
-    <>
-      {Array(nRows)
-        .fill()
-        .map((row) => (
-          <TableRow key={row}>
-            {Array(nCols)
-              .fill()
-              .map((v, i) => (
-                <TableCell key={i}>
-                  <Skeleton animation="wave" height="2rem" />
-                </TableCell>
-              ))}
-          </TableRow>
-        ))}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <CircularProgress />
-      </div>
-    </>
-  )
-}
-
-function ActionButtons(props) {
-  const { actions, context, ...rest } = props
-  return (
-    <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'right' }}>
-      {actions.map((action, i) => {
-        return action.view ? (
-          <React.Fragment key={i}>{action.view(context)}</React.Fragment>
-        ) : (
-          <Tooltip title={action.title} key={i}>
-            <IconButton
-              {...rest}
-              onClick={(ev) => {
-                ev.stopPropagation()
-                action.handler && action.handler(context)
-              }}
-            >
-              {action.icon}
-            </IconButton>
-          </Tooltip>
-        )
-      })}
-    </div>
-  )
-}
-const ActionsType = PropTypes.arrayOf(
-  PropTypes.shape({
-    /** The tooltip text of the option*/
-    title: PropTypes.string.isRequired,
-    /** an icon for the action icon button */
-    icon: PropTypes.element,
-    /** handler: function to be called with the subject as parameter */
-    handler: PropTypes.func,
-    /** functor receiving the context and returning an alternative for the default icon button */
-    view: PropTypes.func,
-  }),
-)
-ActionButtons.propTypes = {
-  actions: ActionsType,
-}
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}))
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}))
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}))
 
 function descendingComparator(a, b, orderBy) {
   function define(v) {
@@ -171,6 +44,109 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
+function collapseStyle(hidden) {
+  return {
+    ...(hidden
+      ? {
+          borderBlock: 0,
+          opacity: 0,
+          overflow: 'hidden',
+        }
+      : undefined),
+    transitionProperty: 'border, margin, padding, opacity',
+    transitionDuration: '1s',
+    '& > td': {
+      ...(hidden
+        ? {
+            //scale: '1 0',
+            paddingBlock: 0,
+            borderBlock: 0,
+          }
+        : undefined),
+      transitionDuration: '1s',
+      transitionProperty: 'border, margin, padding, scale',
+    },
+    '& > td > *': {
+      maxHeight: hidden ? 0 : undefined,
+      transition: '1s max-height ease-out',
+    },
+  }
+}
+
+const ItemRow = React.memo(
+  ({
+    row,
+    idField,
+    selected,
+    hidden,
+    columns,
+    selectable,
+    actions,
+    handleClick,
+    handleSelect,
+  }) => {
+    const id = row[idField]
+    const labelId = `enhanced-table-checkbox-${id}`
+
+    const result = (
+      <TableRow
+        sx={collapseStyle(hidden)}
+        hover
+        onClick={(event) => handleClick(id)}
+        role="checkbox"
+        aria-checked={selected}
+        tabIndex={-1}
+        selected={selected}
+        id={labelId}
+      >
+        {selectable && (
+          <TableCell padding="checkbox">
+            <Box>
+              <Checkbox
+                sx={{ padding: 0 }}
+                color="primary"
+                checked={selected}
+                onClick={(e) => {
+                  handleSelect(id)
+                  e.stopPropagation()
+                }}
+                inputProps={{
+                  'aria-labelledby': labelId,
+                }}
+              />
+            </Box>
+          </TableCell>
+        )}
+        {columns.map((column, i) => {
+          return (
+            <TableCell
+              align={column.numeric ? 'right' : 'left'}
+              key={`${column.id}_${id}`}
+              padding={i === 0 && selectable ? 'none' : 'normal'}
+            >
+              <Box>
+                {column.view
+                  ? column.view(row)
+                  : row[column.id] === undefined
+                  ? '-'
+                  : row[column.id] === null
+                  ? '-'
+                  : row[column.id]}
+              </Box>
+            </TableCell>
+          )
+        })}
+        {actions.length !== 0 && (
+          <TableCell>
+            <ActionButtons size="small" actions={actions} context={row} />
+          </TableCell>
+        )}
+      </TableRow>
+    )
+    return result
+  },
+)
+
 // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
@@ -187,151 +163,6 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0])
 }
 
-function EnhancedTableHead({
-  columns,
-  onSelectAllClick,
-  order,
-  orderBy,
-  numSelected,
-  rowCount,
-  onRequestSort,
-  hasCheckbox,
-  hasItemActions,
-}) {
-  const { t } = useTranslation()
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property)
-  }
-
-  return (
-    <TableHead>
-      <TableRow>
-        {hasCheckbox && (
-          <TableCell padding="checkbox">
-            <Checkbox
-              color="primary"
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={rowCount > 0 && numSelected === rowCount}
-              onChange={onSelectAllClick}
-              inputProps={{
-                'aria-label': t('TABLE_EDITOR.SELECT_ALL'),
-              }}
-            />
-          </TableCell>
-        )}
-        {columns.map((column, i) => (
-          <TableCell
-            key={column.id}
-            align={column.numeric ? 'right' : 'left'}
-            padding={i == 0 && hasCheckbox ? 'none' : 'normal'}
-            sortDirection={orderBy === column.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === column.id}
-              direction={orderBy === column.id ? order : 'asc'}
-              onClick={createSortHandler(column.id)}
-            >
-              {column.label}
-              {orderBy === column.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc'
-                    ? t('TABLE_EDITOR.SORTED_DESCENDING')
-                    : t('TABLE_EDITOR.SORTED_ASCENDING')}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-        {hasItemActions && (
-          <TableCell key={'action'} align={'right'} padding={'normal'}>
-            {t('TABLE_EDITOR.ACTIONS')}
-          </TableCell>
-        )}
-      </TableRow>
-    </TableHead>
-  )
-}
-
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-  hasCheckbox: PropTypes.bool.isRequired,
-}
-
-function EnhancedTableToolbar(props) {
-  const { t } = useTranslation()
-
-  const {
-    title,
-    selected,
-    numSelected,
-    onSearchEdited,
-    search,
-    actions,
-    selectionActions,
-  } = props
-
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {t('TABLE_EDITOR.N_SELECTED', { count: numSelected })}
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-          {title}
-        </Box>
-      )}
-
-      <Box variant="h6" id="Filter" component="div">
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder={t('TABLE_EDITOR.PLACEHOLDER_SEARCH')}
-            inputProps={{ 'aria-label': t('TABLE_EDITOR.LABEL_SEARCH') }}
-            onChange={onSearchEdited}
-            value={search}
-          />
-        </Search>
-      </Box>
-      <Box sx={{ flex: '1 1 100%' }}></Box>
-      <ActionButtons
-        actions={numSelected > 0 && selectionActions ? selectionActions : actions}
-        context={selected}
-      />
-    </Toolbar>
-  )
-}
-
-EnhancedTableToolbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  numSelected: PropTypes.number.isRequired,
-  search: PropTypes.string,
-  selected: PropTypes.arrayOf(PropTypes.string),
-  onSearchEdited: PropTypes.func,
-  actions: ActionsType,
-  selectionActions: ActionsType,
-}
 
 /**
 A full featured opinionated table component.
@@ -362,7 +193,7 @@ function TableEditor(props) {
   const { t } = useTranslation()
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('name')
-  const [selected, setSelected] = React.useState([])
+  const [selected, setSelected] = React.useState(new Set())
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(defaultPageSize)
   const [search, setSearch] = React.useState('')
@@ -373,43 +204,28 @@ function TableEditor(props) {
     setOrderBy(property)
   }
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((row) => row[idField])
-      setSelected(newSelected)
-      return
-    }
-    setSelected([])
-  }
+  const selectAll = () => setSelected(new Set(rows.map((r) => r[idField])))
+  const deselectAll = () => setSelected(new Set())
+  const toggleSelect = (id) =>
+    setSelected(
+      (selected) => {
+        const res = new Set(selected)
+        return res.has(id)?res.delete(id):res.add(id)
+      })
+  const isSelected = (id) => selected.has(id)
+  const nSelected = selected.size
 
-  const handleClick = (id) => {
+  const handleSelectAllClick = (event) => {
+    event.target.checked ? selectAll() : deselectAll()
+  }
+  const handleSelect = React.useCallback((id) => {
+    toggleSelect(id)
+  }, [])
+
+  const handleClick = React.useCallback((id) => {
     if (defaultAction) return defaultAction(id)
     handleSelect(id)
-  }
-
-  const handleSelect = (id) => {
-    if (selectionActions.length === 0) {
-      return
-    }
-
-    const selectedIndex = selected.indexOf(id)
-    let newSelected = []
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id)
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1))
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1))
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      )
-    }
-
-    setSelected(newSelected)
-  }
+  }, [defaultAction, handleSelect])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -420,9 +236,8 @@ function TableEditor(props) {
     setPage(0)
   }
 
-  const isSelected = (id) => selected.indexOf(id) !== -1
   // TODO: Reconcile filtering with pagination when we use pagination back
-  const isFiltered = (row) => {
+  const isFilteredOut = React.useCallback((row) => {
     if (!search) return false
     for (const i in columns) {
       const column = columns[i]
@@ -431,9 +246,13 @@ function TableEditor(props) {
       if (fieldContent.toLowerCase().includes(search.toLowerCase())) return false
     }
     return true
-  }
+  }, [search, columns])
 
-  const nFilteredRows = rows.filter(isFiltered).length
+  const hiddenIds = React.useMemo(() => {
+    return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
+  }, [rows, idField, isFilteredOut])
+  const nHiddenRows = hiddenIds.size
+
   const nTableColumns =
     columns.length + (itemActions.length ? 1 : 0) + (selectionActions.length ? 1 : 0)
 
@@ -445,25 +264,32 @@ function TableEditor(props) {
       ? Math.max(0, (1 + page) * rowsPerPage - rows.length)
       : 0
 
+  const sortedRows = React.useMemo(() => {
+    if (loading) return []
+    if (!rows) return []
+    return stableSort(rows, getComparator(order, orderBy)).slice(
+      pageSizes.length === 0 ? 0 : page * rowsPerPage,
+      pageSizes.length === 0 ? rows.length : page * rowsPerPage + rowsPerPage,
+    )
+  }, [rows, order, orderBy, pageSizes, rowsPerPage, page, loading])
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar
+        <TableToolbar
           title={title}
-          numSelected={selected.length}
+          numSelected={nSelected}
           selected={selected}
           search={search}
-          onSearchEdited={(ev) => {
-            setSearch(ev.target.value)
-          }}
+          setSearch={setSearch}
           actions={actions}
           selectionActions={selectionActions}
         />
         <TableContainer>
           <Table aria-labelledby="tableTitle" size={'small'} stickyHeader>
-            <EnhancedTableHead
+            <TableHead
               columns={columns}
-              numSelected={selected.length}
+              numSelected={nSelected}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
@@ -482,132 +308,58 @@ function TableEditor(props) {
                   </TableRow>
                 )
               ) : (
-                stableSort(rows, getComparator(order, orderBy))
-                  .slice(
-                    pageSizes.length === 0 ? 0 : page * rowsPerPage,
-                    pageSizes.length === 0
-                      ? rows.length
-                      : page * rowsPerPage + rowsPerPage,
+                sortedRows.map((row, index) => {
+                  const id = row[idField]
+                  return (
+                    <ItemRow
+                      key={id}
+                      idField={idField}
+                      row={row}
+                      selected={isSelected(id)}
+                      hidden={hiddenIds.has(id)}
+                      columns={columns}
+                      actions={itemActions}
+                      selectable={selectionActions.length !== 0}
+                      handleSelect={handleSelect}
+                      handleClick={handleClick}
+                    />
                   )
-                  .map((row, index) => {
-                    const isItemSelected = isSelected(row[idField])
-                    const labelId = `enhanced-table-checkbox-${index}`
-                    const isItemFiltered = isFiltered(row)
-
-                    return (
-                      <TableRow
-                        sx={{
-                          '& td': {
-                            paddingBlock: isItemFiltered ? 0 : undefined,
-                            marginBlock: isItemFiltered ? 0 : undefined,
-                            border: isItemFiltered ? 0 : undefined,
-                            transition: '1s padding margin all',
-                          },
-                        }}
-                        hover
-                        onClick={(event) => handleClick(row[idField])}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row[idField]}
-                        selected={isItemSelected}
-                        id={labelId}
-                      >
-                        {selectionActions.length !== 0 && (
-                          <TableCell padding="checkbox">
-                            <Collapse in={!isItemFiltered}>
-                              <Checkbox
-                                sx={{ padding: 0 }}
-                                color="primary"
-                                checked={isItemSelected}
-                                onClick={(e) => {
-                                  handleSelect(row[idField])
-                                  e.stopPropagation()
-                                }}
-                                inputProps={{
-                                  'aria-labelledby': labelId,
-                                }}
-                              />
-                            </Collapse>
-                          </TableCell>
-                        )}
-                        {columns.map((column, i) => {
-                          return (
-                            <TableCell
-                              align={column.numeric ? 'right' : 'left'}
-                              key={row[idField] + '_' + column.id}
-                              padding={
-                                i || selectionActions.length === 0 ? 'normal' : 'none'
-                              }
-                            >
-                              <Collapse in={!isItemFiltered} component={null}>
-                                {column.view
-                                  ? column.view(row)
-                                  : row[column.id] === undefined
-                                  ? '-'
-                                  : row[column.id] === null
-                                  ? '-'
-                                  : row[column.id]}
-                              </Collapse>
-                            </TableCell>
-                          )
-                        })}
-                        {itemActions.length !== 0 && (
-                          <TableCell>
-                            <Collapse in={!isItemFiltered} component={null}>
-                              <ActionButtons
-                                size="small"
-                                actions={itemActions}
-                                context={row}
-                              />
-                            </Collapse>
-                          </TableCell>
-                        )}
-                      </TableRow>
-                    )
-                  })
+                })
               )}
-              <TableRow
-                sx={{
-                  '& td': {
-                    paddingBlock: nFilteredRows <= 0 ? 0 : undefined,
-                    marginBlock: nFilteredRows <= 0 ? 0 : undefined,
-                    border: nFilteredRows <= 0 ? 0 : undefined,
-                    transition: '1s padding margin all',
-                  },
-                }}
-              >
+              {
+                // KLUDGE: When paging, last page must have filling rows
+                // to keep the last page at the same height
+                emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: denseRowHeight * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={nTableColumns} />
+                  </TableRow>
+                )
+              }
+              <TableRow sx={collapseStyle(nHiddenRows <= 0)}>
                 <TableCell colSpan={nTableColumns}>
-                  <Collapse in={nFilteredRows > 0} component={null}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div>
+                      {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nHiddenRows })}
+                    </div>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={() => setSearch('')}
                     >
-                      <div>
-                        {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nFilteredRows })}
-                      </div>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        onClick={() => setSearch('')}
-                      >
-                        {t('TABLE_EDITOR.CLEAR_FILTER')}
-                      </Button>
-                    </Box>
-                  </Collapse>
+                      {t('TABLE_EDITOR.CLEAR_FILTER')}
+                    </Button>
+                  </Box>
                 </TableCell>
               </TableRow>
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: denseRowHeight * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={nTableColumns} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -655,7 +407,7 @@ TableEditor.propTypes = {
   actions: ActionsType,
   /** List of actions available for each single row, row data is passed the handler. */
   itemActions: ActionsType,
-  /** Action to be executed when clicked, row data is passed. If not defined and selection enabled, default action is to select the row. */
+  /** Action to be executed when clicked, row data is passed. If not defined and selection enabled, default action is to select the row. Remember to use useCallback or it will trigger full table redraws */
   defaultAction: PropTypes.func,
   /** Actions to apply to selected rows. Selection ui is not shown if none provided. The action function receives a list of row identifiers. */
   selectionActions: ActionsType,

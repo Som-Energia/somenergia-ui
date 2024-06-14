@@ -25,7 +25,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint ./lib --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
     "preview": "vite preview",
     "deploy-storybook": "npm run build-storybook && touch storybook-static/.nojekyll && gh-pages -d storybook-static --dotfiles",
@@ -57,8 +57,8 @@
     "@modyfi/vite-plugin-yaml": "^1.0.4",
     "@mui/icons-material": ">=5.15.9",
     "@mui/material": "^5.15.14",
-    "@mui/x-date-pickers": "^6.19.7",
     "@mui/styled-engine-sc": ">=6.0.0-alpha.9",
+    "@mui/x-date-pickers": "^6.19.7",
     "@storybook/addon-controls": "^7.6.6",
     "@storybook/addon-essentials": "^7.6.6",
     "@storybook/addon-interactions": "^7.6.6",
