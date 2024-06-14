@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## somenergia-ui-0.4.7 2024-06-14
 
 - TableEditor: Optimized to work well with 200 rows
     - InnerRow as component to isolate unrequired row renders
