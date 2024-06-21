@@ -1,5 +1,8 @@
-import{j as n}from"./jsx-runtime-f6d73c06.js";import{M as t,d as o}from"./index-7eee0732.js";import{u as r}from"./index-b7a9f960.js";import"./index-8ee6c85d.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-e8002ab0.js";import"../sb-preview/runtime.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-40590036.js";import"./index-8bf7f4ad.js";import"./index-11d98b33.js";import"./assertThisInitialized-33acfce7.js";import"./_baseIsEqual-2b2ffab4.js";import"./mapValues-7df64b2c.js";import"./_baseUniq-de37e305.js";import"./index-356e4a49.js";import"./index-556aefe8.js";const s=`# Change log
+import{j as n}from"./jsx-runtime-f6d73c06.js";import{M as t,d as o}from"./index-0fc2529a.js";import{u as r}from"./index-b7a9f960.js";import"./index-8ee6c85d.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-fc02a633.js";import"../sb-preview/runtime.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-40590036.js";import"./index-8bf7f4ad.js";import"./index-11d98b33.js";import"./assertThisInitialized-33acfce7.js";import"./_baseIsEqual-2b2ffab4.js";import"./mapValues-7df64b2c.js";import"./_baseUniq-de37e305.js";import"./index-356e4a49.js";import"./index-556aefe8.js";const s=`# Change log
 
+## somenergia-ui-0.4.6 2024-06-10
+- CustomToolTip
+    - Fix: Add alpha channel, and set to 1, to avoid opacity
 
 ## somenergia-ui-0.4.5 2024-05-17
 - CustomToolTip
@@ -33,7 +36,7 @@ parametrized
 
 - New component: SomDatePicker
 - New component: DizzyError (cuca marejada)
-- New component: SumPricesDisplay
+- New component: 
 - Chart: added reference lines
 - Chart: added custom legend
 - Cypress test for SomDatePicker
@@ -110,5 +113,5 @@ parametrized
 - First version
 - Includes components: Loading and TableEditor from somrepresenta-oficinavirtual
 - Manages translations and themes
-`;function a(e){return n.jsxs(n.Fragment,{children:[n.jsx(t,{title:"Changelog"}),`
-`,n.jsx(o,{children:s})]})}function D(e={}){const{wrapper:i}=Object.assign({},r(),e.components);return i?n.jsx(i,Object.assign({},e,{children:n.jsx(a,e)})):a()}export{D as default};
+`;function i(e){return n.jsxs(n.Fragment,{children:[n.jsx(t,{title:"Changelog"}),`
+`,n.jsx(o,{children:s})]})}function D(e={}){const{wrapper:a}=Object.assign({},r(),e.components);return a?n.jsx(a,Object.assign({},e,{children:n.jsx(i,e)})):i()}export{D as default};
