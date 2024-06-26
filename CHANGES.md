@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## somenergia-ui-0.4.8 2024-06-26
 
 - Force 0 value in Y axis when negative values
 
