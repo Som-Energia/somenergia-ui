@@ -92,6 +92,7 @@
     "storybook": "^7.6.6",
     "styled-components": ">=6.1.2",
     "vite": "^4.4",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "vitest": "^1.6.0"
   }
 }

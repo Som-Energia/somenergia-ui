@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- Force 0 value in Y axis when negative values
+
 ## somenergia-ui-0.4.7 2024-06-14
 
 - TableEditor: Optimized to work well with 200 rows

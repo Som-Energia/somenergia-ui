@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { getNiceTickValues } from 'recharts-scale'
 
 import {
   Bar,
@@ -28,6 +29,22 @@ import {
 import { CustomTooltip } from './CustomTooltip'
 import { CustomLegend } from './CustomLegend'
 
+export function buildTicks(minYAxisValue, maxYAxisValue, tickCountValue) {
+  let builtTicks = false
+  if (
+    minYAxisValue !== 'auto' &&
+    maxYAxisValue !== 'auto' &&
+    minYAxisValue < 0
+  ) {
+    builtTicks = getNiceTickValues(
+      [minYAxisValue, maxYAxisValue],
+      tickCountValue,
+      true
+    )
+  }
+  return builtTicks
+}
+
 function Chart({
   data,
   period,
@@ -41,6 +58,7 @@ function Chart({
   numberOfDecimals,
   decimalSeparator,
   maxYAxisValue = 'auto',
+  minYAxisValue = 'auto',
   tickCountValue = 7,
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
@@ -111,13 +129,16 @@ function Chart({
           />
           <YAxis
             type="number"
-            domain={[0, maxYAxisValue]}
+            domain={[minYAxisValue, maxYAxisValue]}
             axisLine={false}
             tickCount={tickCountValue}
             width={75}
             tickLine={false}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
-            tickFormatter={(tickItem) => `${formatDecimal(tickItem, numberOfDecimals)}`}
+            ticks={buildTicks(minYAxisValue, maxYAxisValue, tickCountValue)}
+            tickFormatter={(tickItem) =>
+              `${formatDecimal(tickItem, numberOfDecimals)}`
+            }
           >
             <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
           </YAxis>
