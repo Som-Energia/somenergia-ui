@@ -1,5 +1,11 @@
 # Change log
 
+## somenergia-ui-0.4.9 2024-06-27
+
+- Remove minimum Yaxis value validation
+   - When average is grater than maximum value and 
+     minimum is possitive, minimum Y axis should be 0
+
 ## somenergia-ui-0.4.8 2024-06-26
 
 - Force 0 value in Y axis when negative values
