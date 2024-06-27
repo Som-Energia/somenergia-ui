@@ -33,8 +33,7 @@ export function buildTicks(minYAxisValue, maxYAxisValue, tickCountValue) {
   let builtTicks = false
   if (
     minYAxisValue !== 'auto' &&
-    maxYAxisValue !== 'auto' &&
-    minYAxisValue < 0
+    maxYAxisValue !== 'auto'
   ) {
     builtTicks = getNiceTickValues(
       [minYAxisValue, maxYAxisValue],
