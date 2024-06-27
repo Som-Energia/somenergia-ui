@@ -1,5 +1,9 @@
 # Change log
 
+## somenergia-ui-0.4.10 2024-06-27
+
+- Fix dependencies recharts-scale
+
 ## somenergia-ui-0.4.9 2024-06-27
 
 - Remove minimum Yaxis value validation
