@@ -1,11 +1,11 @@
 // This module controls the global theme and its light
 // and dark modes.
 
+import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
-import SomEnergiaTheme from '../SomEnergiaTheme'
 import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
-import React from 'react'
+import SomEnergiaTheme from '../SomEnergiaTheme'
 import useLocalStorage from '../hooks/LocalStorage'
 
 const ColorModeContext = React.createContext({
@@ -17,6 +17,7 @@ const ColorModeContext = React.createContext({
 /**
  * GlobalTheme is a wrapper to be used at top level of the application
  * before rendering anything that should be styled.
+ *
  * - It applies the global css reset with CssBaseline.
  * - It activates the SomEnergiaTheme or any other provided,
  * - It provides a context, ColorModeContext, to switch among
