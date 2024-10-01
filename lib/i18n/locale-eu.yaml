@@ -1,1 +1,13 @@
-{}
+TABLE_EDITOR:
+  LOADING: Datuak kargatzen...
+  SELECT_ALL: Hautatu dena
+  ACTIONS: Ekintzak
+  SORTED_DESCENDING: Beheranzko ordena
+  SORTED_ASCENDING: Goranzko ordena
+  N_SELECTED_one: '{{count}} elementu hautatu'
+  N_SELECTED_other: '{{count}} elementu hautatu'
+  PLACEHOLDER_SEARCH: Bilatu...
+  LABEL_SEARCH: Bilatu
+  N_ITEMS_FILTERED_one: Bilaketak elementu 1 ezkutatzen du
+  N_ITEMS_FILTERED_other: Bilaketak {{count}} elementu ezkutatzen ditu
+  CLEAR_FILTER: Erakutsi denak
