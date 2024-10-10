@@ -1,8 +1,8 @@
 # Change log
 
-## Unreleased
+## somenergia-ui-0.5.0 2024-10-10
 
-- Theming taken from somrepre-oficinavirtual
+- Theming components taken from somrepre-oficinavirtual
     - GlobalTheming: A wrapper to reset css, set the global theme,
       and control the color mode (light/dark)
         - Renamed SomRepre GlobalTheme -> GlobalTheming
@@ -10,7 +10,6 @@
     - Fix: SomEnergiaTheme was not properly exported
     - LocalStorage hook to set and depend on shared LocalStorage data
     - ColorModeButton: A button to toggle the color mode
-
 
 ## somenergia-ui-0.4.10 2024-06-27
 
