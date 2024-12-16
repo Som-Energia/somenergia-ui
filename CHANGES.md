@@ -1,5 +1,9 @@
 # Change log
 
+## somenergia-ui-0.5.1 2024-11-16
+
+- Fix: remove unused parameters from formatTooltipLabel
+
 ## somenergia-ui-0.5.0 2024-10-10
 
 - Theming components taken from somrepre-oficinavirtual
