@@ -59,6 +59,7 @@ function Chart({
   maxYAxisValue = 'auto',
   minYAxisValue = 'auto',
   tickCountValue = 7,
+  displaced = false,
 }) {
   const getChartType = (type, data, period, legend, compareData) => {
     setChartLang(lang)
@@ -90,7 +91,7 @@ function Chart({
           </YAxis>
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
-            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart')}
+            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart', displaced)}
             contentStyle={{ fontWeight: 'bold' }}
           />
           <Line
