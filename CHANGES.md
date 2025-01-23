@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## somenergia-ui-0.5.2 2025-01-23
 
 - Add Displaced paramter to curve label
 
