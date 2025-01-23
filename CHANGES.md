@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- Add Displaced paramter to curve label
+
 ## somenergia-ui-0.5.1 2024-11-16
 
 - Fix: remove unused parameters from formatTooltipLabel
