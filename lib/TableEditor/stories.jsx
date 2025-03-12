@@ -75,6 +75,7 @@ const rows = [
 export const Default = {
   args: {
     idField: 'contract_number',
+    title: '',
     columns,
     rows,
     actions,

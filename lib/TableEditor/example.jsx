@@ -74,6 +74,7 @@ export default function Example(params) {
       ?.filter((x) => !isNaN(x)) || []
 
   const idField = 'contract_number'
+  const title = 'Title'
   const columns = [
     {
       id: 'contract_number', // TODO: can we name it contract?
