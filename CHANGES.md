@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## somenergia-ui-0.5.3 2025-03-14
 
 - Fix: TableEditor error when second click
 
