@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import MuiTableHead from '@mui/material/TableHead'
 import Checkbox from '@mui/material/Checkbox'
+import { visuallyHidden } from '@mui/utils'
 import { useTranslation } from 'react-i18next'
 
 export default function TableHead({
