@@ -223,7 +223,7 @@ function TableEditor(props) {
     event.target.checked ? selectAll() : deselectAll()
   }
   const handleSelect = React.useCallback((id) => {
-    if (selected) toggleSelect(id)
+    toggleSelect(id)
   }, [])
 
   const handleClick = React.useCallback((id) => {
