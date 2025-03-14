@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- Fix: TableEditor error when second click
+
 ## somenergia-ui-0.5.2 2025-01-23
 
 - Add Displaced paramter to curve label
