@@ -206,14 +206,18 @@ function TableEditor(props) {
 
   const selectAll = () => setSelected(new Set(rows.map((r) => r[idField])))
   const deselectAll = () => setSelected(new Set())
-  const toggleSelect = (id) =>
+  const toggleSelect = (id) => {
     setSelected(
       (selected) => {
-        const res = new Set(selected)
-        return res.has(id)?res.delete(id):res.add(id)
+        let res = new Set()
+        if (selected)
+          res = new Set(selected)
+        res.has(id)?res.delete(id):res.add(id)
+        return res
       })
-  const isSelected = (id) => selected.has(id)
-  const nSelected = selected.size
+    }
+  const isSelected = (id) => (nSelected > 0)? selected.has(id) : false
+  const nSelected = (selected)? selected.size : 0
 
   const handleSelectAllClick = (event) => {
     event.target.checked ? selectAll() : deselectAll()
@@ -279,7 +283,7 @@ function TableEditor(props) {
         <TableToolbar
           title={title}
           numSelected={nSelected}
-          selected={selected}
+          selected={Array.from(selected)}
           search={search}
           setSearch={setSearch}
           actions={actions}
