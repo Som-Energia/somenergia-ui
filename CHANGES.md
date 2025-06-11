@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## somenergia-ui-0.6.0 2025-06-11
 
 - New: Loading
 
