@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- New: Loading
+
 ## somenergia-ui-0.5.4 2025-03-14
 
 - Fix: TableHead error whne click
