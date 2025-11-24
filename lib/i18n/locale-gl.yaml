@@ -1,1 +1,13 @@
-{}
+TABLE_EDITOR:
+  LOADING: Cargando datos...
+  SELECT_ALL: Selecciona todo
+  ACTIONS: Accións
+  SORTED_DESCENDING: Orde descendente
+  SORTED_ASCENDING: Orde ascendente
+  N_SELECTED_one: '{{count}} elemento seleccionado'
+  N_SELECTED_other: '{{count}} elementos seleccionados'
+  PLACEHOLDER_SEARCH: Busca...
+  LABEL_SEARCH: Busca
+  N_ITEMS_FILTERED_one: A busca oculta un elemento
+  N_ITEMS_FILTERED_other: A busca oculta {{count}} elementos
+  CLEAR_FILTER: Mostrar todos
