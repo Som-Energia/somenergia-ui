@@ -4,7 +4,7 @@ TABLE_EDITOR:
   ACTIONS: Ekintzak
   SORTED_DESCENDING: Beheranzko ordena
   SORTED_ASCENDING: Goranzko ordena
-  N_SELECTED_one: '{{count}} elementu hautatu'
+  N_SELECTED_one: 'elementu hautatu {{count}}'
   N_SELECTED_other: '{{count}} elementu hautatu'
   PLACEHOLDER_SEARCH: Bilatu...
   LABEL_SEARCH: Bilatu
