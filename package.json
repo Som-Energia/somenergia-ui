@@ -1,7 +1,7 @@
 {
   "name": "@somenergia/somenergia-ui",
   "private": false,
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Common React components for Som Energia projects",
   "license": "AGPL-3.0",
   "homepage": "https://som-energia.github.io/somenergia-ui/",
@@ -39,7 +39,7 @@
     "@emotion/styled": ">=11.11.0",
     "@mui/icons-material": ">=5.15.9 <6",
     "@mui/material": "^5.15.14",
-    "@mui/styled-engine-sc": ">=6.0.0-alpha.9",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@mui/x-date-pickers": "^6.19.7",
     "@types/recharts-scale": "^1.0.3",
     "dayjs": "^1.11.10",
@@ -50,7 +50,7 @@
     "react-dom": ">=18.2.0",
     "react-i18next": ">=14.0.0",
     "recharts": "^2.10.4",
-    "styled-components": ">=6.1.2"
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@emotion/react": ">=11.11.1",
@@ -58,7 +58,7 @@
     "@modyfi/vite-plugin-yaml": "^1.0.4",
     "@mui/icons-material": "<6 >=5.15.9",
     "@mui/material": "^5.15.14",
-    "@mui/styled-engine-sc": ">=6.0.0-alpha.9",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@mui/x-date-pickers": "^6.19.7",
     "@storybook/addon-controls": "^7.6.6",
     "@storybook/addon-essentials": "^7.6.6",
@@ -92,7 +92,7 @@
     "react-i18next": "^14.0.0",
     "recharts": "^2.10.4",
     "storybook": "^7.6.6",
-    "styled-components": ">=6.1.2",
+    "styled-components": "^5.3.11",
     "vite": "^4.4",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.6.0"
