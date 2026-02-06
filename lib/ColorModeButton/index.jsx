@@ -4,10 +4,10 @@ import AutoModeIcon from '@mui/icons-material/Brightness4'
 import IconButton from '@mui/material/IconButton'
 import { ColorModeContext } from '../GlobalTheming'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '../i18n'
 
 export default function ColorModeButton() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { toggle, current } = React.useContext(ColorModeContext)
   const modeIcons = {
     dark: DarkModeIcon,

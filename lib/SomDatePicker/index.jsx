@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-material'
 import Box from '@mui/material/Box'
@@ -8,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
-import { i18n } from '../i18n'
+import { useTranslation } from 'react-i18next'
 
 dayjs.extend(minMax)
 
@@ -20,6 +19,7 @@ export default function SomDatePicker({
   setCurrentTime,
   styles = {},
 }) {
+  const { i18n } = useTranslation();
   const dayjsperiods = {
     DAILY: 'd',
     WEEKLY: 'w',

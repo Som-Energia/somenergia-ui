@@ -8,7 +8,7 @@ export default function DizzyError({
 }) {
   return (
     <>
-      <Box>
+      <Box sx={sx}>
         <img
           src={CucaMarejada}
           style={{

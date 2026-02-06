@@ -1,8 +1,7 @@
-import React from 'react'
 import styled from 'styled-components'
 import Counter from './Counter'
 import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '../i18n'
 
 const CounterWrapper = styled.div`
   display: flex;
