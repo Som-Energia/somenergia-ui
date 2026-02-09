@@ -7,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '../i18n'
 
 dayjs.extend(minMax)
 
