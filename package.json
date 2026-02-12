@@ -29,7 +29,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cypress:open": "TZ=Europe/Madrid cypress open",
-    "cypress:run": "TZ=Europe/Madrid cypress run"
+    "cypress:run": "TZ=Europe/Madrid cypress run",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.11.1",
