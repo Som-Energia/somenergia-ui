@@ -1,4 +1,4 @@
-import CucaMarejada from '../../src/assets/cuca-marejada.svg'
+import CucaMarejada from './cuca-marejada.svg'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 
@@ -14,6 +14,7 @@ export default function DizzyError({
           style={{
             width: width,
           }}
+          alt="Error image"
         />
       </Box>
     </>

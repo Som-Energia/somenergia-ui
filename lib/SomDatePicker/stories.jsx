@@ -2,7 +2,7 @@ import SomDatePicker from '.'
 import SomDatePickerExample from './example'
 
 export default {
-  title: 'Components/SomDatePicker',
+  title: 'Base Components/SomDatePicker',
   component: SomDatePicker,
   parameters: {
     layout: 'centered',

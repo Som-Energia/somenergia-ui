@@ -1,15 +1,13 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const CounterBox = styled.div`
+const Wrapper = styled.div`
   padding: 2px 4px;
   color: '#4D4D4D';
   align-items: center;
   text-align: center;
   flex: 1;
 `
-
-const CounterValue = styled.div`
+const Value = styled.div`
   font-size: 1.5rem;
   font-weight: 400;
   padding: 0 4px 0 8px;
@@ -20,8 +18,7 @@ const CounterValue = styled.div`
     font-size: 0.8rem;
   }
 `
-
-const CounterDetail = styled.div`
+const Detail = styled.div`
   font-size: 0.7rem;
   font-weight: 700;
   padding: 4px 4px 0 8px;
@@ -34,19 +31,19 @@ const CounterDetail = styled.div`
   }
 `
 
-function Total(props) {
+function SummaryPrice(props) {
   const { value, unit, description } = props
   return (
-    <CounterBox>
-      <CounterValue>
+    <Wrapper>
+      <Value>
         <span>{value}</span>
         <span className="units">{unit}</span>
-      </CounterValue>
-      <CounterDetail>
+      </Value>
+      <Detail>
         <div>{description}</div>
-      </CounterDetail>
-    </CounterBox>
+      </Detail>
+    </Wrapper>
   )
 }
 
-export default Total
+export default SummaryPrice

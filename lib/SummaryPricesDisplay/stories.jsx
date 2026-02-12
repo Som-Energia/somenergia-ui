@@ -1,12 +1,12 @@
-import SumPricesDisplay from '.'
+import SummaryPricesDisplay from '.'
 
 export default {
-  title: 'Components/FascinatingSumPricesDisplay🧮',
-  component: SumPricesDisplay,
+  title: 'Energy components/SummaryPricesDisplay',
+  component: SummaryPricesDisplay,
   tags: ['autodocs'],
 }
 
-export const DisplaySumPrices = {
+export const Example = {
   args: {
     totalPrices: [
       {

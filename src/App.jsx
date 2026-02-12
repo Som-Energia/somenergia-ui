@@ -1,4 +1,3 @@
-import './App.css'
 import Loading from '../lib/Loading'
 
 function App() {

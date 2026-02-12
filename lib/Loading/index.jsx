@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography'
-import { useTranslation } from '../i18n';
 
 const Loading = (props) => {
-  const { t } = useTranslation()
   const { description } = props
   return (
     <Box
@@ -26,13 +24,8 @@ const Loading = (props) => {
         flexDirection: 'column',
         gap: 3
       }} >
-
         <CircularProgress sx={{ color: 'primary2.main' }} />
-
-        <Typography variant="pagesubtitle">
-          {t(description)}
-        </Typography>
-
+        {description && <Typography variant="pagesubtitle">{description}</Typography>}
       </Box>
     </Box>
   )

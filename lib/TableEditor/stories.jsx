@@ -25,7 +25,7 @@ const selectionActions = [
 ]
 
 export default {
-  title: 'Components/TableEditor',
+  title: 'Base Components/TableEditor',
   component: TableEditor,
   parameters: {
     layout: 'centered',
@@ -88,11 +88,11 @@ export const Exemple = {
   render: () => <TableEditorExample />,
 }
 
-const longRows = Array.from({length: 200}, (_, i)=>(
+const longRows = Array.from({ length: 200 }, (_, i) => (
   {
-    contract_number: i+'',
-    installation_name: 'installation '+i,
-    power: 2000+i,
+    contract_number: i + '',
+    installation_name: 'installation ' + i,
+    power: 2000 + i,
   }
 ))
 

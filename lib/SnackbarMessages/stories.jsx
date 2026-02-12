@@ -2,7 +2,7 @@ import SnackbarMessages from './'
 import { default as SnackbarMessagesExample } from './example'
 
 export default {
-  title: 'Components/SnackbarMessages',
+  title: 'Base Components/SnackbarMessages',
   component: SnackbarMessages,
   parameters: {
     layout: 'centered',

@@ -149,10 +149,10 @@ function Chart({
             cursor={{ fill: '#f2f2f2bb' }}
           />
 
-          {legend && !referenceLineData && <Legend/>}
+          {legend && !referenceLineData && <Legend />}
           {legend && referenceLineData &&
             <Legend
-              content={<CustomLegend referenceLineData={referenceLineData}/>}
+              content={<CustomLegend referenceLineData={referenceLineData} />}
             />
           }
           {data.keys.map((element) => {
@@ -177,10 +177,10 @@ function Chart({
                 text={element.text}
               />
             )
-            })
+          })
           }
 
-          </BarChart>
+        </BarChart>
       )
     }
   }
