@@ -1,7 +1,7 @@
 {
   "name": "@somenergia/somenergia-ui",
   "private": false,
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Common React components for Som Energia projects",
   "license": "AGPL-3.0",
   "homepage": "https://som-energia.github.io/somenergia-ui/",
@@ -46,8 +46,7 @@
     "react-dom": ">=18.2.0",
     "react-i18next": ">=14.0.0",
     "recharts": "^2.10.4",
-    "styled-components": "^6.3.9",
-    "vitest": ">=4.0.0"
+    "styled-components": "^6.3.9"
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
