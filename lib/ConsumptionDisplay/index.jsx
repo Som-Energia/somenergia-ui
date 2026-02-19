@@ -18,6 +18,12 @@ export default function ConsumptionDisplay(props) {
     compareTotalKwh = null,
   } = props
   const { t } = useTranslation()
+  const description = (period === 'YEARLY')
+    ? dayjs(currentDate).format('YYYY')
+    : (period === 'MONTHLY')
+      ? dayjs(currentDate).format('MM/YYYY')
+      : dayjs(currentDate).format('DD/MM/YYYY')
+
   return (
     <Wrapper>
       {currentDate && (
@@ -25,7 +31,7 @@ export default function ConsumptionDisplay(props) {
           title={t(labelTotalPeriod(period))}
           value={totalKwh}
           valueUnit={'kWh'}
-          description={dayjs(currentDate).format('DD/MM/YYYY')}></SummaryDisplay>
+          description={description}></SummaryDisplay>
       )}
       {compareDate && (
         <SummaryDisplay
@@ -33,7 +39,7 @@ export default function ConsumptionDisplay(props) {
           value={compareTotalKwh}
           color='secondary'
           valueUnit={'kWh'}
-          description={dayjs(compareDate).format('DD/MM/YYYY')}></SummaryDisplay>
+          description={description}></SummaryDisplay>
       )}
     </Wrapper>
   )
