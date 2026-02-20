@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import MuiTableHead from '@mui/material/TableHead'
-import Checkbox from '@mui/material/Checkbox'
+import {
+  Box,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+  MuiTableHead,
+  Checkbox
+} from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
 import { useTranslation } from '../i18n'
 

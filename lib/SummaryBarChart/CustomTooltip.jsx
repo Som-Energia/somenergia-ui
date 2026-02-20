@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
+import { Paper, Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { alpha } from "@mui/system/colorManipulator";
 

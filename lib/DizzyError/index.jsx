@@ -1,6 +1,6 @@
 import CucaMarejada from './cuca-marejada.svg'
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
 
 export default function DizzyError({
   width = '200px',

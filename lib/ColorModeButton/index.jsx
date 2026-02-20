@@ -1,7 +1,7 @@
 import LightModeIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined'
 import AutoModeIcon from '@mui/icons-material/Brightness4'
-import IconButton from '@mui/material/IconButton'
+import { IconButton } from '@mui/material'
 import { ColorModeContext } from '../GlobalTheming'
 import React from 'react'
 import { useTranslation } from '../i18n'

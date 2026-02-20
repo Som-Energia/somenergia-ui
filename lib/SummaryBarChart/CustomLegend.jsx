@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import Grid from '@mui/material/Grid'
+import { Grid } from '@mui/material'
 
 export const CustomLegend = ({ referenceLineData }) => {
   return (
@@ -22,7 +22,7 @@ export const CustomLegend = ({ referenceLineData }) => {
           key={index}
           sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}
         >
-         <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <svg key={index} style={{ width: 30, height: 10, marginTop: '10px' }}>
               <line
                 x1="0"

@@ -1,4 +1,4 @@
-import InputBase from '@mui/material/InputBase'
+import { InputBase } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { styled, alpha } from '@mui/material/styles'
 import { useTranslation } from '../i18n'

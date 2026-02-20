@@ -1,23 +1,18 @@
 import React from 'react'
 import SnackbarMessages from './'
 import { log, error, warn, info, success } from '../services/messages'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import InputLabel from '@mui/material/InputLabel'
-import FormControl from '@mui/material/FormControl'
+import { Button, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
 
 function Selector({ label, options, value, setValue }) {
   const id = label.split().join('-').toLowerCase()
   const labelid = id + '-label'
   const mapOptions = Array.isArray(options)
     ? Object.fromEntries(
-        options.map((value) => [
-          value,
-          value ? value.at(0).toUpperCase() + value.slice(1) : 'Default',
-        ]),
-      )
+      options.map((value) => [
+        value,
+        value ? value.at(0).toUpperCase() + value.slice(1) : 'Default',
+      ]),
+    )
     : options
   return (
     <FormControl sx={{ width: '30%', m: 1 }}>

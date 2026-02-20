@@ -1,6 +1,5 @@
 import SummaryPrice from '../SummaryPrice/SummaryPrice'
-import Stack from '@mui/material/Stack'
-import Divider from '@mui/material/Divider'
+import { Stack, Divider } from '@mui/material'
 import useTheme from '@mui/system/useTheme'
 import useMediaQuery from '@mui/system/useMediaQuery'
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
+import { IconButton, Tooltip } from '@mui/material'
 import { ActionsType } from './proptypes'
 
 export default function ActionButtons(props) {

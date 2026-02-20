@@ -1,7 +1,4 @@
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import CircularProgress from '@mui/material/CircularProgress'
-import Skeleton from '@mui/material/Skeleton'
+import { TableRow, TableCell, CircularProgress, Skeleton } from '@mui/material'
 
 export default function Loading({ nCols = 3 }) {
   const nRows = 3
