@@ -7,7 +7,7 @@ export default function SomDatePickerExample() {
 
   return (
     <SomDatePicker
-      period={'DAILY'}
+      period={'MONTHLY'}
       currentTime={date}
       setCurrentTime={setDate}
       styles={{

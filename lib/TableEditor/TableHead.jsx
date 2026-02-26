@@ -4,9 +4,10 @@ import {
   TableRow,
   TableCell,
   TableSortLabel,
-  MuiTableHead,
   Checkbox
 } from '@mui/material'
+import MuiTableHead from '@mui/material/TableHead'
+
 import { visuallyHidden } from '@mui/utils'
 import { useTranslation } from '../i18n'
 
