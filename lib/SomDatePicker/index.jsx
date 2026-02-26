@@ -18,6 +18,11 @@ export default function SomDatePicker({
   currentTime = dayjs(),
   setCurrentTime,
   styles = {},
+  toolbarTitle = null,
+  handleBlur = null,
+  error = null,
+  handleError = null,
+  borderRadius = '8px'
 }) {
   const { i18n } = useTranslation();
   const dayjsperiods = {
@@ -37,6 +42,18 @@ export default function SomDatePicker({
     setCurrentTime(dayjs.min(lastDate, next))
   }
 
+  const viewsFormat = (period === 'YEARLY')
+    ? ['year']
+    : (period === 'MONTHLY')
+      ? ['month']
+      : ['day', 'month', 'year']
+
+  const toolbarFormat = (period === 'YEARLY')
+    ? 'YYYY'
+    : (period === 'MONTHLY')
+      ? 'MMMM YYYY'
+      : 'dd., MMM D'
+
   return (
     <Box
       sx={{
@@ -49,18 +66,40 @@ export default function SomDatePicker({
           <ArrowBackIosOutlined />
         </Button>
         <DatePicker
+          sx={{
+            borderColor: 'secondary.main',
+            '& .MuiOutlinedInput-root': { borderRadius:  borderRadius},
+            input: {
+              textAlign: 'center',
+            },
+          }}
+          slotProps={{
+            textField: {
+              fullWidth: true,
+              onBlur: handleBlur,
+              error: !!error
+            },
+
+            toolbar: {
+              toolbarFormat: toolbarFormat,
+              toolbarTitle: toolbarTitle,
+              hidden: false,
+              sx: {
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+
+              }
+            }
+          }}
+          minDate={dayjs(firstDate)}
+          maxDate={dayjs(lastDate)}
+          views={viewsFormat}
           value={currentTime}
           onChange={(newValue) => {
             setCurrentTime(newValue)
           }}
-          minDate={dayjs(firstDate)}
-          maxDate={dayjs(lastDate)}
-          format="DD/MM/YYYY"
-          sx={{
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            ...styles.datePicker,
-          }}
+          onError={{ handleError }}
+
         />
         <Button onClick={nextTimeWindow} data-cy="next-button">
           <ArrowForwardIosOutlined />
