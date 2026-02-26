@@ -22,7 +22,7 @@ export default function SomDatePicker({
   handleBlur = null,
   error = null,
   handleError = null,
-  borderRadius = '8px'
+  sx = {}
 }) {
   const { i18n } = useTranslation();
   const dayjsperiods = {
@@ -66,13 +66,7 @@ export default function SomDatePicker({
           <ArrowBackIosOutlined />
         </Button>
         <DatePicker
-          sx={{
-            borderColor: 'secondary.main',
-            '& .MuiOutlinedInput-root': { borderRadius:  borderRadius},
-            input: {
-              textAlign: 'center',
-            },
-          }}
+          sx={sx}
           slotProps={{
             textField: {
               fullWidth: true,
