@@ -1,13 +1,8 @@
-import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useTranslation } from '../i18n'
 import SummaryDisplay from '../SummaryDisplay/SummaryDisplay'
 import { labelTotalPeriod } from './utils'
-
-const Wrapper = styled.div`
-  display: flex;
-  gap: 2rem;
-`
+import { Box } from '@mui/material'
 
 export default function ConsumptionDisplay(props) {
   const {
@@ -28,7 +23,12 @@ export default function ConsumptionDisplay(props) {
   }
 
   return (
-    <Wrapper>
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '2rem'
+      }}
+    >
       {currentDate && (
         <SummaryDisplay
           title={t(labelTotalPeriod(period))}
@@ -44,7 +44,7 @@ export default function ConsumptionDisplay(props) {
           valueUnit={'kWh'}
           description={description(period, compareDate)}></SummaryDisplay>
       )}
-    </Wrapper>
+    </Box>
   )
 }
 
