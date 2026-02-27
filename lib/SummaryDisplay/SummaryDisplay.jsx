@@ -1,36 +1,5 @@
-import styled from 'styled-components'
+import { Box, Typography } from '@mui/material'
 
-const Wrapper = styled.div`
-  color: ${(props) => (props.color === 'primary' ? '#96b633' : '#f2970f')};
-  justify-content: flex-end;
-  display: flex;
-  gap: 0.6em;
-  align-items: center;
-`
-const Value = styled.div`
-  font-size: 2.2rem;
-  font-weight: 800;
-  white-space: nowrap;
-  align-items: baseline;
-  display: flex;
-  gap: 0.2em;
-  div:last-child {
-    font-weight: 400;
-    font-size: 2rem;
-  }
-`
-const Detail = styled.div`
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0 4px 0 8px;
-  line-height: 1.2rem;
-  .title {
-    color: #616161;
-  }
-  div {
-    white-space: nowrap;
-  }
-`
 export default function SummaryDisplay(props) {
   const {
     value,
@@ -47,15 +16,59 @@ export default function SummaryDisplay(props) {
   }
 
   return (<>
-    <Wrapper color={color}>
-      <Value>
-        <div>{value ? formatValue(value) : '—'}</div>
-        <div>{valueUnit}</div>
-      </Value>
-      <Detail>
-        <div className="title">{title}</div>
-        <div>{description}</div>
-      </Detail>
-    </Wrapper>
+    <Box
+      sx= {{
+        color: color === 'primary' ? '#96b633' : '#f2970f',
+        justifyContent: 'flex-end',
+        display: 'flex',
+        gap: '0.6em',
+        alignItems: 'center',
+      }}
+    >
+      <Box
+        sx = {{
+          display: 'flex',
+          gap: '0.2em',
+          whiteSpace: 'nowrap',
+          alignItems: 'baseline',
+        }}
+      >
+        <Typography
+          sx = {{
+            fontSize: '2.2rem',
+            fontWeight: '800',
+            display: 'inline-block',
+          }}
+        >
+          {value ? formatValue(value) : '—'}
+        </Typography>
+        <Typography
+          sx = {{
+            fontSize: '2rem',
+            fontWeight: '400',
+            display: 'inline-block',
+          }}
+        >
+          {valueUnit}
+        </Typography>
+      </Box>
+      <Box
+        sx = {{
+          fontSize: '1rem',
+          fontWeight: '500',
+          padding: '0 4px 0 8px',
+          lineHeight: '1.2rem',
+        }}
+      >
+        <Typography
+          sx = {{
+            whiteSpace: 'nowrap',
+            color: '#616161'
+          }}>
+            {title}
+          </Typography>
+        <Typography sx = {{whiteSpace: 'nowrap'}}>{description}</Typography>
+      </Box>
+    </Box>
   </>)
 }
