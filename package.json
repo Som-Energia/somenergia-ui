@@ -1,7 +1,7 @@
 {
   "name": "@somenergia/somenergia-ui",
   "private": false,
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.13",
   "description": "Common React components for Som Energia projects",
   "license": "AGPL-3.0",
   "homepage": "https://som-energia.github.io/somenergia-ui/",
@@ -90,6 +90,7 @@
     "styled-components": "6.3.9",
     "vite": "4.5.14",
     "vite-plugin-svgr": "4.5.0",
+    "vite-plugin-eslint": "^1.8.1",
     "vitest": "4.0.18"
   },
   "engines": {

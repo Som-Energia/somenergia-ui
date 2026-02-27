@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Box, Typography, Toolbar } from '@mui/material'
-import { alpha } from '@mui/material/styles'
+import { alpha } from '@mui/material'
 import { useTranslation } from '../i18n'
 import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'

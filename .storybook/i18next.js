@@ -2,6 +2,11 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { somenergiaLibLocaleResources, registerSomEnergiaI18n } from '../lib/i18n';
 
+import 'dayjs/locale/gl'
+import 'dayjs/locale/eu'
+import 'dayjs/locale/es'
+import 'dayjs/locale/ca'
+
 i18n
   .use(initReactI18next)
   .init({
