@@ -19,10 +19,8 @@ export default function SomDatePicker({
   setCurrentTime,
   styles = {},
   toolbarTitle = null,
-  handleBlur = null,
-  error = null,
-  handleError = null,
   prevNextButtons = true,
+  disabledNextPrev = false,
   shouldDisableDate = () => { }
 }) {
   const { i18n } = useTranslation();
@@ -64,7 +62,9 @@ export default function SomDatePicker({
     >
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
         {prevNextButtons &&
-          <Button onClick={prevTimeWindow} data-cy="prev-button">
+          <Button
+            disabled={disabledNextPrev}
+            onClick={prevTimeWindow} data-cy="prev-button">
             <ArrowBackIosOutlined />
           </Button>
         }
@@ -73,10 +73,7 @@ export default function SomDatePicker({
           slotProps={{
             textField: {
               fullWidth: true,
-              onBlur: handleBlur,
-              error: !!error
             },
-
             toolbar: {
               toolbarFormat: toolbarFormat,
               toolbarTitle: toolbarTitle,
@@ -95,11 +92,12 @@ export default function SomDatePicker({
           onChange={(newValue) => {
             setCurrentTime(newValue)
           }}
-          onError={{ handleError }}
           shouldDisableDate={shouldDisableDate}
         />
         {prevNextButtons &&
-          <Button onClick={nextTimeWindow} data-cy="next-button">
+          <Button
+            disabled={disabledNextPrev}
+            onClick={nextTimeWindow} data-cy="next-button">
             <ArrowForwardIosOutlined />
           </Button>
         }
@@ -120,5 +118,7 @@ SomDatePicker.propTypes = {
   }),
   toolbarTitle: PropTypes.string,
   prevNextButtons: PropTypes.bool,
+  disabledNextPrev: PropTypes.bool,
   shouldDisableDate: PropTypes.func
 }
+

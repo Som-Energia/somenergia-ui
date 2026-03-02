@@ -11,16 +11,15 @@ export default {
   argTypes: {
     period: {
       control: { type: 'select' },
-      options: ['DAILY', 'WEEKLY','MONTHLY', 'YEARLY'],
+      options: ['DAILY', 'WEEKLY', 'MONTHLY', 'YEARLY'],
     },
     currentTime: { type: 'date' },
     toolbarTitle: { type: 'string' },
     prevNextButtons: {
       type: 'boolean'
-    },
+    }
   }
 }
-
 
 export const YearlyWithoutPrevNextButon = {
   args: {
@@ -36,6 +35,7 @@ export const YearlyWithoutPrevNextButon = {
     },
     toolbarTitle: 'Select date',
     currentTime: dayjs(),
-    prevNextButtons: true
+    prevNextButtons: true,
+    disabledNextPrev: false,
   }
 }
