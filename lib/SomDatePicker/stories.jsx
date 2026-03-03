@@ -28,7 +28,12 @@ export default {
     toolbarTitle: { type: 'string' },
     prevNextButtons: {
       type: 'boolean'
-    }
+    },
+    disabledNextPrev: { type: 'boolean' },
+    shouldDisableDate: {
+      control: false,
+      description: 'Function that disables the selection of a date'
+    },
   }
 }
 
