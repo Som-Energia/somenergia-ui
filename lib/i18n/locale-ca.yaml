@@ -12,7 +12,7 @@ TABLE_EDITOR:
   N_ITEMS_FILTERED_other: La cerca està ocultant {{count}} elements
   CLEAR_FILTER: Mostra'ls tots
 SUMDISPLAY:
-  TOTAL_DAILY: Total Diari
-  TOTAL_WEEKLY: Total Setmanal
-  TOTAL_MONTHLY: Total Mensual
-  TOTAL_YEARLY: Total Anual
+  TOTAL_DAILY: Total diari
+  TOTAL_WEEKLY: Total setmanal
+  TOTAL_MONTHLY: Total mensual
+  TOTAL_YEARLY: Total anual
