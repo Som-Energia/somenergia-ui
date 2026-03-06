@@ -15,16 +15,10 @@ i18n
     resources: somenergiaLibLocaleResources,
     detection: {
       order: [
-        'querystring',
-        'cookie',
-        'localStorage',
-        'sessionStorage',
-        'navigator',
-        'htmlTag',
         'path',
-        'subdomain',
+        'navigator',
       ],
-      lookupQuerystring: 'lang',
+      lookupFromPathIndex: 0,
     },
   });
 
