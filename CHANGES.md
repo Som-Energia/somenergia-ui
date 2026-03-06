@@ -1,5 +1,21 @@
 # Change log
 
+## 1.0.0 2025-03-06
+
+- Delete any i18n initialization
+- Provide registerSomEnergiaI18n to add lib translations to main project i18n instance
+- Storybook runs i18n.init
+- Change all useTranslation to own hook
+- Some ESLint fixes
+- Normalize component names.
+- Upgrade @mui dependencies
+- Fix peerDependencies.
+- Change deps versions to static versions. This helps somenergia-ui's developers have the same snapshot of the project.
+- Remove cypress dependency; these are not used.
+- Update SomDatePicker to be compatible with other projects
+- Adapt ConsumptionDislay to different types of date
+- Fix mui imports
+
 ## somenergia-ui-0.6.0 2025-06-11
 
 - New: Loading
