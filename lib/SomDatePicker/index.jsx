@@ -1,14 +1,13 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-material'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import ArrowBackIosOutlined from '@mui/icons-material/ArrowBackIosOutlined'
+import ArrowForwardIosOutlined from '@mui/icons-material/ArrowForwardIosOutlined'
+import { Box, Button } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs from 'dayjs'
 import minMax from 'dayjs/plugin/minMax'
-import { i18n } from '../i18n'
+import { useTranslation } from '../i18n'
 
 dayjs.extend(minMax)
 
@@ -19,7 +18,12 @@ export default function SomDatePicker({
   currentTime = dayjs(),
   setCurrentTime,
   styles = {},
+  toolbarTitle = null,
+  prevNextButtons = true,
+  disabledNextPrev = false,
+  shouldDisableDate = () => { }
 }) {
+  const { i18n } = useTranslation();
   const dayjsperiods = {
     DAILY: 'd',
     WEEKLY: 'w',
@@ -37,6 +41,18 @@ export default function SomDatePicker({
     setCurrentTime(dayjs.min(lastDate, next))
   }
 
+  const viewsFormat = (period === 'YEARLY')
+    ? ['year']
+    : (period === 'MONTHLY')
+      ? ['month']
+      : ['day', 'month', 'year']
+
+  const toolbarFormat = (period === 'YEARLY')
+    ? 'YYYY'
+    : (period === 'MONTHLY')
+      ? 'MMMM YYYY'
+      : 'dd., MMM D'
+
   return (
     <Box
       sx={{
@@ -45,26 +61,46 @@ export default function SomDatePicker({
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
-        <Button onClick={prevTimeWindow} data-cy="prev-button">
-          <ArrowBackIosOutlined />
-        </Button>
+        {prevNextButtons &&
+          <Button
+            disabled={disabledNextPrev}
+            onClick={prevTimeWindow} data-cy="prev-button">
+            <ArrowBackIosOutlined />
+          </Button>
+        }
         <DatePicker
+          sx={styles.datePicker}
+          slotProps={{
+            textField: {
+              fullWidth: true,
+            },
+            toolbar: {
+              toolbarFormat: toolbarFormat,
+              toolbarTitle: toolbarTitle,
+              hidden: false,
+              sx: {
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+
+              }
+            }
+          }}
+          minDate={dayjs(firstDate)}
+          maxDate={dayjs(lastDate)}
+          views={viewsFormat}
           value={currentTime}
           onChange={(newValue) => {
             setCurrentTime(newValue)
           }}
-          minDate={dayjs(firstDate)}
-          maxDate={dayjs(lastDate)}
-          format="DD/MM/YYYY"
-          sx={{
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            ...styles.datePicker,
-          }}
+          shouldDisableDate={shouldDisableDate}
         />
-        <Button onClick={nextTimeWindow} data-cy="next-button">
-          <ArrowForwardIosOutlined />
-        </Button>
+        {prevNextButtons &&
+          <Button
+            disabled={disabledNextPrev}
+            onClick={nextTimeWindow} data-cy="next-button">
+            <ArrowForwardIosOutlined />
+          </Button>
+        }
       </LocalizationProvider>
     </Box>
   )
@@ -80,4 +116,9 @@ SomDatePicker.propTypes = {
     container: PropTypes.object,
     datePicker: PropTypes.object,
   }),
+  toolbarTitle: PropTypes.string,
+  prevNextButtons: PropTypes.bool,
+  disabledNextPrev: PropTypes.bool,
+  shouldDisableDate: PropTypes.func
 }
+

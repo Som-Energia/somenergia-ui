@@ -2,21 +2,29 @@ import React from 'react'
 import dayjs from 'dayjs'
 import SomDatePicker from '.'
 
-export default function SomDatePickerExample() {
-  const [date, setDate] = React.useState(dayjs())
+export default function SomDatePickerExample(args) {
+  const {
+    firstDate,
+    lastDate,
+    period,
+    styles,
+    toolbarTitle,
+    prevNextButtons,
+    disabledNextPrev
+  } = args
 
+  const [date, setDate] = React.useState(dayjs())
   return (
     <SomDatePicker
-      period={'DAILY'}
+      firstDate={firstDate}
+      lastDate={lastDate}
+      period={period}
       currentTime={date}
       setCurrentTime={setDate}
-      styles={{
-        datePicker: {
-          border: '1px solid darkblue',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.6)',
-          minWidth: '110px',
-        },
-      }}
+      styles={styles}
+      toolbarTitle={toolbarTitle}
+      prevNextButtons={prevNextButtons}
+      disabledNextPrev={disabledNextPrev}
     />
   )
 }

@@ -2,17 +2,19 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteyaml from '@modyfi/vite-plugin-yaml'
 import svgr from 'vite-plugin-svgr'
-import { isAbsolute, join, resolve, relative, extname } from 'path'
+import { resolve, relative, extname } from 'path'
 import { glob } from 'glob'
-import fs from 'fs'
 import { fileURLToPath } from 'node:url'
-import pkg from './package.json'
-
-const isExternal = (id) => !id.startsWith('.') && !isAbsolute(id)
+// import eslint from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteyaml(), svgr()],
+  plugins: [
+    react(),
+    viteyaml(),
+    svgr(),
+    // eslint()
+  ],
   build: {
     sourcemap: true,
     lib: {
@@ -20,7 +22,6 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      // Consider all dependencies external (do not bundle them)
       external: [
         /^react/,
         'react-i18next',
@@ -28,10 +29,10 @@ export default defineConfig({
         'i18next-browser-languagedetector',
         'prop-types',
         /^dayjs/,
-        /^recharts/,
         'styled-components',
         /^@mui/,
-        /node_modules/,
+        '@emotion',
+        /^recharts/,
       ],
       // create modlue A/B/module from lib/A/B/module.jsx
       input: Object.fromEntries(
@@ -43,15 +44,9 @@ export default defineConfig({
           ]),
       ),
       output: {
-        // Enable preserveModules to check any 3rd party being bundled
-        //preserveModules: true,
+        interop: 'auto',
         entryFileNames: '[name].[format].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
-        manualChunks: (id) => {
-          //if (id.includes('node_modules'))
-          //  return id.toString().split('node_modules/')[1].split('/')[0].toString()
-          if (id.includes('node_modules')) return 'vendor'
-        },
       },
     },
   },

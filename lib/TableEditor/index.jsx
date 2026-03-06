@@ -2,23 +2,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import Checkbox from '@mui/material/Checkbox'
-import Button from '@mui/material/Button'
-import { useTranslation } from 'react-i18next'
+import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper, Button, Checkbox } from '@mui/material'
+import { useTranslation } from '../i18n'
 import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'
 import Loading from './Loading'
 import TableToolbar from './TableToolbar'
 import TableHead from './TableHead'
-import i18n from '../i18n'
 
 const denseRowHeight = 33
 
@@ -47,20 +37,20 @@ function collapseStyle(hidden) {
   return {
     ...(hidden
       ? {
-          borderBlock: 0,
-          opacity: 0,
-          overflow: 'hidden',
-        }
+        borderBlock: 0,
+        opacity: 0,
+        overflow: 'hidden',
+      }
       : undefined),
     transitionProperty: 'border, margin, padding, opacity',
     transitionDuration: '1s',
     '& > td': {
       ...(hidden
         ? {
-            //scale: '1 0',
-            paddingBlock: 0,
-            borderBlock: 0,
-          }
+          //scale: '1 0',
+          paddingBlock: 0,
+          borderBlock: 0,
+        }
         : undefined),
       transitionDuration: '1s',
       transitionProperty: 'border, margin, padding, scale',
@@ -127,10 +117,10 @@ const ItemRow = React.memo(
                 {column.view
                   ? column.view(row)
                   : row[column.id] === undefined
-                  ? '-'
-                  : row[column.id] === null
-                  ? '-'
-                  : row[column.id]}
+                    ? '-'
+                    : row[column.id] === null
+                      ? '-'
+                      : row[column.id]}
               </Box>
             </TableCell>
           )
@@ -211,12 +201,12 @@ function TableEditor(props) {
         let res = new Set()
         if (selected)
           res = new Set(selected)
-        res.has(id)?res.delete(id):res.add(id)
+        res.has(id) ? res.delete(id) : res.add(id)
         return res
       })
-    }
-  const isSelected = (id) => (nSelected > 0)? selected.has(id) : false
-  const nSelected = (selected)? selected.size : 0
+  }
+  const isSelected = (id) => (nSelected > 0) ? selected.has(id) : false
+  const nSelected = (selected) ? selected.size : 0
 
   const handleSelectAllClick = (event) => {
     event.target.checked ? selectAll() : deselectAll()
@@ -264,8 +254,8 @@ function TableEditor(props) {
     pageSizes.length === 0
       ? 0
       : page > 0
-      ? Math.max(0, (1 + page) * rowsPerPage - rows.length)
-      : 0
+        ? Math.max(0, (1 + page) * rowsPerPage - rows.length)
+        : 0
 
   const sortedRows = React.useMemo(() => {
     if (loading) return []
@@ -398,6 +388,18 @@ const ColumnsType = PropTypes.arrayOf(
     view: PropTypes.Element,
   }),
 )
+
+ItemRow.propTypes = {
+  row: PropTypes.any,
+  idField: PropTypes.string,
+  selected: PropTypes.bool,
+  hidden: PropTypes.bool,
+  columns: PropTypes.array,
+  selectable: PropTypes.bool,
+  actions: PropTypes.any,
+  handleClick: PropTypes.handleClick,
+  handleSelect: PropTypes.handleSelect,
+}
 
 TableEditor.propTypes = {
   /** The title of the table */

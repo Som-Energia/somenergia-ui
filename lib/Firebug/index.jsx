@@ -1,12 +1,10 @@
-import React from 'react'
-import Button from '@mui/material/Button'
-import Logo from '../../src/assets/logo.svg'
+import { Button } from '@mui/material'
+import Logo from './firebug.svg'
 
-export default function Firebug(props) {
-  React.useEffect(() => {}, []) // Dummy use of React
+export default function Firebug() {
   return (
     <Button variant="contained">
-      <img src={Logo} />
+      <img src={Logo} alt='firebug' />
     </Button>
   )
 }

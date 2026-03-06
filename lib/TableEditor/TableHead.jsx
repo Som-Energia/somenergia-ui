@@ -1,13 +1,15 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import TableSortLabel from '@mui/material/TableSortLabel'
+import {
+  Box,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+  Checkbox
+} from '@mui/material'
 import MuiTableHead from '@mui/material/TableHead'
-import Checkbox from '@mui/material/Checkbox'
+
 import { visuallyHidden } from '@mui/utils'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '../i18n'
 
 export default function TableHead({
   columns,
@@ -75,6 +77,7 @@ export default function TableHead({
 }
 
 TableHead.propTypes = {
+  columns: PropTypes.array.isRequired,
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
@@ -82,5 +85,6 @@ TableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
   hasCheckbox: PropTypes.bool.isRequired,
+  hasItemActions: PropTypes.bool
 }
 

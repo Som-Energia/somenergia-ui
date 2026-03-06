@@ -10,6 +10,44 @@ Common React/MUI components for Som Energia UI projects
 npm install --save @somenergia/somenergia-ui
 ```
 
+## Configuring i18n on your project with somenergia-ui components
+
+This library requires i18n configuration for multi-language support. Simply provide the host project's i18n instance, and the library will handle registering the necessary translations.
+
+```ts
+// Your project i18n instantiation file
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import { registerSomEnergiaI18n } from '@somenergia/somenergia-ui';
+
+import LOCALE_CA from './locale-ca.json'
+import LOCALE_ES from './locale-es.json'
+import LOCALE_GL from './locale-gl.json'
+import LOCALE_EU from './locale-eu.json'
+
+const resources = {
+  ca: { translation: { ...LOCALE_CA } },
+  es: { translation: { ...LOCALE_ES } },
+  gl: { translation: { ...LOCALE_GL } },
+  eu: { translation: { ...LOCALE_EU } }
+}
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: 'es',
+    lng: 'es',
+    keySeparator: false,
+    interpolation: {
+      escapeValue: false
+    }
+  })
+
+// Register all somenergia-ui lib translations to the project i18n instance
+registerSomEnergiaI18n(i18n);
+```
+
 ## Adding dependencies
 
 - Do not add them in `package.json`'s `dependencies` key

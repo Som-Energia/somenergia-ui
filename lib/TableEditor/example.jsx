@@ -1,14 +1,5 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import Button from '@mui/material/Button'
-import TableCell from '@mui/material/TableCell'
-import TableRow from '@mui/material/TableRow'
-import Typography from '@mui/material/Typography'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
+import { Typography, FormControlLabel, Switch, TextField, Box, IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import CelebrationIcon from '@mui/icons-material/Celebration'
@@ -16,8 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import TableEditor from '.'
 import ConfettiExplosion from 'react-confetti-explosion'
 
-export default function Example(params) {
-  const { t, i18n } = useTranslation()
+export default function Example() {
   const [isLoading, beLoading] = React.useState(false)
   const [hasDefaultAction, enableDefaultAction] = React.useState(true)
   const [hasSelection, haveSelection] = React.useState(true)
@@ -74,7 +64,6 @@ export default function Example(params) {
       ?.filter((x) => !isNaN(x)) || []
 
   const idField = 'contract_number'
-  const title = 'Title'
   const columns = [
     {
       id: 'contract_number', // TODO: can we name it contract?

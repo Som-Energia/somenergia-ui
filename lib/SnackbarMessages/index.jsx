@@ -16,10 +16,7 @@ Attributes:
 */
 
 import React from 'react'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
-import Slide from '@mui/material/Slide'
+import { Snackbar, Alert, AlertTitle, Slide } from '@mui/material'
 import { subscribe } from '../services/messages'
 
 // Unique message identifier to diferentiate all messages
@@ -29,7 +26,6 @@ export default function SnackbarMessages(props) {
   const {
     autoHideDuration = 5000,
     TransitionComponent = Slide,
-    TransitionProps = undefined,
     vertical = 'bottom',
     horizontal = 'right',
     slideTo = 'left',

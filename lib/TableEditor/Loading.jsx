@@ -1,11 +1,6 @@
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import CircularProgress from '@mui/material/CircularProgress'
-import Skeleton from '@mui/material/Skeleton'
-import { useTranslation } from 'react-i18next'
+import { TableRow, TableCell, CircularProgress, Skeleton } from '@mui/material'
 
 export default function Loading({ nCols = 3 }) {
-  const { t } = useTranslation()
   const nRows = 3
   return (
     <>
