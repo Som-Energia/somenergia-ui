@@ -45,7 +45,7 @@ export default function SomDatePicker({
     ? ['year']
     : (period === 'MONTHLY')
       ? ['month']
-      : ['day', 'month', 'year']
+      : ['year', 'month', 'day']
 
   const toolbarFormat = (period === 'YEARLY')
     ? 'YYYY'
@@ -81,7 +81,6 @@ export default function SomDatePicker({
               sx: {
                 backgroundColor: 'primary.main',
                 color: 'primary.contrastText',
-
               }
             }
           }}
