@@ -1,6 +1,10 @@
 # Change log
 
-## 1.0.0 2025-03-06
+## 1.0.1 2026-03-17
+
+- Fix: DatePicker component
+
+## 1.0.0 2026-03-06
 
 - Delete any i18n initialization
 - Provide registerSomEnergiaI18n to add lib translations to main project i18n instance
