@@ -28,6 +28,8 @@ function CurveChart({
   compareData,
   lang,
   Ylegend = 'kWh',
+  displaced = false,
+  step_mm = 60,
 }) {
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
@@ -59,7 +61,7 @@ function CurveChart({
           </YAxis>
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
-            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart')}
+            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart', displaced, step_mm)}
             contentStyle={{ fontWeight: 'bold' }}
           />
           <Line
