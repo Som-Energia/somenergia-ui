@@ -12,7 +12,12 @@ export default defineConfig({
     react(),
     viteyaml(),
     svgr(),
-    eslint({ build: true, emitWarning: false }),
+    eslint({
+      build: true,
+      lintOnStart: true,
+      emitWarning: false,
+      include: ['lib/**/*.{js,jsx}'],
+    }),
   ],
   build: {
     sourcemap: true,
