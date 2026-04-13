@@ -1,19 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import viteyaml from '@modyfi/vite-plugin-yaml'
-import svgr from 'vite-plugin-svgr'
-import { resolve, relative, extname } from 'path'
+import react from '@vitejs/plugin-react'
 import { glob } from 'glob'
 import { fileURLToPath } from 'node:url'
-// import eslint from 'vite-plugin-eslint'
+import { extname, relative, resolve } from 'path'
+import { defineConfig } from 'vite'
+import eslint from 'vite-plugin-eslint2'
+import svgr from 'vite-plugin-svgr'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     viteyaml(),
     svgr(),
-    // eslint()
+    eslint({ build: true, emitWarning: false }),
   ],
   build: {
     sourcemap: true,

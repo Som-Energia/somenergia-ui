@@ -7,13 +7,48 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
+    'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: 'detect' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'simple-import-sort', 'unused-imports'],
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-    'react/prop-types': 'off'
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    'react/prop-types': 'off',
+    eqeqeq: ['error', 'always'],
+    'arrow-parens': ['error', 'always'],
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // Side effects
+          ['^\\u0000'],
+          // React
+          ['^react', '^react-dom', '^react-router', '^react-i18next'],
+          // @mui
+          ['^@mui/'],
+          // External
+          ['^@?\\w'],
+          // Internal
+          ['^\\.\\./', '^\\./', '^\\.'],
+        ],
+      },
+    ],
+    'simple-import-sort/exports': 'error',
+    'no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
   },
 }
