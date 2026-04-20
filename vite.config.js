@@ -4,7 +4,7 @@ import { glob } from 'glob'
 import { fileURLToPath } from 'node:url'
 import { extname, relative, resolve } from 'path'
 import { defineConfig } from 'vite'
-import eslint from 'vite-plugin-eslint2'
+// import eslint from 'vite-plugin-eslint2'
 import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
@@ -12,12 +12,12 @@ export default defineConfig({
     react(),
     viteyaml(),
     svgr(),
-    eslint({
-      build: true,
-      lintOnStart: true,
-      emitWarning: false,
-      include: ['lib/**/*.{js,jsx}'],
-    }),
+    // eslint({
+    //  build: true,
+    //  lintOnStart: true,
+    //  emitWarning: false,
+    //  include: ['lib/**/*.{js,jsx}'],
+    //}),
   ],
   build: {
     sourcemap: true,
