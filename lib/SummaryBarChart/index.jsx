@@ -1,27 +1,25 @@
 import PropTypes from 'prop-types'
-
 import {
   Bar,
+  BarChart,
   CartesianGrid,
+  Label,
+  Legend,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  Label,
-  Legend,
-  BarChart,
-  ReferenceLine,
 } from 'recharts'
 
 import {
-  formatXAxis,
-  formatDecimal,
-  setChartLang,
   buildTicks,
+  formatDecimal,
+  formatXAxis,
+  setChartLang,
 } from '../utils/chart.utils'
-
-import { CustomTooltip } from './CustomTooltip'
 import { CustomLegend } from './CustomLegend'
+import { CustomTooltip } from './CustomTooltip'
 
 function SummaryPeriodChart({
   data,
@@ -34,7 +32,7 @@ function SummaryPeriodChart({
   numberOfDecimals,
   maxYAxisValue = 'auto',
   minYAxisValue = 'auto',
-  tickCountValue = 7
+  tickCountValue = 7,
 }) {
   setChartLang(lang)
   return (
@@ -62,23 +60,30 @@ function SummaryPeriodChart({
             ticks={buildTicks(minYAxisValue, maxYAxisValue, tickCountValue)}
             tickFormatter={(tickItem) =>
               `${formatDecimal(tickItem, numberOfDecimals)}`
-            }
-          >
-            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
+            }>
+            <Label
+              value={Ylegend}
+              angle={-90}
+              position="insideLeft"
+              fill="#969696"
+            />
           </YAxis>
           <Tooltip
             content={
-              <CustomTooltip Ylegend={Ylegend} showTooltipKeys={showTooltipKeys} />
+              <CustomTooltip
+                Ylegend={Ylegend}
+                showTooltipKeys={showTooltipKeys}
+              />
             }
             cursor={{ fill: '#f2f2f2bb' }}
           />
 
           {legend && !referenceLineData && <Legend />}
-          {legend && referenceLineData &&
+          {legend && referenceLineData && (
             <Legend
               content={<CustomLegend referenceLineData={referenceLineData} />}
             />
-          }
+          )}
           {data.keys.map((element) => {
             return (
               <Bar
@@ -90,20 +95,19 @@ function SummaryPeriodChart({
             )
           })}
 
-          {referenceLineData && referenceLineData.map((element, index) => {
-            return (
-              <ReferenceLine
-                key={index}
-                y={element.value}
-                stroke={element.color}
-                strokeDasharray={element.stroke}
-                strokeWidth={element.strokeWidth}
-                text={element.text}
-              />
-            )
-          })
-          }
-
+          {referenceLineData &&
+            referenceLineData.map((element, index) => {
+              return (
+                <ReferenceLine
+                  key={index}
+                  y={element.value}
+                  stroke={element.color}
+                  strokeDasharray={element.stroke}
+                  strokeWidth={element.strokeWidth}
+                  text={element.text}
+                />
+              )
+            })}
         </BarChart>
       </ResponsiveContainer>
     </div>

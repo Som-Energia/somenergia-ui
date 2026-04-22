@@ -1,8 +1,10 @@
+import { Box } from '@mui/material'
+
 import dayjs from 'dayjs'
+
 import { useTranslation } from '../i18n'
 import SummaryDisplay from '../SummaryDisplay'
 import { labelTotalPeriod } from './utils'
-import { Box } from '@mui/material'
 
 export default function ConsumptionDisplay(props) {
   const {
@@ -15,9 +17,9 @@ export default function ConsumptionDisplay(props) {
   const { t } = useTranslation()
 
   const description = (period, date) => {
-    return (period === 'YEARLY')
+    return period === 'YEARLY'
       ? dayjs(date).format('YYYY')
-      : (period === 'MONTHLY')
+      : period === 'MONTHLY'
         ? dayjs(date).format('MM/YYYY')
         : dayjs(date).format('DD/MM/YYYY')
   }
@@ -26,9 +28,8 @@ export default function ConsumptionDisplay(props) {
     <Box
       sx={{
         display: 'flex',
-        gap: '2rem'
-      }}
-    >
+        gap: '2rem',
+      }}>
       {currentDate && (
         <SummaryDisplay
           title={t(labelTotalPeriod(period))}
@@ -40,11 +41,10 @@ export default function ConsumptionDisplay(props) {
         <SummaryDisplay
           title={t(labelTotalPeriod(period))}
           value={compareTotalKwh}
-          color='secondary'
+          color="secondary"
           valueUnit={'kWh'}
           description={description(period, compareDate)}></SummaryDisplay>
       )}
     </Box>
   )
 }
-

@@ -1,4 +1,4 @@
-import { TableRow, TableCell, CircularProgress, Skeleton } from '@mui/material'
+import { CircularProgress, Skeleton, TableCell, TableRow } from '@mui/material'
 
 export default function Loading({ nCols = 3 }) {
   const nRows = 3
@@ -27,11 +27,9 @@ export default function Loading({ nCols = 3 }) {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-        }}
-      >
+        }}>
         <CircularProgress />
       </div>
     </>
   )
 }
-

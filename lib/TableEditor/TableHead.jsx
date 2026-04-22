@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types'
 import {
   Box,
-  TableRow,
+  Checkbox,
   TableCell,
+  TableRow,
   TableSortLabel,
-  Checkbox
 } from '@mui/material'
 import MuiTableHead from '@mui/material/TableHead'
-
 import { visuallyHidden } from '@mui/utils'
+
+import PropTypes from 'prop-types'
+
 import { useTranslation } from '../i18n'
 
 export default function TableHead({
@@ -47,14 +48,12 @@ export default function TableHead({
           <TableCell
             key={column.id}
             align={column.numeric ? 'right' : 'left'}
-            padding={i == 0 && hasCheckbox ? 'none' : 'normal'}
-            sortDirection={orderBy === column.id ? order : false}
-          >
+            padding={i === 0 && hasCheckbox ? 'none' : 'normal'}
+            sortDirection={orderBy === column.id ? order : false}>
             <TableSortLabel
               active={orderBy === column.id}
               direction={orderBy === column.id ? order : 'asc'}
-              onClick={createSortHandler(column.id)}
-            >
+              onClick={createSortHandler(column.id)}>
               {column.label}
               {orderBy === column.id ? (
                 <Box component="span" sx={visuallyHidden}>
@@ -85,6 +84,5 @@ TableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
   hasCheckbox: PropTypes.bool.isRequired,
-  hasItemActions: PropTypes.bool
+  hasItemActions: PropTypes.bool,
 }
-

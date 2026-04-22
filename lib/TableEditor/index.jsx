@@ -1,14 +1,28 @@
 /// TableEditor: A full featured opinionated table component.
 
 import React from 'react'
+
+import {
+  Box,
+  Button,
+  Checkbox,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TablePagination,
+  TableRow,
+} from '@mui/material'
+
 import PropTypes from 'prop-types'
-import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper, Button, Checkbox } from '@mui/material'
+
 import { useTranslation } from '../i18n'
-import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'
 import Loading from './Loading'
-import TableToolbar from './TableToolbar'
+import { ActionsType } from './proptypes'
 import TableHead from './TableHead'
+import TableToolbar from './TableToolbar'
 
 const denseRowHeight = 33
 
@@ -37,20 +51,20 @@ function collapseStyle(hidden) {
   return {
     ...(hidden
       ? {
-        borderBlock: 0,
-        opacity: 0,
-        overflow: 'hidden',
-      }
+          borderBlock: 0,
+          opacity: 0,
+          overflow: 'hidden',
+        }
       : undefined),
     transitionProperty: 'border, margin, padding, opacity',
     transitionDuration: '1s',
     '& > td': {
       ...(hidden
         ? {
-          //scale: '1 0',
-          paddingBlock: 0,
-          borderBlock: 0,
-        }
+            //scale: '1 0',
+            paddingBlock: 0,
+            borderBlock: 0,
+          }
         : undefined),
       transitionDuration: '1s',
       transitionProperty: 'border, margin, padding, scale',
@@ -63,7 +77,7 @@ function collapseStyle(hidden) {
 }
 
 const ItemRow = React.memo(
-  ({
+  function ItemRow(
     row,
     idField,
     selected,
@@ -73,7 +87,7 @@ const ItemRow = React.memo(
     actions,
     handleClick,
     handleSelect,
-  }) => {
+  ) {
     const id = row[idField]
     const labelId = `enhanced-table-checkbox-${id}`
 
@@ -81,13 +95,12 @@ const ItemRow = React.memo(
       <TableRow
         sx={collapseStyle(hidden)}
         hover
-        onClick={(event) => handleClick(id)}
+        onClick={() => handleClick(id)}
         role="checkbox"
         aria-checked={selected}
         tabIndex={-1}
         selected={selected}
-        id={labelId}
-      >
+        id={labelId}>
         {selectable && (
           <TableCell padding="checkbox">
             <Box>
@@ -111,8 +124,7 @@ const ItemRow = React.memo(
             <TableCell
               align={column.numeric ? 'right' : 'left'}
               key={`${column.id}_${id}`}
-              padding={i === 0 && selectable ? 'none' : 'normal'}
-            >
+              padding={i === 0 && selectable ? 'none' : 'normal'}>
               <Box>
                 {column.view
                   ? column.view(row)
@@ -152,7 +164,6 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0])
 }
 
-
 /**
 A full featured opinionated table component.
 
@@ -187,7 +198,7 @@ function TableEditor(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(defaultPageSize)
   const [search, setSearch] = React.useState('')
 
-  const handleRequestSort = (event, property) => {
+  const handleRequestSort = (_event, property) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
@@ -196,17 +207,15 @@ function TableEditor(props) {
   const selectAll = () => setSelected(new Set(rows.map((r) => r[idField])))
   const deselectAll = () => setSelected(new Set())
   const toggleSelect = (id) => {
-    setSelected(
-      (selected) => {
-        let res = new Set()
-        if (selected)
-          res = new Set(selected)
-        res.has(id) ? res.delete(id) : res.add(id)
-        return res
-      })
+    setSelected((selected) => {
+      let res = new Set()
+      if (selected) res = new Set(selected)
+      res.has(id) ? res.delete(id) : res.add(id)
+      return res
+    })
   }
-  const isSelected = (id) => (nSelected > 0) ? selected.has(id) : false
-  const nSelected = (selected) ? selected.size : 0
+  const isSelected = (id) => (nSelected > 0 ? selected.has(id) : false)
+  const nSelected = selected ? selected.size : 0
 
   const handleSelectAllClick = (event) => {
     event.target.checked ? selectAll() : deselectAll()
@@ -215,12 +224,15 @@ function TableEditor(props) {
     toggleSelect(id)
   }, [])
 
-  const handleClick = React.useCallback((id) => {
-    if (defaultAction) return defaultAction(id)
-    handleSelect(id)
-  }, [defaultAction, handleSelect])
+  const handleClick = React.useCallback(
+    (id) => {
+      if (defaultAction) return defaultAction(id)
+      handleSelect(id)
+    },
+    [defaultAction, handleSelect],
+  )
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage)
   }
 
@@ -230,16 +242,20 @@ function TableEditor(props) {
   }
 
   // TODO: Reconcile filtering with pagination when we use pagination back
-  const isFilteredOut = React.useCallback((row) => {
-    if (!search) return false
-    for (const i in columns) {
-      const column = columns[i]
-      if (!column.searchable) continue
-      const fieldContent = row[column.id] + ''
-      if (fieldContent.toLowerCase().includes(search.toLowerCase())) return false
-    }
-    return true
-  }, [search, columns])
+  const isFilteredOut = React.useCallback(
+    (row) => {
+      if (!search) return false
+      for (const i in columns) {
+        const column = columns[i]
+        if (!column.searchable) continue
+        const fieldContent = row[column.id] + ''
+        if (fieldContent.toLowerCase().includes(search.toLowerCase()))
+          return false
+      }
+      return true
+    },
+    [search, columns],
+  )
 
   const hiddenIds = React.useMemo(() => {
     return new Set(rows.filter(isFilteredOut).map((row) => row[idField]))
@@ -247,7 +263,9 @@ function TableEditor(props) {
   const nHiddenRows = hiddenIds.size
 
   const nTableColumns =
-    columns.length + (itemActions.length ? 1 : 0) + (selectionActions.length ? 1 : 0)
+    columns.length +
+    (itemActions.length ? 1 : 0) +
+    (selectionActions.length ? 1 : 0)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -297,11 +315,13 @@ function TableEditor(props) {
               ) : rows.length === 0 ? (
                 noDataPlaceHolder && (
                   <TableRow>
-                    <TableCell colSpan={nTableColumns}>{noDataPlaceHolder}</TableCell>
+                    <TableCell colSpan={nTableColumns}>
+                      {noDataPlaceHolder}
+                    </TableCell>
                   </TableRow>
                 )
               ) : (
-                sortedRows.map((row, index) => {
+                sortedRows.map((row) => {
                   const id = row[idField]
                   return (
                     <ItemRow
@@ -326,8 +346,7 @@ function TableEditor(props) {
                   <TableRow
                     style={{
                       height: denseRowHeight * emptyRows,
-                    }}
-                  >
+                    }}>
                     <TableCell colSpan={nTableColumns} />
                   </TableRow>
                 )
@@ -338,16 +357,16 @@ function TableEditor(props) {
                     sx={{
                       display: 'flex',
                       justifyContent: 'space-between',
-                    }}
-                  >
+                    }}>
                     <div>
-                      {t('TABLE_EDITOR.N_ITEMS_FILTERED', { count: nHiddenRows })}
+                      {t('TABLE_EDITOR.N_ITEMS_FILTERED', {
+                        count: nHiddenRows,
+                      })}
                     </div>
                     <Button
                       size="small"
                       variant="contained"
-                      onClick={() => setSearch('')}
-                    >
+                      onClick={() => setSearch('')}>
                       {t('TABLE_EDITOR.CLEAR_FILTER')}
                     </Button>
                   </Box>

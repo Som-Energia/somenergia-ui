@@ -1,34 +1,27 @@
 import PropTypes from 'prop-types'
-
 import {
   CartesianGrid,
+  Label,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  Label,
-  LineChart,
-  Line,
 } from 'recharts'
 
 import {
-  formatTooltipLabel,
-  formatXAxis,
-  ticksFromData,
   domainFromData,
   formatDecimal,
   formatTooltip,
+  formatTooltipLabel,
+  formatXAxis,
   mergeData,
   setChartLang,
+  ticksFromData,
 } from '../utils/chart.utils'
 
-function CurveChart({
-  data,
-  period,
-  compareData,
-  lang,
-  Ylegend = 'kWh',
-}) {
+function CurveChart({ data, period, compareData, lang, Ylegend = 'kWh' }) {
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
 
@@ -55,11 +48,18 @@ function CurveChart({
             tickLine={false}
             tickFormatter={(tickItem) => `${formatDecimal(tickItem)}`}
             tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}>
-            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
+            <Label
+              value={Ylegend}
+              angle={-90}
+              position="insideLeft"
+              fill="#969696"
+            />
           </YAxis>
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
-            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart')}
+            labelFormatter={(value) =>
+              formatTooltipLabel(period, value, 'lineChart')
+            }
             contentStyle={{ fontWeight: 'bold' }}
           />
           <Line

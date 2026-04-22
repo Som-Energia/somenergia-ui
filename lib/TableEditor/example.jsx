@@ -1,11 +1,20 @@
 import React from 'react'
-import { Typography, FormControlLabel, Switch, TextField, Box, IconButton } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
-import CelebrationIcon from '@mui/icons-material/Celebration'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import TableEditor from '.'
 import ConfettiExplosion from 'react-confetti-explosion'
+
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import CelebrationIcon from '@mui/icons-material/Celebration'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import {
+  Box,
+  FormControlLabel,
+  IconButton,
+  Switch,
+  TextField,
+  Typography,
+} from '@mui/material'
+
+import TableEditor from '.'
 
 export default function Example() {
   const [isLoading, beLoading] = React.useState(false)
@@ -101,8 +110,7 @@ export default function Example() {
           onClick={() => {
             setLog('Celebrate!')
             showConfetti(true)
-          }}
-        >
+          }}>
           <CelebrationIcon />
         </IconButton>
       ),
@@ -129,10 +137,14 @@ export default function Example() {
           display: 'grid',
           gridTemplateColumns: 'repeat(3,1fr)',
           gridAutoColumns: '10rem',
-        }}
-      >
+        }}>
         {[
-          [hasDefaultAction, enableDefaultAction, 'Click action', 'On clicking in a row'],
+          [
+            hasDefaultAction,
+            enableDefaultAction,
+            'Click action',
+            'On clicking in a row',
+          ],
           [
             hasSelection,
             haveSelection,
@@ -162,15 +174,17 @@ export default function Example() {
           <FormControlLabel
             key={i}
             control={
-              <Switch checked={getter} onChange={(e) => setter(e.target.checked)} />
+              <Switch
+                checked={getter}
+                onChange={(e) => setter(e.target.checked)}
+              />
             }
             label={
               <>
                 <b>{label}: </b>
                 {description}
               </>
-            }
-          ></FormControlLabel>
+            }></FormControlLabel>
         ))}
         <TextField
           variant="filled"
@@ -190,8 +204,7 @@ export default function Example() {
             justifySelf: 'center',
             alignSelf: 'center',
             textAlign: 'center',
-          }}
-        >
+          }}>
           {isConfettiShown && (
             <ConfettiExplosion
               style={{ textAlign: 'center' }}
@@ -219,8 +232,7 @@ export default function Example() {
               {'No items found'}
             </Typography>
           ) : undefined
-        }
-      ></TableEditor>
+        }></TableEditor>
     </>
   )
 }

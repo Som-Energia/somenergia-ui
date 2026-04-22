@@ -1,6 +1,7 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle'
-import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+
 import TableEditor from './'
 import { default as TableEditorExample } from './example'
 
@@ -88,17 +89,15 @@ export const Exemple = {
   render: () => <TableEditorExample />,
 }
 
-const longRows = Array.from({ length: 200 }, (_, i) => (
-  {
-    contract_number: i + '',
-    installation_name: 'installation ' + i,
-    power: 2000 + i,
-  }
-))
+const longRows = Array.from({ length: 200 }, (_, i) => ({
+  contract_number: i + '',
+  installation_name: 'installation ' + i,
+  power: 2000 + i,
+}))
 
 export const LongTable = {
   args: {
-    title: "Long table",
+    title: 'Long table',
     idField: 'contract_number',
     columns,
     rows: longRows,

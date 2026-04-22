@@ -10,7 +10,6 @@ export const Example = {
   args: {
     description: 'PRECIO MÍNIMO',
     unit: '€/kWh',
-    value: '0,148228'
-  }
+    value: '0,148228',
+  },
 }
-

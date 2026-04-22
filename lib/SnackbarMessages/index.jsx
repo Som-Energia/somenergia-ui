@@ -16,7 +16,9 @@ Attributes:
 */
 
 import React from 'react'
-import { Snackbar, Alert, AlertTitle, Slide } from '@mui/material'
+
+import { Alert, AlertTitle, Slide, Snackbar } from '@mui/material'
+
 import { subscribe } from '../services/messages'
 
 // Unique message identifier to diferentiate all messages
@@ -54,8 +56,7 @@ export default function SnackbarMessages(props) {
           TransitionComponent={TransitionComponent}
           {...(slideTo ? { TransitionProps: { direction: slideTo } } : {})}
           anchorOrigin={{ vertical, horizontal }}
-          {...extra}
-        >
+          {...extra}>
           <Alert
             onClose={handleClose}
             variant={variant}
@@ -66,8 +67,7 @@ export default function SnackbarMessages(props) {
               ...(message.level === undefined && variant === 'filled'
                 ? { color: 'primary.contrastText' }
                 : {}),
-            }}
-          >
+            }}>
             {message.context && <AlertTitle>{message.context}</AlertTitle>}
             {message.message}
           </Alert>

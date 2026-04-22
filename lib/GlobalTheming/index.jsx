@@ -2,15 +2,17 @@
 // and dark modes.
 
 import React from 'react'
-import useMediaQuery from '@mui/material/useMediaQuery'
+
 import CssBaseline from '@mui/material/CssBaseline'
-import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
-import SomEnergiaTheme from '../SomEnergiaTheme'
+import { ThemeProvider } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import useLocalStorage from '../hooks/LocalStorage'
+import SomEnergiaTheme from '../SomEnergiaTheme'
 
 const ColorModeContext = React.createContext({
   current: null,
-  set: (value) => {},
+  set: (_value) => {},
   toggle: () => {},
 })
 
@@ -42,8 +44,12 @@ function GlobalTheme({ children, customTheme }) {
   )
 
   const darkModeMediaQuery = useMediaQuery('(prefers-color-scheme: dark)')
-  const isDarkMode = colorMode === 'dark' || (colorMode === null && darkModeMediaQuery)
-  const theme = React.useMemo(() => (customTheme ?? SomEnergiaTheme)(isDarkMode), [isDarkMode, customTheme])
+  const isDarkMode =
+    colorMode === 'dark' || (colorMode === null && darkModeMediaQuery)
+  const theme = React.useMemo(
+    () => (customTheme ?? SomEnergiaTheme)(isDarkMode),
+    [isDarkMode, customTheme],
+  )
 
   return (
     <ColorModeContext.Provider value={colorModeContext}>

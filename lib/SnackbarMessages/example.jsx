@@ -1,18 +1,27 @@
 import React from 'react'
+
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material'
+
+import { error, info, log, success, warn } from '../services/messages'
 import SnackbarMessages from './'
-import { log, error, warn, info, success } from '../services/messages'
-import { Button, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
 
 function Selector({ label, options, value, setValue }) {
   const id = label.split().join('-').toLowerCase()
   const labelid = id + '-label'
   const mapOptions = Array.isArray(options)
     ? Object.fromEntries(
-      options.map((value) => [
-        value,
-        value ? value.at(0).toUpperCase() + value.slice(1) : 'Default',
-      ]),
-    )
+        options.map((value) => [
+          value,
+          value ? value.at(0).toUpperCase() + value.slice(1) : 'Default',
+        ]),
+      )
     : options
   return (
     <FormControl sx={{ width: '30%', m: 1 }}>
@@ -24,8 +33,7 @@ function Selector({ label, options, value, setValue }) {
         label={label}
         placeholder={label}
         onChange={(e) => setValue(e.target.value)}
-        autoWidth
-      >
+        autoWidth>
         {Object.keys(mapOptions).map((value, i) => (
           <MenuItem value={value} key={i}>
             {mapOptions[value]}
@@ -48,8 +56,7 @@ function SenderButton({ f }) {
     <Button
       variant="contained"
       onClick={() => f(`This is a message sent with ${f.name}() function!`)}
-      color={colors[f.name]}
-    >
+      color={colors[f.name]}>
       {`Send with ${f.name}()`}
     </Button>
   )
@@ -63,7 +70,13 @@ export default function Example() {
   return (
     <>
       <h1>SnackbarMessages</h1>
-      <Box sx={{ display: 'flex', flexFlow: 'wrap', gap: 1, justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexFlow: 'wrap',
+          gap: 1,
+          justifyContent: 'center',
+        }}>
         <Selector
           label="Horizontal Anchor"
           value={horizontal}
@@ -89,7 +102,13 @@ export default function Example() {
           options={['outlined', 'filled', 'standard']}
         />
       </Box>
-      <Box sx={{ display: 'flex', flexFlow: 'wrap', gap: 1, justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexFlow: 'wrap',
+          gap: 1,
+          justifyContent: 'center',
+        }}>
         <SenderButton f={log} />
         <SenderButton f={error} />
         <SenderButton f={warn} />

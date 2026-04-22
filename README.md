@@ -18,7 +18,7 @@ This library requires i18n configuration for multi-language support. Simply prov
 // Your project i18n instantiation file
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { registerSomEnergiaI18n } from '@somenergia/somenergia-ui';
+import { registerSomEnergiaI18n } from '@somenergia/somenergia-ui'
 
 import LOCALE_CA from './locale-ca.json'
 import LOCALE_ES from './locale-es.json'
@@ -29,23 +29,21 @@ const resources = {
   ca: { translation: { ...LOCALE_CA } },
   es: { translation: { ...LOCALE_ES } },
   gl: { translation: { ...LOCALE_GL } },
-  eu: { translation: { ...LOCALE_EU } }
+  eu: { translation: { ...LOCALE_EU } },
 }
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'es',
-    lng: 'es',
-    keySeparator: false,
-    interpolation: {
-      escapeValue: false
-    }
-  })
+i18n.use(initReactI18next).init({
+  resources,
+  fallbackLng: 'es',
+  lng: 'es',
+  keySeparator: false,
+  interpolation: {
+    escapeValue: false,
+  },
+})
 
 // Register all somenergia-ui lib translations to the project i18n instance
-registerSomEnergiaI18n(i18n);
+registerSomEnergiaI18n(i18n)
 ```
 
 ## Adding dependencies
@@ -55,7 +53,7 @@ registerSomEnergiaI18n(i18n);
 - Ensure they are filtered by the `externals` in `vite-config.js`' `build.rollupOptions.externals`
 - If the build creates a `vendor-***.js` as output, means that you failed to filter it
 - To know wich module is generating the `vendor-***.js`, you can get the name of the library
-by uncomenting the code in `vite-config.js` (`build.rollupOptions.output.manualChunks`)
+  by uncomenting the code in `vite-config.js` (`build.rollupOptions.output.manualChunks`)
 
 ## Using unreleased components in another project
 

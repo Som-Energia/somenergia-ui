@@ -4,8 +4,8 @@ TABLE_EDITOR:
   ACTIONS: Accions
   SORTED_DESCENDING: Ordre descendent
   SORTED_ASCENDING: Ordre ascendent
-  N_SELECTED_one: "{{count}} element seleccionat"
-  N_SELECTED_other: "{{count}} elements seleccionats"
+  N_SELECTED_one: '{{count}} element seleccionat'
+  N_SELECTED_other: '{{count}} elements seleccionats'
   PLACEHOLDER_SEARCH: Busca...
   LABEL_SEARCH: Busca
   N_ITEMS_FILTERED_one: La cerca està ocultant un element

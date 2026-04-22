@@ -13,17 +13,20 @@ const Loading = (props) => {
         flexFlow: 'row wrap',
         justifyContent: 'center',
         alignContent: 'center',
-      }}
-    >
-      <Box data-testid={'loading-component'} sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        gap: 3
-      }} >
+      }}>
+      <Box
+        data-testid={'loading-component'}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          gap: 3,
+        }}>
         <CircularProgress sx={{ color: 'primary2.main' }} />
-        {description && <Typography variant="pagesubtitle">{description}</Typography>}
+        {description && (
+          <Typography variant="pagesubtitle">{description}</Typography>
+        )}
       </Box>
     </Box>
   )

@@ -1,5 +1,6 @@
-import { InputBase, styled, alpha } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import { alpha, InputBase, styled } from '@mui/material'
+
 import { useTranslation } from '../i18n'
 
 // TODO: Migrate styled -> sx

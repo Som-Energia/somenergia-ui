@@ -3,7 +3,11 @@ import Loading from '../lib/Loading'
 function App() {
   return (
     <>
-      <Loading color="primary.main" description="Nothing to view here" width="200px" />
+      <Loading
+        color="primary.main"
+        description="Nothing to view here"
+        width="200px"
+      />
     </>
   )
 }

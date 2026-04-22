@@ -43,13 +43,13 @@
 ## somenergia-ui-0.5.0 2024-10-10
 
 - Theming components taken from somrepre-oficinavirtual
-    - GlobalTheming: A wrapper to reset css, set the global theme,
-      and control the color mode (light/dark)
-        - Renamed SomRepre GlobalTheme -> GlobalTheming
-        - Added a customTheme attribute to inject other than SomEnergia
-    - Fix: SomEnergiaTheme was not properly exported
-    - LocalStorage hook to set and depend on shared LocalStorage data
-    - ColorModeButton: A button to toggle the color mode
+  - GlobalTheming: A wrapper to reset css, set the global theme,
+    and control the color mode (light/dark)
+    - Renamed SomRepre GlobalTheme -> GlobalTheming
+    - Added a customTheme attribute to inject other than SomEnergia
+  - Fix: SomEnergiaTheme was not properly exported
+  - LocalStorage hook to set and depend on shared LocalStorage data
+  - ColorModeButton: A button to toggle the color mode
 
 ## somenergia-ui-0.4.10 2024-06-27
 
@@ -58,8 +58,8 @@
 ## somenergia-ui-0.4.9 2024-06-27
 
 - Remove minimum Yaxis value validation
-   - When average is grater than maximum value and 
-     minimum is possitive, minimum Y axis should be 0
+  - When average is grater than maximum value and
+    minimum is possitive, minimum Y axis should be 0
 
 ## somenergia-ui-0.4.8 2024-06-26
 
@@ -68,51 +68,51 @@
 ## somenergia-ui-0.4.7 2024-06-14
 
 - TableEditor: Optimized to work well with 200 rows
-    - InnerRow as component to isolate unrequired row renders
-    - Memoizing rows to avoid such unrequired rerenders
-    - Using custom css instead slow Mui Collapse
-    - Cache sorting and paging with useMemo
-    - Handlers defined with useCallback to avoid rerenders
-    - Using lambda based setX state changes, to avoid single
-      row callbacks to depend on all the rows.
-    - Using sets for selected and filtered
-    - Extracted inner components as files
+  - InnerRow as component to isolate unrequired row renders
+  - Memoizing rows to avoid such unrequired rerenders
+  - Using custom css instead slow Mui Collapse
+  - Cache sorting and paging with useMemo
+  - Handlers defined with useCallback to avoid rerenders
+  - Using lambda based setX state changes, to avoid single
+    row callbacks to depend on all the rows.
+  - Using sets for selected and filtered
+  - Extracted inner components as files
 
 ## somenergia-ui-0.4.6 2024-06-10
 
 - CustomToolTip
-    - Fix: Add alpha channel, and set to 1, to avoid opacity
+  - Fix: Add alpha channel, and set to 1, to avoid opacity
 
 ## somenergia-ui-0.4.5 2024-05-17
 
 - CustomToolTip
-    - Fix: Use `,` as default decimal separator
+  - Fix: Use `,` as default decimal separator
 
 ## somenergia-ui-0.4.4 2024-05-10
 
 - SomDatePicker
-    - Parameterize styles
+  - Parameterize styles
 
 ## somenergia-ui-0.4.3 2024-04-29
 
 - Chart
-    - Parameterize tickcounter and max yAxis value
+  - Parameterize tickcounter and max yAxis value
 - Date picker
-    - Fix: add min width
+  - Fix: add min width
 
 ## somenergia-ui-0.4.2 2024-04-25
 
 - Build:
-    - Fix: Add missing `devDependencies`
-    - Fix: node version github action
+  - Fix: Add missing `devDependencies`
+  - Fix: node version github action
 
 - Chart
-    - Fix: Parameterize decimal separator establishing `,` as default value
+  - Fix: Parameterize decimal separator establishing `,` as default value
 
 ## somenergia-ui-0.4.1 2024-04-16
 
 - Fix: formatDecimal with 2 decimals by default
-parametrized
+  parametrized
 
 ## somenergia-ui-0.4.0 2024-04-15
 
@@ -152,29 +152,29 @@ parametrized
 ## somenergia-ui 0.1.6 2023-12-30
 
 - Fixed duplication of modules causing multiple problems
-    - Translations on production build disappeared due to duplicated i18next-react instance
-    - In some occasions react simbols were not found
+  - Translations on production build disappeared due to duplicated i18next-react instance
+  - In some occasions react simbols were not found
 - TableEditor:
-    - Singular texts for filter and selected items
-    - Breaking change: noDataPlaceHolder should not include TR/TD wrapping
-    - Pagination moved back down
-    - Catalan translation
+  - Singular texts for filter and selected items
+  - Breaking change: noDataPlaceHolder should not include TR/TD wrapping
+  - Pagination moved back down
+  - Catalan translation
 
 ## somenergia-ui 0.1.5 2023-12-29
 
 - TableEditor:
-    - Softer filter animation (padding, borders and the filter counter row changed abruptly)
-    - Fix: some styles were misspelled.
+  - Softer filter animation (padding, borders and the filter counter row changed abruptly)
+  - Fix: some styles were misspelled.
 - Loading:
-    - Parametrization and simplification
-    - Fix: Removed bad keyframe selector warning
-        - Some weird interaction with other styles
-          made the browser complaint on the transform
-          rotate animation. Using `rotate` instead.
-    - Fix: On some circumstances the ball and the line dealigned
-        - Now they are attached to the same animated parent.
-          this eases the layout.
-        - All children made concentric and absolute positioned.
+  - Parametrization and simplification
+  - Fix: Removed bad keyframe selector warning
+    - Some weird interaction with other styles
+      made the browser complaint on the transform
+      rotate animation. Using `rotate` instead.
+  - Fix: On some circumstances the ball and the line dealigned
+    - Now they are attached to the same animated parent.
+      this eases the layout.
+    - All children made concentric and absolute positioned.
 - Duplicate all dependencies are peer dependencies
 - Fix: glob package broke interface
 - Main application styles clean up

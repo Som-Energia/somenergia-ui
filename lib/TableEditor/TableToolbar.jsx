@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types'
-import { Box, Typography, Toolbar } from '@mui/material'
+import { Box, Toolbar, Typography } from '@mui/material'
 import { alpha } from '@mui/material'
+
+import PropTypes from 'prop-types'
+
 import { useTranslation } from '../i18n'
-import { ActionsType } from './proptypes'
 import ActionButtons from './ActionButtons'
+import { ActionsType } from './proptypes'
 import SearchBox from './SearchBox'
 
 export default function TableToolbar({
@@ -23,21 +25,26 @@ export default function TableToolbar({
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+            alpha(
+              theme.palette.primary.main,
+              theme.palette.action.activatedOpacity,
+            ),
         }),
-      }}
-    >
+      }}>
       {numSelected > 0 ? (
         <Typography
           sx={{ flex: '1 1 100%' }}
           color="inherit"
           variant="subtitle1"
-          component="div"
-        >
+          component="div">
           {t('TABLE_EDITOR.N_SELECTED', { count: numSelected })}
         </Typography>
       ) : (
-        <Box sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
+        <Box
+          sx={{ flex: '1 1 100%' }}
+          variant="h6"
+          id="tableTitle"
+          component="div">
           {title}
         </Box>
       )}
@@ -47,7 +54,9 @@ export default function TableToolbar({
       </Box>
       <Box sx={{ flex: '1 1 100%' }}></Box>
       <ActionButtons
-        actions={numSelected > 0 && selectionActions ? selectionActions : actions}
+        actions={
+          numSelected > 0 && selectionActions ? selectionActions : actions
+        }
         context={selected}
       />
     </Toolbar>
@@ -63,4 +72,3 @@ TableToolbar.propTypes = {
   actions: ActionsType,
   selectionActions: ActionsType,
 }
-

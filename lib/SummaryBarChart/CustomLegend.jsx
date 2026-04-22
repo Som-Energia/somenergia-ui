@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
 import { Grid } from '@mui/material'
+
+import PropTypes from 'prop-types'
 
 export const CustomLegend = ({ referenceLineData }) => {
   return (
@@ -11,8 +12,7 @@ export const CustomLegend = ({ referenceLineData }) => {
         justifyContent: 'center',
         marginTop: '2rem',
         marginBottom: '2rem',
-      }}
-    >
+      }}>
       {referenceLineData.map((element, index) => (
         <Grid
           item
@@ -20,10 +20,11 @@ export const CustomLegend = ({ referenceLineData }) => {
           sm={12}
           md={4}
           key={index}
-          sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}
-        >
+          sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <svg key={index} style={{ width: 30, height: 10, marginTop: '10px' }}>
+            <svg
+              key={index}
+              style={{ width: 30, height: 10, marginTop: '10px' }}>
               <line
                 x1="0"
                 y1="0"
@@ -43,8 +44,7 @@ export const CustomLegend = ({ referenceLineData }) => {
                 marginLeft: '5px',
                 verticalAlign: 'middle',
                 lineHeight: '1',
-              }}
-            >
+              }}>
               {element.text}
             </div>
           </div>
