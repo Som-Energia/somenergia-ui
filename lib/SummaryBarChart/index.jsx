@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import {
   Bar,
   BarChart,
@@ -10,33 +10,33 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts'
+} from "recharts"
 
 import {
   buildTicks,
   formatDecimal,
   formatXAxis,
   setChartLang,
-} from '../utils/chart.utils'
-import { CustomLegend } from './CustomLegend'
-import { CustomTooltip } from './CustomTooltip'
+} from "../utils/chart.utils"
+import { CustomLegend } from "./CustomLegend"
+import { CustomTooltip } from "./CustomTooltip"
 
 function SummaryPeriodChart({
   data,
   period,
   legend = false,
   lang,
-  Ylegend = 'kWh',
+  Ylegend = "kWh",
   showTooltipKeys = true,
   referenceLineData,
   numberOfDecimals,
-  maxYAxisValue = 'auto',
-  minYAxisValue = 'auto',
+  maxYAxisValue = "auto",
+  minYAxisValue = "auto",
   tickCountValue = 7,
 }) {
   setChartLang(lang)
   return (
-    <div style={{ height: '450px' }}>
+    <div style={{ height: "450px" }}>
       <ResponsiveContainer>
         <BarChart width={730} height={250} data={data.periods}>
           <CartesianGrid stroke="#616161" strokeWidth={0.5} vertical={false} />
@@ -44,7 +44,7 @@ function SummaryPeriodChart({
           <XAxis
             dataKey="date"
             tickFormatter={(tickItem) => formatXAxis(period, tickItem)}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 8)' }}
+            tick={{ fontSize: "1rem", transform: "translate(0, 8)" }}
             padding={{ left: 24, right: 24 }}
             scale="band"
             xAxisId="values"
@@ -56,7 +56,7 @@ function SummaryPeriodChart({
             tickCount={tickCountValue}
             width={75}
             tickLine={false}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
+            tick={{ fontSize: "1rem", transform: "translate(0, 0)" }}
             ticks={buildTicks(minYAxisValue, maxYAxisValue, tickCountValue)}
             tickFormatter={(tickItem) =>
               `${formatDecimal(tickItem, numberOfDecimals)}`
@@ -75,7 +75,7 @@ function SummaryPeriodChart({
                 showTooltipKeys={showTooltipKeys}
               />
             }
-            cursor={{ fill: '#f2f2f2bb' }}
+            cursor={{ fill: "#f2f2f2bb" }}
           />
 
           {legend && !referenceLineData && <Legend />}

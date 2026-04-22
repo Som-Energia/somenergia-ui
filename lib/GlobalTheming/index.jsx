@@ -1,14 +1,14 @@
 // This module controls the global theme and its light
 // and dark modes.
 
-import React from 'react'
+import React from "react"
 
-import CssBaseline from '@mui/material/CssBaseline'
-import { ThemeProvider } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@mui/material/styles"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
-import useLocalStorage from '../hooks/LocalStorage'
-import SomEnergiaTheme from '../SomEnergiaTheme'
+import useLocalStorage from "../hooks/LocalStorage"
+import SomEnergiaTheme from "../SomEnergiaTheme"
 
 const ColorModeContext = React.createContext({
   current: null,
@@ -27,7 +27,7 @@ const ColorModeContext = React.createContext({
  *   of the browser.
  */
 function GlobalTheme({ children, customTheme }) {
-  const [colorMode, setColorMode] = useLocalStorage('colorMode', null)
+  const [colorMode, setColorMode] = useLocalStorage("colorMode", null)
   const colorModeContext = React.useMemo(
     () => ({
       current: colorMode,
@@ -35,17 +35,17 @@ function GlobalTheme({ children, customTheme }) {
         setColorMode(value)
       },
       toggle: () => {
-        if (colorMode === 'dark') return setColorMode('light')
-        if (colorMode === 'light') return setColorMode(null)
-        return setColorMode('dark')
+        if (colorMode === "dark") return setColorMode("light")
+        if (colorMode === "light") return setColorMode(null)
+        return setColorMode("dark")
       },
     }),
     [colorMode],
   )
 
-  const darkModeMediaQuery = useMediaQuery('(prefers-color-scheme: dark)')
+  const darkModeMediaQuery = useMediaQuery("(prefers-color-scheme: dark)")
   const isDarkMode =
-    colorMode === 'dark' || (colorMode === null && darkModeMediaQuery)
+    colorMode === "dark" || (colorMode === null && darkModeMediaQuery)
   const theme = React.useMemo(
     () => (customTheme ?? SomEnergiaTheme)(isDarkMode),
     [isDarkMode, customTheme],

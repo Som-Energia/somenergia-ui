@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import dayjs from 'dayjs'
+import dayjs from "dayjs"
 
-import SomDatePicker from '.'
+import SomDatePicker from "."
 
 export default function SomDatePickerExample(args) {
   const {

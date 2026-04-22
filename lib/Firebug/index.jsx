@@ -1,6 +1,6 @@
-import { Button } from '@mui/material'
+import { Button } from "@mui/material"
 
-import Logo from './firebug.svg'
+import Logo from "./firebug.svg"
 
 export default function Firebug() {
   return (

@@ -1,22 +1,22 @@
-import ArrowBackIosOutlined from '@mui/icons-material/ArrowBackIosOutlined'
-import ArrowForwardIosOutlined from '@mui/icons-material/ArrowForwardIosOutlined'
-import { Box, Button } from '@mui/material'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import ArrowBackIosOutlined from "@mui/icons-material/ArrowBackIosOutlined"
+import ArrowForwardIosOutlined from "@mui/icons-material/ArrowForwardIosOutlined"
+import { Box, Button } from "@mui/material"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 
-import dayjs from 'dayjs'
-import minMax from 'dayjs/plugin/minMax'
-import PropTypes from 'prop-types'
+import dayjs from "dayjs"
+import minMax from "dayjs/plugin/minMax"
+import PropTypes from "prop-types"
 
-import { useTranslation } from '../i18n'
+import { useTranslation } from "../i18n"
 
 dayjs.extend(minMax)
 
 export default function SomDatePicker({
   firstDate = null,
   lastDate = null,
-  period = 'DAILY',
+  period = "DAILY",
   currentTime = dayjs(),
   setCurrentTime,
   styles = {},
@@ -27,10 +27,10 @@ export default function SomDatePicker({
 }) {
   const { i18n } = useTranslation()
   const dayjsperiods = {
-    DAILY: 'd',
-    WEEKLY: 'w',
-    MONTHLY: 'M',
-    YEARLY: 'y',
+    DAILY: "d",
+    WEEKLY: "w",
+    MONTHLY: "M",
+    YEARLY: "y",
   }
 
   function prevTimeWindow() {
@@ -44,23 +44,23 @@ export default function SomDatePicker({
   }
 
   const viewsFormat =
-    period === 'YEARLY'
-      ? ['year']
-      : period === 'MONTHLY'
-        ? ['month']
-        : ['year', 'month', 'day']
+    period === "YEARLY"
+      ? ["year"]
+      : period === "MONTHLY"
+        ? ["month"]
+        : ["year", "month", "day"]
 
   const toolbarFormat =
-    period === 'YEARLY'
-      ? 'YYYY'
-      : period === 'MONTHLY'
-        ? 'MMMM YYYY'
-        : 'dd., MMM D'
+    period === "YEARLY"
+      ? "YYYY"
+      : period === "MONTHLY"
+        ? "MMMM YYYY"
+        : "dd., MMM D"
 
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: "flex",
         ...styles.container,
       }}>
       <LocalizationProvider
@@ -85,8 +85,8 @@ export default function SomDatePicker({
               toolbarTitle: toolbarTitle,
               hidden: false,
               sx: {
-                backgroundColor: 'primary.main',
-                color: 'primary.contrastText',
+                backgroundColor: "primary.main",
+                color: "primary.contrastText",
               },
             },
           }}

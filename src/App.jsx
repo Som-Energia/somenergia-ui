@@ -1,4 +1,4 @@
-import Loading from '../lib/Loading'
+import Loading from "../lib/Loading"
 
 function App() {
   return (

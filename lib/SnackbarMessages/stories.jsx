@@ -1,13 +1,13 @@
-import SnackbarMessages from './'
-import { default as SnackbarMessagesExample } from './example'
+import SnackbarMessages from "./"
+import { default as SnackbarMessagesExample } from "./example"
 
 export default {
-  title: 'Base Components/SnackbarMessages',
+  title: "Base Components/SnackbarMessages",
   component: SnackbarMessages,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 }
 
 export const Exemple = {

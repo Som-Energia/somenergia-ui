@@ -1,12 +1,12 @@
-import { Box, Toolbar, Typography } from '@mui/material'
-import { alpha } from '@mui/material'
+import { Box, Toolbar, Typography } from "@mui/material"
+import { alpha } from "@mui/material"
 
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 
-import { useTranslation } from '../i18n'
-import ActionButtons from './ActionButtons'
-import { ActionsType } from './proptypes'
-import SearchBox from './SearchBox'
+import { useTranslation } from "../i18n"
+import ActionButtons from "./ActionButtons"
+import { ActionsType } from "./proptypes"
+import SearchBox from "./SearchBox"
 
 export default function TableToolbar({
   title,
@@ -33,15 +33,15 @@ export default function TableToolbar({
       }}>
       {numSelected > 0 ? (
         <Typography
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: "1 1 100%" }}
           color="inherit"
           variant="subtitle1"
           component="div">
-          {t('TABLE_EDITOR.N_SELECTED', { count: numSelected })}
+          {t("TABLE_EDITOR.N_SELECTED", { count: numSelected })}
         </Typography>
       ) : (
         <Box
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: "1 1 100%" }}
           variant="h6"
           id="tableTitle"
           component="div">
@@ -52,7 +52,7 @@ export default function TableToolbar({
       <Box variant="h6" id="Filter" component="div">
         <SearchBox {...{ setSearch, search }} />
       </Box>
-      <Box sx={{ flex: '1 1 100%' }}></Box>
+      <Box sx={{ flex: "1 1 100%" }}></Box>
       <ActionButtons
         actions={
           numSelected > 0 && selectionActions ? selectionActions : actions

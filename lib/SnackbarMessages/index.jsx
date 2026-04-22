@@ -15,11 +15,11 @@ Attributes:
 - `variant`: look variant ('standard', 'filled', 'outlined')
 */
 
-import React from 'react'
+import React from "react"
 
-import { Alert, AlertTitle, Slide, Snackbar } from '@mui/material'
+import { Alert, AlertTitle, Slide, Snackbar } from "@mui/material"
 
-import { subscribe } from '../services/messages'
+import { subscribe } from "../services/messages"
 
 // Unique message identifier to diferentiate all messages
 let messageid = 0
@@ -28,9 +28,9 @@ export default function SnackbarMessages(props) {
   const {
     autoHideDuration = 5000,
     TransitionComponent = Slide,
-    vertical = 'bottom',
-    horizontal = 'right',
-    slideTo = 'left',
+    vertical = "bottom",
+    horizontal = "right",
+    slideTo = "left",
     variant = undefined,
     ...extra
   } = props
@@ -61,11 +61,11 @@ export default function SnackbarMessages(props) {
             onClose={handleClose}
             variant={variant}
             severity={message.level || undefined}
-            color={message.level === undefined ? 'primary' : undefined}
+            color={message.level === undefined ? "primary" : undefined}
             sx={{
               // Some hack needed to avoid
-              ...(message.level === undefined && variant === 'filled'
-                ? { color: 'primary.contrastText' }
+              ...(message.level === undefined && variant === "filled"
+                ? { color: "primary.contrastText" }
                 : {}),
             }}>
             {message.context && <AlertTitle>{message.context}</AlertTitle>}

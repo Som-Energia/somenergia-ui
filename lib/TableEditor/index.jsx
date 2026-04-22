@@ -1,6 +1,6 @@
 /// TableEditor: A full featured opinionated table component.
 
-import React from 'react'
+import React from "react"
 
 import {
   Box,
@@ -13,16 +13,16 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-} from '@mui/material'
+} from "@mui/material"
 
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 
-import { useTranslation } from '../i18n'
-import ActionButtons from './ActionButtons'
-import Loading from './Loading'
-import { ActionsType } from './proptypes'
-import TableHead from './TableHead'
-import TableToolbar from './TableToolbar'
+import { useTranslation } from "../i18n"
+import ActionButtons from "./ActionButtons"
+import Loading from "./Loading"
+import { ActionsType } from "./proptypes"
+import TableHead from "./TableHead"
+import TableToolbar from "./TableToolbar"
 
 const denseRowHeight = 33
 
@@ -42,7 +42,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy)
 }
@@ -53,12 +53,12 @@ function collapseStyle(hidden) {
       ? {
           borderBlock: 0,
           opacity: 0,
-          overflow: 'hidden',
+          overflow: "hidden",
         }
       : undefined),
-    transitionProperty: 'border, margin, padding, opacity',
-    transitionDuration: '1s',
-    '& > td': {
+    transitionProperty: "border, margin, padding, opacity",
+    transitionDuration: "1s",
+    "& > td": {
       ...(hidden
         ? {
             //scale: '1 0',
@@ -66,12 +66,12 @@ function collapseStyle(hidden) {
             borderBlock: 0,
           }
         : undefined),
-      transitionDuration: '1s',
-      transitionProperty: 'border, margin, padding, scale',
+      transitionDuration: "1s",
+      transitionProperty: "border, margin, padding, scale",
     },
-    '& > td > *': {
+    "& > td > *": {
       maxHeight: hidden ? 0 : undefined,
-      transition: '1s max-height ease-out',
+      transition: "1s max-height ease-out",
     },
   }
 }
@@ -113,7 +113,7 @@ const ItemRow = React.memo(
                   e.stopPropagation()
                 }}
                 inputProps={{
-                  'aria-labelledby': labelId,
+                  "aria-labelledby": labelId,
                 }}
               />
             </Box>
@@ -122,16 +122,16 @@ const ItemRow = React.memo(
         {columns.map((column, i) => {
           return (
             <TableCell
-              align={column.numeric ? 'right' : 'left'}
+              align={column.numeric ? "right" : "left"}
               key={`${column.id}_${id}`}
-              padding={i === 0 && selectable ? 'none' : 'normal'}>
+              padding={i === 0 && selectable ? "none" : "normal"}>
               <Box>
                 {column.view
                   ? column.view(row)
                   : row[column.id] === undefined
-                    ? '-'
+                    ? "-"
                     : row[column.id] === null
-                      ? '-'
+                      ? "-"
                       : row[column.id]}
               </Box>
             </TableCell>
@@ -177,7 +177,7 @@ requires to define the structure and provide the data to adapt to.
 */
 function TableEditor(props) {
   const {
-    idField = 'id',
+    idField = "id",
     title,
     columns,
     rows,
@@ -191,16 +191,16 @@ function TableEditor(props) {
     noDataPlaceHolder = undefined,
   } = props
   const { t } = useTranslation()
-  const [order, setOrder] = React.useState('asc')
-  const [orderBy, setOrderBy] = React.useState('name')
+  const [order, setOrder] = React.useState("asc")
+  const [orderBy, setOrderBy] = React.useState("name")
   const [selected, setSelected] = React.useState(new Set())
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(defaultPageSize)
-  const [search, setSearch] = React.useState('')
+  const [search, setSearch] = React.useState("")
 
   const handleRequestSort = (_event, property) => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
+    const isAsc = orderBy === property && order === "asc"
+    setOrder(isAsc ? "desc" : "asc")
     setOrderBy(property)
   }
 
@@ -248,7 +248,7 @@ function TableEditor(props) {
       for (const i in columns) {
         const column = columns[i]
         if (!column.searchable) continue
-        const fieldContent = row[column.id] + ''
+        const fieldContent = row[column.id] + ""
         if (fieldContent.toLowerCase().includes(search.toLowerCase()))
           return false
       }
@@ -285,8 +285,8 @@ function TableEditor(props) {
   }, [rows, order, orderBy, pageSizes, rowsPerPage, page, loading])
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{ width: "100%" }}>
+      <Paper sx={{ width: "100%", mb: 2 }}>
         <TableToolbar
           title={title}
           numSelected={nSelected}
@@ -297,7 +297,7 @@ function TableEditor(props) {
           selectionActions={selectionActions}
         />
         <TableContainer>
-          <Table aria-labelledby="tableTitle" size={'small'} stickyHeader>
+          <Table aria-labelledby="tableTitle" size={"small"} stickyHeader>
             <TableHead
               columns={columns}
               numSelected={nSelected}
@@ -309,7 +309,7 @@ function TableEditor(props) {
               hasCheckbox={selectionActions.length !== 0}
               hasItemActions={itemActions.length !== 0}
             />
-            <TableBody sx={{ position: 'relative' }}>
+            <TableBody sx={{ position: "relative" }}>
               {loading ? (
                 <Loading nCols={nTableColumns} />
               ) : rows.length === 0 ? (
@@ -355,19 +355,19 @@ function TableEditor(props) {
                 <TableCell colSpan={nTableColumns}>
                   <Box
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
+                      display: "flex",
+                      justifyContent: "space-between",
                     }}>
                     <div>
-                      {t('TABLE_EDITOR.N_ITEMS_FILTERED', {
+                      {t("TABLE_EDITOR.N_ITEMS_FILTERED", {
                         count: nHiddenRows,
                       })}
                     </div>
                     <Button
                       size="small"
                       variant="contained"
-                      onClick={() => setSearch('')}>
-                      {t('TABLE_EDITOR.CLEAR_FILTER')}
+                      onClick={() => setSearch("")}>
+                      {t("TABLE_EDITOR.CLEAR_FILTER")}
                     </Button>
                   </Box>
                 </TableCell>

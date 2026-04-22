@@ -16,14 +16,14 @@ This library requires i18n configuration for multi-language support. Simply prov
 
 ```ts
 // Your project i18n instantiation file
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import { registerSomEnergiaI18n } from '@somenergia/somenergia-ui'
+import i18n from "i18next"
+import { initReactI18next } from "react-i18next"
+import { registerSomEnergiaI18n } from "@somenergia/somenergia-ui"
 
-import LOCALE_CA from './locale-ca.json'
-import LOCALE_ES from './locale-es.json'
-import LOCALE_GL from './locale-gl.json'
-import LOCALE_EU from './locale-eu.json'
+import LOCALE_CA from "./locale-ca.json"
+import LOCALE_ES from "./locale-es.json"
+import LOCALE_GL from "./locale-gl.json"
+import LOCALE_EU from "./locale-eu.json"
 
 const resources = {
   ca: { translation: { ...LOCALE_CA } },
@@ -34,8 +34,8 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  fallbackLng: 'es',
-  lng: 'es',
+  fallbackLng: "es",
+  lng: "es",
   keySeparator: false,
   interpolation: {
     escapeValue: false,

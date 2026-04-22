@@ -1,10 +1,10 @@
-import React from 'react'
-import ConfettiExplosion from 'react-confetti-explosion'
+import React from "react"
+import ConfettiExplosion from "react-confetti-explosion"
 
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import CelebrationIcon from '@mui/icons-material/Celebration'
-import DeleteIcon from '@mui/icons-material/Delete'
-import EditIcon from '@mui/icons-material/Edit'
+import AddCircleIcon from "@mui/icons-material/AddCircle"
+import CelebrationIcon from "@mui/icons-material/Celebration"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
 import {
   Box,
   FormControlLabel,
@@ -12,9 +12,9 @@ import {
   Switch,
   TextField,
   Typography,
-} from '@mui/material'
+} from "@mui/material"
 
-import TableEditor from '.'
+import TableEditor from "."
 
 export default function Example() {
   const [isLoading, beLoading] = React.useState(false)
@@ -23,9 +23,9 @@ export default function Example() {
   const [hasItemActions, haveItemActions] = React.useState(true)
   const [hasGlobalActions, haveGlobalActions] = React.useState(true)
   const [hasCustomNoData, haveCustomNoData] = React.useState(true)
-  const [pageSizes, setPageSizes] = React.useState('')
+  const [pageSizes, setPageSizes] = React.useState("")
   const [rows, setRows] = React.useState([])
-  const [log, setLog] = React.useState('')
+  const [log, setLog] = React.useState("")
   const [isConfettiShown, showConfetti] = React.useState(false)
 
   React.useEffect(() => {
@@ -42,8 +42,8 @@ export default function Example() {
   }
 
   function handleAdd() {
-    const cities = ['Manlleu', 'Manacor', 'Manresa', 'Tivisa']
-    const setups = ['Piscina', 'Pavellò', 'Deixalleria', 'Mercat']
+    const cities = ["Manlleu", "Manacor", "Manresa", "Tivisa"]
+    const setups = ["Piscina", "Pavellò", "Deixalleria", "Mercat"]
     function randomChoice(array) {
       return array[Math.floor(Math.random() * array.length)]
     }
@@ -58,8 +58,8 @@ export default function Example() {
     ])
   }
   function localnumber(n) {
-    if (n === undefined) return '-'
-    return new Intl.NumberFormat('es', {
+    if (n === undefined) return "-"
+    return new Intl.NumberFormat("es", {
       maximumFractionDigits: 1,
       minimumFractionDigits: 1,
       useGrouping: true,
@@ -68,27 +68,27 @@ export default function Example() {
 
   const processedPageSizes =
     pageSizes
-      ?.split(',')
+      ?.split(",")
       ?.map((x) => parseInt(x))
       ?.filter((x) => !isNaN(x)) || []
 
-  const idField = 'contract_number'
+  const idField = "contract_number"
   const columns = [
     {
-      id: 'contract_number', // TODO: can we name it contract?
-      label: 'Contract number',
+      id: "contract_number", // TODO: can we name it contract?
+      label: "Contract number",
       searchable: true,
       numeric: false,
     },
     {
-      id: 'installation_name',
-      label: 'Plant name',
+      id: "installation_name",
+      label: "Plant name",
       searchable: true,
       numeric: false,
     },
     {
-      id: 'power',
-      label: 'Nominal Power',
+      id: "power",
+      label: "Nominal Power",
       searchable: false,
       numeric: true,
       view: (row) => localnumber(row.power),
@@ -100,15 +100,15 @@ export default function Example() {
   const actions = [
     {
       icon: <AddCircleIcon />,
-      title: 'Add',
+      title: "Add",
       handler: handleAdd,
     },
     {
-      title: 'Celebrate!',
+      title: "Celebrate!",
       view: () => (
         <IconButton
           onClick={() => {
-            setLog('Celebrate!')
+            setLog("Celebrate!")
             showConfetti(true)
           }}>
           <CelebrationIcon />
@@ -119,13 +119,13 @@ export default function Example() {
   const selectionActions = [
     {
       icon: <DeleteIcon />,
-      title: 'Delete',
+      title: "Delete",
       handler: handleDeleteMultiple,
     },
   ]
   const itemActions = [
     {
-      title: 'Edit',
+      title: "Edit",
       icon: <EditIcon />,
       handler: (row) => setLog(`Editing ${row[idField]}`),
     },
@@ -134,42 +134,42 @@ export default function Example() {
     <>
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3,1fr)',
-          gridAutoColumns: '10rem',
+          display: "grid",
+          gridTemplateColumns: "repeat(3,1fr)",
+          gridAutoColumns: "10rem",
         }}>
         {[
           [
             hasDefaultAction,
             enableDefaultAction,
-            'Click action',
-            'On clicking in a row',
+            "Click action",
+            "On clicking in a row",
           ],
           [
             hasSelection,
             haveSelection,
-            'Selection actions',
-            'Actions to apply on selections',
+            "Selection actions",
+            "Actions to apply on selections",
           ],
           [
             hasItemActions,
             haveItemActions,
-            'Item actions',
-            'Actions to apply on each row',
+            "Item actions",
+            "Actions to apply on each row",
           ],
           [
             hasGlobalActions,
             haveGlobalActions,
-            'Global actions',
-            'Actions applied globally',
+            "Global actions",
+            "Actions applied globally",
           ],
           [
             hasCustomNoData,
             haveCustomNoData,
-            'noDataPlaceHolder ',
-            'A custom element for no data',
+            "noDataPlaceHolder ",
+            "A custom element for no data",
           ],
-          [isLoading, beLoading, 'Loading'],
+          [isLoading, beLoading, "Loading"],
         ].map(([getter, setter, label, description], i) => (
           <FormControlLabel
             key={i}
@@ -200,14 +200,14 @@ export default function Example() {
         </Box>
         <Box
           sx={{
-            gridColumn: 'span 3',
-            justifySelf: 'center',
-            alignSelf: 'center',
-            textAlign: 'center',
+            gridColumn: "span 3",
+            justifySelf: "center",
+            alignSelf: "center",
+            textAlign: "center",
           }}>
           {isConfettiShown && (
             <ConfettiExplosion
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
               zIndex={9000}
               onComplete={() => showConfetti(false)}
             />
@@ -215,7 +215,7 @@ export default function Example() {
         </Box>
       </Box>
       <TableEditor
-        title={'Title'}
+        title={"Title"}
         defaultPageSize={12}
         pageSizes={processedPageSizes}
         columns={columns}
@@ -228,8 +228,8 @@ export default function Example() {
         loading={isLoading}
         noDataPlaceHolder={
           hasCustomNoData ? (
-            <Typography sx={{ textAlign: 'center' }} variant="h4">
-              {'No items found'}
+            <Typography sx={{ textAlign: "center" }} variant="h4">
+              {"No items found"}
             </Typography>
           ) : undefined
         }></TableEditor>
