@@ -28,6 +28,7 @@ function CurveChart({
   compareData,
   lang,
   Ylegend = 'kWh',
+  displaced = false,
 }) {
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
@@ -59,7 +60,7 @@ function CurveChart({
           </YAxis>
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
-            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart')}
+            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart', displaced)}
             contentStyle={{ fontWeight: 'bold' }}
           />
           <Line
@@ -92,6 +93,7 @@ CurveChart.propTypes = {
   compareData: PropTypes.oneOfType([PropTypes.array]),
   lang: PropTypes.string,
   Ylegend: PropTypes.string,
+  displaced: PropTypes.bool,
 }
 
 export default CurveChart

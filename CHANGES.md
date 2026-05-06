@@ -1,5 +1,11 @@
 # Change log
 
+## unreleased
+
+- Use displace parameter in charts
+- Add scale parameter to shown auto (in the middle of the bar) or band (to the beginning of the bar)
+- Unified day-hour tooltip
+
 ## 1.0.1 2026-03-17
 
 - Fix: DatePicker component
