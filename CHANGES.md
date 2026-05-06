@@ -1,6 +1,6 @@
 # Change log
 
-## unreleased
+## 1.0.2 2026-05-06
 
 - Use displace parameter in charts
 - Add scale parameter to shown auto (in the middle of the bar) or band (to the beginning of the bar)
