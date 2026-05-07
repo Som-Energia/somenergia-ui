@@ -24,7 +24,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
     "lint:fix": "eslint . --ext js,jsx --fix",
-    "lint:todos": "./scripts/todos.sh lib",
+    "lint:todos": "todos ./lib",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest",
