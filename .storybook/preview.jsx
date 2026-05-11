@@ -1,13 +1,16 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { withThemeFromJSXProvider } from '@storybook/addon-themes'
-import SomEnergiaTheme from '../lib/SomEnergiaTheme'
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18next';
+import { I18nextProvider } from "react-i18next"
+
+import CssBaseline from "@mui/material/CssBaseline"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+
+import { withThemeFromJSXProvider } from "@storybook/addon-themes"
+
+import SomEnergiaTheme from "../lib/SomEnergiaTheme"
+import i18n from "./i18next"
 
 const preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -32,10 +35,10 @@ const preview = {
       themes: {
         // Provide your custom themes here
         mui: createTheme(),
-        'SomEnergia Light': SomEnergiaTheme(false),
-        'SomEnergia Dark': SomEnergiaTheme(true),
+        "SomEnergia Light": SomEnergiaTheme(false),
+        "SomEnergia Dark": SomEnergiaTheme(true),
       },
-      defaultTheme: 'mui',
+      defaultTheme: "mui",
     }),
   ],
 }

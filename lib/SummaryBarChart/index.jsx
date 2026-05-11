@@ -1,46 +1,44 @@
-import PropTypes from 'prop-types'
-
+import PropTypes from "prop-types"
 import {
   Bar,
+  BarChart,
   CartesianGrid,
+  Label,
+  Legend,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  Label,
-  Legend,
-  BarChart,
-  ReferenceLine,
-} from 'recharts'
+} from "recharts"
 
 import {
-  formatXAxis,
-  formatDecimal,
-  setChartLang,
   buildTicks,
-} from '../utils/chart.utils'
-
-import { CustomTooltip } from './CustomTooltip'
-import { CustomLegend } from './CustomLegend'
+  formatDecimal,
+  formatXAxis,
+  setChartLang,
+} from "../utils/chart.utils"
+import { CustomLegend } from "./CustomLegend"
+import { CustomTooltip } from "./CustomTooltip"
 
 function SummaryPeriodChart({
   data,
   period,
   legend = false,
   lang,
-  Ylegend = 'kWh',
+  Ylegend = "kWh",
   showTooltipKeys = true,
   referenceLineData,
   numberOfDecimals,
-  maxYAxisValue = 'auto',
-  minYAxisValue = 'auto',
+  maxYAxisValue = "auto",
+  minYAxisValue = "auto",
   tickCountValue = 7,
   displaced = false,
-  scale = 'band',
+  scale = "band",
 }) {
   setChartLang(lang)
   return (
-    <div style={{ height: '450px' }}>
+    <div style={{ height: "450px" }}>
       <ResponsiveContainer>
         <BarChart width={730} height={250} data={data.periods}>
           <CartesianGrid stroke="#616161" strokeWidth={0.5} vertical={false} />
@@ -48,7 +46,7 @@ function SummaryPeriodChart({
           <XAxis
             dataKey="date"
             tickFormatter={(tickItem) => formatXAxis(period, tickItem)}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 8)'}}
+            tick={{ fontSize: "1rem", transform: "translate(0, 8)" }}
             padding={{ left: 24, right: 24 }}
             scale={scale}
             xAxisId="values"
@@ -60,27 +58,36 @@ function SummaryPeriodChart({
             tickCount={tickCountValue}
             width={75}
             tickLine={false}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}
+            tick={{ fontSize: "1rem", transform: "translate(0, 0)" }}
             ticks={buildTicks(minYAxisValue, maxYAxisValue, tickCountValue)}
             tickFormatter={(tickItem) =>
               `${formatDecimal(tickItem, numberOfDecimals)}`
-            }
-          >
-            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
+            }>
+            <Label
+              value={Ylegend}
+              angle={-90}
+              position="insideLeft"
+              fill="#969696"
+            />
           </YAxis>
           <Tooltip
             content={
-              <CustomTooltip period={period} Ylegend={Ylegend} showTooltipKeys={showTooltipKeys} displaced={displaced} />
+              <CustomTooltip
+                period={period}
+                Ylegend={Ylegend}
+                showTooltipKeys={showTooltipKeys}
+                displaced={displaced}
+              />
             }
-            cursor={{ fill: '#f2f2f2bb' }}
+            cursor={{ fill: "#f2f2f2bb" }}
           />
 
           {legend && !referenceLineData && <Legend />}
-          {legend && referenceLineData &&
+          {legend && referenceLineData && (
             <Legend
               content={<CustomLegend referenceLineData={referenceLineData} />}
             />
-          }
+          )}
           {data.keys.map((element) => {
             return (
               <Bar
@@ -92,20 +99,19 @@ function SummaryPeriodChart({
             )
           })}
 
-          {referenceLineData && referenceLineData.map((element, index) => {
-            return (
-              <ReferenceLine
-                key={index}
-                y={element.value}
-                stroke={element.color}
-                strokeDasharray={element.stroke}
-                strokeWidth={element.strokeWidth}
-                text={element.text}
-              />
-            )
-          })
-          }
-
+          {referenceLineData &&
+            referenceLineData.map((element, index) => {
+              return (
+                <ReferenceLine
+                  key={index}
+                  y={element.value}
+                  stroke={element.color}
+                  strokeDasharray={element.stroke}
+                  strokeWidth={element.strokeWidth}
+                  text={element.text}
+                />
+              )
+            })}
         </BarChart>
       </ResponsiveContainer>
     </div>

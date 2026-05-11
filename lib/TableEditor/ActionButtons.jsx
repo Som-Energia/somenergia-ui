@@ -1,11 +1,18 @@
-import React from 'react'
-import { IconButton, Tooltip } from '@mui/material'
-import { ActionsType } from './proptypes'
+import React from "react"
+
+import { IconButton, Tooltip } from "@mui/material"
+
+import { ActionsType } from "./proptypes"
 
 export default function ActionButtons(props) {
   const { actions, context, ...rest } = props
   return (
-    <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'right' }}>
+    <div
+      style={{
+        display: "flex",
+        flexFlow: "row nowrap",
+        justifyContent: "right",
+      }}>
       {actions.map((action, i) => {
         return action.view ? (
           <React.Fragment key={i}>{action.view(context)}</React.Fragment>
@@ -16,8 +23,7 @@ export default function ActionButtons(props) {
               onClick={(ev) => {
                 ev.stopPropagation()
                 action.handler && action.handler(context)
-              }}
-            >
+              }}>
               {action.icon}
             </IconButton>
           </Tooltip>
