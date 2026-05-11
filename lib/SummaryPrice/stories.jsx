@@ -1,16 +1,15 @@
-import SummaryPrice from './SummaryPrice'
+import SummaryPrice from "./SummaryPrice"
 
 export default {
-  title: 'Energy components/SummaryPrice',
+  title: "Energy components/SummaryPrice",
   component: SummaryPrice,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 }
 
 export const Example = {
   args: {
-    description: 'PRECIO MÍNIMO',
-    unit: '€/kWh',
-    value: '0,148228'
-  }
+    description: "PRECIO MÍNIMO",
+    unit: "€/kWh",
+    value: "0,148228",
+  },
 }
-

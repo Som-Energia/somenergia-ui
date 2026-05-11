@@ -1,6 +1,8 @@
-import React from 'react'
-import dayjs from 'dayjs'
-import SomDatePicker from '.'
+import React from "react"
+
+import dayjs from "dayjs"
+
+import SomDatePicker from "."
 
 export default function SomDatePickerExample(args) {
   const {
@@ -10,7 +12,7 @@ export default function SomDatePickerExample(args) {
     styles,
     toolbarTitle,
     prevNextButtons,
-    disabledNextPrev
+    disabledNextPrev,
   } = args
 
   const [date, setDate] = React.useState(dayjs())

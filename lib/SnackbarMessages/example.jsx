@@ -1,22 +1,31 @@
-import React from 'react'
-import SnackbarMessages from './'
-import { log, error, warn, info, success } from '../services/messages'
-import { Button, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
+import React from "react"
+
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material"
+
+import { error, info, log, success, warn } from "../services/messages"
+import SnackbarMessages from "./"
 
 function Selector({ label, options, value, setValue }) {
-  const id = label.split().join('-').toLowerCase()
-  const labelid = id + '-label'
+  const id = label.split().join("-").toLowerCase()
+  const labelid = id + "-label"
   const mapOptions = Array.isArray(options)
     ? Object.fromEntries(
-      options.map((value) => [
-        value,
-        value ? value.at(0).toUpperCase() + value.slice(1) : 'Default',
-      ]),
-    )
+        options.map((value) => [
+          value,
+          value ? value.at(0).toUpperCase() + value.slice(1) : "Default",
+        ]),
+      )
     : options
   return (
-    <FormControl sx={{ width: '30%', m: 1 }}>
-      <InputLabel id={id + 'label'}>{label}</InputLabel>
+    <FormControl sx={{ width: "30%", m: 1 }}>
+      <InputLabel id={id + "label"}>{label}</InputLabel>
       <Select
         variant="filled"
         labelId={labelid}
@@ -24,8 +33,7 @@ function Selector({ label, options, value, setValue }) {
         label={label}
         placeholder={label}
         onChange={(e) => setValue(e.target.value)}
-        autoWidth
-      >
+        autoWidth>
         {Object.keys(mapOptions).map((value, i) => (
           <MenuItem value={value} key={i}>
             {mapOptions[value]}
@@ -39,57 +47,68 @@ function Selector({ label, options, value, setValue }) {
 function SenderButton({ f }) {
   const colors = {
     log: undefined,
-    error: 'error',
-    warn: 'warning',
-    success: 'success',
-    info: 'info',
+    error: "error",
+    warn: "warning",
+    success: "success",
+    info: "info",
   }
   return (
     <Button
       variant="contained"
       onClick={() => f(`This is a message sent with ${f.name}() function!`)}
-      color={colors[f.name]}
-    >
+      color={colors[f.name]}>
       {`Send with ${f.name}()`}
     </Button>
   )
 }
 
 export default function Example() {
-  const [horizontal, setHorizontal] = React.useState('')
-  const [vertical, setVertical] = React.useState('')
-  const [slideTo, setSlideTo] = React.useState('')
-  const [variant, setVariant] = React.useState('standard')
+  const [horizontal, setHorizontal] = React.useState("")
+  const [vertical, setVertical] = React.useState("")
+  const [slideTo, setSlideTo] = React.useState("")
+  const [variant, setVariant] = React.useState("standard")
   return (
     <>
       <h1>SnackbarMessages</h1>
-      <Box sx={{ display: 'flex', flexFlow: 'wrap', gap: 1, justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexFlow: "wrap",
+          gap: 1,
+          justifyContent: "center",
+        }}>
         <Selector
           label="Horizontal Anchor"
           value={horizontal}
           setValue={setHorizontal}
-          options={['left', 'center', 'right', '']}
+          options={["left", "center", "right", ""]}
         />
         <Selector
           label="Vertical Anchor"
           value={vertical}
           setValue={setVertical}
-          options={['top', 'bottom', '']}
+          options={["top", "bottom", ""]}
         />
         <Selector
           label="Slide direction"
           value={slideTo}
           setValue={setSlideTo}
-          options={['up', 'down', 'left', 'right', '']}
+          options={["up", "down", "left", "right", ""]}
         />
         <Selector
           label="Variant"
           value={variant}
           setValue={setVariant}
-          options={['outlined', 'filled', 'standard']}
+          options={["outlined", "filled", "standard"]}
         />
       </Box>
-      <Box sx={{ display: 'flex', flexFlow: 'wrap', gap: 1, justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexFlow: "wrap",
+          gap: 1,
+          justifyContent: "center",
+        }}>
         <SenderButton f={log} />
         <SenderButton f={error} />
         <SenderButton f={warn} />

@@ -1,39 +1,40 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
-import TableEditor from './'
-import { default as TableEditorExample } from './example'
+import AddCircleIcon from "@mui/icons-material/AddCircle"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
+
+import TableEditor from "./"
+import { default as TableEditorExample } from "./example"
 
 const actions = [
   {
-    title: 'Add item',
+    title: "Add item",
     icon: <AddCircleIcon />,
   },
 ]
 const itemActions = [
   {
-    title: 'Edit item',
+    title: "Edit item",
     icon: <EditIcon />,
   },
 ]
 
 const selectionActions = [
   {
-    title: 'Delete item',
+    title: "Delete item",
     icon: <DeleteIcon />,
   },
 ]
 
 export default {
-  title: 'Base Components/TableEditor',
+  title: "Base Components/TableEditor",
   component: TableEditor,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     actions: {
-      options: ['None', 'Add'],
+      options: ["None", "Add"],
       mapping: {
         Add: actions,
       },
@@ -43,39 +44,39 @@ export default {
 
 const columns = [
   {
-    id: 'contract_number',
-    label: 'Contract',
+    id: "contract_number",
+    label: "Contract",
     searchable: true,
   },
   {
-    id: 'installation_name',
-    label: 'Plant name',
+    id: "installation_name",
+    label: "Plant name",
     searchable: true,
   },
   {
-    id: 'power',
-    label: 'Nominal Power',
+    id: "power",
+    label: "Nominal Power",
     numeric: true,
   },
 ]
 
 const rows = [
   {
-    contract_number: '213213',
-    installation_name: 'one installation',
+    contract_number: "213213",
+    installation_name: "one installation",
     power: 2000,
   },
   {
-    contract_number: '714152',
-    installation_name: 'other installation',
+    contract_number: "714152",
+    installation_name: "other installation",
     power: 3000,
   },
 ]
 
 export const Default = {
   args: {
-    idField: 'contract_number',
-    title: '',
+    idField: "contract_number",
+    title: "",
     columns,
     rows,
     actions,
@@ -88,18 +89,16 @@ export const Exemple = {
   render: () => <TableEditorExample />,
 }
 
-const longRows = Array.from({ length: 200 }, (_, i) => (
-  {
-    contract_number: i + '',
-    installation_name: 'installation ' + i,
-    power: 2000 + i,
-  }
-))
+const longRows = Array.from({ length: 200 }, (_, i) => ({
+  contract_number: i + "",
+  installation_name: "installation " + i,
+  power: 2000 + i,
+}))
 
 export const LongTable = {
   args: {
     title: "Long table",
-    idField: 'contract_number',
+    idField: "contract_number",
     columns,
     rows: longRows,
     actions,

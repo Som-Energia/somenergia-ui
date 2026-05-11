@@ -1,7 +1,8 @@
-import SummaryPrice from '../SummaryPrice/SummaryPrice'
-import { Stack, Divider } from '@mui/material'
-import useTheme from '@mui/system/useTheme'
-import useMediaQuery from '@mui/system/useMediaQuery'
+import { Divider, Stack } from "@mui/material"
+import useMediaQuery from "@mui/system/useMediaQuery"
+import useTheme from "@mui/system/useTheme"
+
+import SummaryPrice from "../SummaryPrice/SummaryPrice"
 
 function SummaryPricesDisplay(props) {
   const { totalPrices } = props
@@ -9,27 +10,25 @@ function SummaryPricesDisplay(props) {
 
   return (
     <Stack
-      direction={{ xs: 'column', md: 'row' }}
+      direction={{ xs: "column", md: "row" }}
       divider={
         <Divider
           flexItem
           orientation={
-            useMediaQuery(theme.breakpoints.down('md'))
-              ? 'horizontal'
-              : 'vertical'
+            useMediaQuery(theme.breakpoints.down("md"))
+              ? "horizontal"
+              : "vertical"
           }
         />
-      }
-    >
-      {
-        totalPrices.map((item, index) =>
-          <SummaryPrice
-            key={index}
-            unit={item.unit}
-            value={item.value}
-            description={item.description} />
-        )
-      }
+      }>
+      {totalPrices.map((item, index) => (
+        <SummaryPrice
+          key={index}
+          unit={item.unit}
+          value={item.value}
+          description={item.description}
+        />
+      ))}
     </Stack>
   )
 }

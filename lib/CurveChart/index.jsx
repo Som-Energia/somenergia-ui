@@ -1,40 +1,32 @@
-import PropTypes from 'prop-types'
-
+import PropTypes from "prop-types"
 import {
   CartesianGrid,
+  Label,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  Label,
-  LineChart,
-  Line,
-} from 'recharts'
+} from "recharts"
 
 import {
-  formatTooltipLabel,
-  formatXAxis,
-  ticksFromData,
   domainFromData,
   formatDecimal,
   formatTooltip,
+  formatTooltipLabel,
+  formatXAxis,
   mergeData,
   setChartLang,
-} from '../utils/chart.utils'
+  ticksFromData,
+} from "../utils/chart.utils"
 
-function CurveChart({
-  data,
-  period,
-  compareData,
-  lang,
-  Ylegend = 'kWh',
-  displaced = false,
-}) {
+function CurveChart({ data, period, compareData, lang, Ylegend = "kWh" }) {
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
 
   return (
-    <div style={{ height: '450px' }}>
+    <div style={{ height: "450px" }}>
       <ResponsiveContainer>
         <LineChart width={730} height={250} data={mixedData}>
           <CartesianGrid stroke="#ccc" strokeWidth={0.5} vertical={false} />
@@ -46,22 +38,29 @@ function CurveChart({
             domain={domainFromData(mixedData, period)}
             tickFormatter={(tickItem) => formatXAxis(period, tickItem)}
             padding={{ left: 24, right: 24 }}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 8)' }}
+            tick={{ fontSize: "1rem", transform: "translate(0, 8)" }}
           />
           <YAxis
             type="number"
-            domain={[0, 'auto']}
+            domain={[0, "auto"]}
             axisLine={false}
             tickCount={8}
             tickLine={false}
             tickFormatter={(tickItem) => `${formatDecimal(tickItem)}`}
-            tick={{ fontSize: '1rem', transform: 'translate(0, 0)' }}>
-            <Label value={Ylegend} angle={-90} position="insideLeft" fill="#969696" />
+            tick={{ fontSize: "1rem", transform: "translate(0, 0)" }}>
+            <Label
+              value={Ylegend}
+              angle={-90}
+              position="insideLeft"
+              fill="#969696"
+            />
           </YAxis>
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
-            labelFormatter={(value) => formatTooltipLabel(period, value, 'lineChart', displaced)}
-            contentStyle={{ fontWeight: 'bold' }}
+            labelFormatter={(value) =>
+              formatTooltipLabel(period, value, "lineChart")
+            }
+            contentStyle={{ fontWeight: "bold" }}
           />
           <Line
             type="monotone"
