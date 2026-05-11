@@ -92,6 +92,7 @@ CurveChart.propTypes = {
   compareData: PropTypes.oneOfType([PropTypes.array]),
   lang: PropTypes.string,
   Ylegend: PropTypes.string,
+  displaced: PropTypes.bool,
 }
 
 export default CurveChart

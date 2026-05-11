@@ -33,6 +33,8 @@ function SummaryPeriodChart({
   maxYAxisValue = "auto",
   minYAxisValue = "auto",
   tickCountValue = 7,
+  displaced = false,
+  scale = "band",
 }) {
   setChartLang(lang)
   return (
@@ -46,7 +48,7 @@ function SummaryPeriodChart({
             tickFormatter={(tickItem) => formatXAxis(period, tickItem)}
             tick={{ fontSize: "1rem", transform: "translate(0, 8)" }}
             padding={{ left: 24, right: 24 }}
-            scale="band"
+            scale={scale}
             xAxisId="values"
           />
           <YAxis
@@ -71,8 +73,10 @@ function SummaryPeriodChart({
           <Tooltip
             content={
               <CustomTooltip
+                period={period}
                 Ylegend={Ylegend}
                 showTooltipKeys={showTooltipKeys}
+                displaced={displaced}
               />
             }
             cursor={{ fill: "#f2f2f2bb" }}
@@ -122,6 +126,8 @@ SummaryPeriodChart.propTypes = {
   Ylegend: PropTypes.string,
   showTooltipKeys: PropTypes.bool,
   referenceLineData: PropTypes.oneOfType([PropTypes.array]),
+  displaced: PropTypes.bool,
+  scale: PropTypes.string,
 }
 
 export default SummaryPeriodChart

@@ -5,16 +5,25 @@ import { alpha } from "@mui/system/colorManipulator"
 import dayjs from "dayjs"
 import PropTypes from "prop-types"
 
+import { formatTooltipLabel } from "../utils/chart.utils"
+
 export const CustomTooltip = ({
   active,
   payload,
+  period,
   Ylegend,
   showTooltipKeys,
+  displaced = false,
 }) => {
   if (active && payload && payload.length) {
     const date = dayjs(payload[0].payload.date)
     const dateFormat = `${date.format("DD/MM/YYYY")}`
-    const formatWithHour = `${date.format("HH")}h - ${date.add(1, "hour").format("HH")}h`
+    const formatWithHour = formatTooltipLabel(
+      period,
+      date,
+      "barChart",
+      displaced,
+    )
     return (
       <Paper variant="outlined" sx={{ padding: "10px" }}>
         <Box
@@ -62,5 +71,6 @@ CustomTooltip.propTypes = {
   active: PropTypes.bool,
   payload: PropTypes.array,
   Ylegend: PropTypes.string,
+  period: PropTypes.string,
   showTooltipKeys: PropTypes.bool,
 }
