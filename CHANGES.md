@@ -1,5 +1,9 @@
 # Change log
 
+## 1.1.0 2026-05-11
+
+- Use unified lint and prettier configuration
+
 ## 1.0.2 2026-05-06
 
 - Use displace parameter in charts
