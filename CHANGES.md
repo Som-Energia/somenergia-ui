@@ -1,5 +1,10 @@
 # Change log
 
+## 1.1.1 2026-05-11
+
+- Update release ci/cd workflow
+- Update README with release section
+
 ## 1.1.0 2026-05-11
 
 - Use unified lint and prettier configuration

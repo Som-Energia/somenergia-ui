@@ -79,3 +79,25 @@ npm install ../somenergia-ui
 ```bash
 npm run deploy-storybook
 ```
+
+## Manual publish version
+
+Create a tag and update package.json version and execute:
+
+```bash
+NPM_TOKEN=[...token] npm publish
+```
+
+The release is an existing version update
+
+```bash
+NPM_TOKEN=[...token] npm dist-tag add @somenergia/somenergia-ui@[...version] latest
+```
+
+## Alpha publications
+
+Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`
+
+```bash
+NPM_TOKEN=[...token] npm publish --tag alpha
+```
