@@ -1,5 +1,9 @@
 # Change log
 
+## 1.1.2 2026-05-19
+
+- Fix: Restore displaced prop on CurveChart component
+
 ## 1.1.1 2026-05-11
 
 - Update release ci/cd workflow
