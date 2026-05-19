@@ -21,7 +21,14 @@ import {
   ticksFromData,
 } from "../utils/chart.utils"
 
-function CurveChart({ data, period, compareData, lang, Ylegend = "kWh" }) {
+function CurveChart({
+  data,
+  period,
+  compareData,
+  lang,
+  Ylegend = "kWh",
+  displaced = false,
+}) {
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
 
@@ -58,7 +65,7 @@ function CurveChart({ data, period, compareData, lang, Ylegend = "kWh" }) {
           <Tooltip
             formatter={(value) => formatTooltip(value, Ylegend)}
             labelFormatter={(value) =>
-              formatTooltipLabel(period, value, "lineChart")
+              formatTooltipLabel(period, value, "lineChart", displaced)
             }
             contentStyle={{ fontWeight: "bold" }}
           />
