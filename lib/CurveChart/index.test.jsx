@@ -1,0 +1,33 @@
+import { renderToStaticMarkup } from "react-dom/server"
+
+import { describe, expect, it, vi } from "vitest"
+
+import CurveChart from "./index"
+
+vi.mock("recharts", () => {
+  const tag = (name) => (props) => <div data-comp={name}>{props.children}</div>
+  return {
+    CartesianGrid: tag("CartesianGrid"),
+    Label: tag("Label"),
+    Line: tag("Line"),
+    LineChart: tag("LineChart"),
+    ResponsiveContainer: tag("ResponsiveContainer"),
+    Tooltip: tag("Tooltip"),
+    XAxis: tag("XAxis"),
+    YAxis: tag("YAxis"),
+  }
+})
+
+describe("CurveChart", () => {
+  it("renderiza linea comparativa cuando compareData existe", () => {
+    const html = renderToStaticMarkup(
+      <CurveChart
+        data={[{ date: 1, value: 10 }]}
+        period="DAILY"
+        compareData={[{ date: 1, value: 8 }]}
+      />,
+    )
+
+    expect(html.match(/data-comp="Line"/g)?.length).toBe(2)
+  })
+})
