@@ -5,7 +5,11 @@ import { describe, expect, it, vi } from "vitest"
 import SummaryPeriodChart from "./index"
 
 vi.mock("recharts", () => {
-  const tag = (name) => (props) => <div data-comp={name}>{props.children}</div>
+  const tag = (name) => {
+    const MockComp = (props) => <div data-comp={name}>{props.children}</div>
+    MockComp.displayName = name
+    return MockComp
+  }
   return {
     Bar: tag("Bar"),
     BarChart: tag("BarChart"),

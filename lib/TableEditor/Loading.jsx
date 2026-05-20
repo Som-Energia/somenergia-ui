@@ -6,8 +6,8 @@ export default function Loading({ nCols = 3 }) {
     <>
       {Array(nRows)
         .fill()
-        .map((row) => (
-          <TableRow key={row}>
+        .map((_, rowIndex) => (
+          <TableRow key={rowIndex}>
             {Array(nCols)
               .fill()
               .map((v, i) => (
