@@ -19,7 +19,7 @@ vi.mock("../SummaryPrice/SummaryPrice", () => ({
 }))
 
 describe("SummaryPricesDisplay", () => {
-  it("renderiza una SummaryPrice por cada item", () => {
+  it("renders one SummaryPrice per item", () => {
     const html = renderToStaticMarkup(
       <SummaryPricesDisplay
         totalPrices={[

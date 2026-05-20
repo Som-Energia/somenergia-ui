@@ -9,10 +9,10 @@ vi.mock("../i18n", () => ({
 }))
 
 describe("TableToolbar", () => {
-  it("muestra titulo cuando no hay seleccion", () => {
+  it("shows title when no rows are selected", () => {
     const html = renderToStaticMarkup(
       <TableToolbar
-        title="Usuarios"
+        title="Users"
         selected={[]}
         numSelected={0}
         setSearch={() => {}}
@@ -22,13 +22,13 @@ describe("TableToolbar", () => {
       />,
     )
 
-    expect(html).toContain("Usuarios")
+    expect(html).toContain("Users")
   })
 
-  it("muestra contador cuando hay seleccion", () => {
+  it("shows selection counter when rows are selected", () => {
     const html = renderToStaticMarkup(
       <TableToolbar
-        title="Usuarios"
+        title="Users"
         selected={["1"]}
         numSelected={1}
         setSearch={() => {}}

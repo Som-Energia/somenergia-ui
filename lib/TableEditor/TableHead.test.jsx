@@ -9,11 +9,11 @@ vi.mock("../i18n", () => ({
 }))
 
 describe("TableHead", () => {
-  it("renderiza columnas y celda de acciones", () => {
+  it("renders table columns and actions header", () => {
     const html = renderToStaticMarkup(
       <table>
         <TableHead
-          columns={[{ id: "name", label: "Nombre" }]}
+          columns={[{ id: "name", label: "Name" }]}
           onSelectAllClick={() => {}}
           order="asc"
           orderBy="name"
@@ -26,7 +26,7 @@ describe("TableHead", () => {
       </table>,
     )
 
-    expect(html).toContain("Nombre")
+    expect(html).toContain("Name")
     expect(html).toContain("TABLE_EDITOR.ACTIONS")
   })
 })

@@ -5,12 +5,12 @@ import { describe, expect, it } from "vitest"
 import SummaryDisplay from "./index"
 
 describe("SummaryDisplay", () => {
-  it("formatea numeros con locale es", () => {
+  it("formats numbers using Spanish locale", () => {
     const html = renderToStaticMarkup(
       <SummaryDisplay
         value={12345}
         valueUnit="kWh"
-        title="Consumo"
+        title="Consumption"
         description="01/2025"
       />,
     )
@@ -19,12 +19,12 @@ describe("SummaryDisplay", () => {
     expect(html).toContain("kWh")
   })
 
-  it("muestra guion largo cuando no hay valor", () => {
+  it("shows em dash when value is not greater than zero", () => {
     const html = renderToStaticMarkup(
       <SummaryDisplay
         value={0}
         valueUnit="kWh"
-        title="Consumo"
+        title="Consumption"
         description="x"
       />,
     )

@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest"
 import SummaryPrice from "./SummaryPrice"
 
 describe("SummaryPrice", () => {
-  it("muestra valor, unidad y descripcion", () => {
+  it("shows value, unit and description", () => {
     const html = renderToStaticMarkup(
       <SummaryPrice value={"123"} unit={"EUR"} description={"Total"} />,
     )

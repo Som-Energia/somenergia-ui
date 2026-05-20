@@ -5,17 +5,17 @@ import { describe, expect, it } from "vitest"
 import { CustomLegend } from "./CustomLegend"
 
 describe("CustomLegend", () => {
-  it("renderiza texto de todas las lineas de referencia", () => {
+  it("renders text for all reference lines", () => {
     const html = renderToStaticMarkup(
       <CustomLegend
         referenceLineData={[
-          { text: "Objetivo", color: "#000", stroke: "1 1", strokeWidth: 1 },
-          { text: "Media", color: "#111", stroke: "2 2", strokeWidth: 2 },
+          { text: "Target", color: "#000", stroke: "1 1", strokeWidth: 1 },
+          { text: "Average", color: "#111", stroke: "2 2", strokeWidth: 2 },
         ]}
       />,
     )
 
-    expect(html).toContain("Objetivo")
-    expect(html).toContain("Media")
+    expect(html).toContain("Target")
+    expect(html).toContain("Average")
   })
 })

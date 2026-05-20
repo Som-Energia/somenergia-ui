@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest"
 import { CustomTooltip } from "./CustomTooltip"
 
 describe("CustomTooltip", () => {
-  it("no renderiza si no esta activo", () => {
+  it("does not render when tooltip is inactive", () => {
     const html = renderToStaticMarkup(
       <CustomTooltip active={false} payload={[]} />,
     )
@@ -13,7 +13,7 @@ describe("CustomTooltip", () => {
     expect(html).toBe("")
   })
 
-  it("renderiza valores y unidad", () => {
+  it("renders value and unit", () => {
     const html = renderToStaticMarkup(
       <CustomTooltip
         active

@@ -21,7 +21,7 @@ vi.mock("recharts", () => {
 })
 
 describe("SummaryPeriodChart", () => {
-  it("renderiza una barra por key", () => {
+  it("renders one bar per key", () => {
     const html = renderToStaticMarkup(
       <SummaryPeriodChart
         period="MONTHLY"

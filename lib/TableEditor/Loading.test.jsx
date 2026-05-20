@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest"
 import Loading from "./Loading"
 
 describe("TableEditor Loading", () => {
-  it("renderiza filas skeleton segun columnas", () => {
+  it("renders skeleton rows based on column count", () => {
     const html = renderToStaticMarkup(<Loading nCols={4} />)
 
     expect(html).toContain("progressbar")

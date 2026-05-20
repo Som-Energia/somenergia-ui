@@ -13,13 +13,13 @@ vi.mock("@mui/material/useMediaQuery", () => ({
 }))
 
 describe("GlobalTheming", () => {
-  it("renderiza children dentro del provider", () => {
+  it("renders children inside the provider", () => {
     const html = renderToStaticMarkup(
       <GlobalTheming>
-        <span>contenido</span>
+        <span>content</span>
       </GlobalTheming>,
     )
 
-    expect(html).toContain("contenido")
+    expect(html).toContain("content")
   })
 })

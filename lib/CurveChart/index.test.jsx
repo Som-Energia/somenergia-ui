@@ -19,7 +19,7 @@ vi.mock("recharts", () => {
 })
 
 describe("CurveChart", () => {
-  it("renderiza linea comparativa cuando compareData existe", () => {
+  it("renders comparison line when compareData exists", () => {
     const html = renderToStaticMarkup(
       <CurveChart
         data={[{ date: 1, value: 10 }]}

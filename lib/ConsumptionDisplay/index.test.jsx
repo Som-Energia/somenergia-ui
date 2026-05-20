@@ -16,7 +16,7 @@ vi.mock("../SummaryDisplay", () => ({
 }))
 
 describe("ConsumptionDisplay", () => {
-  it("muestra bloque actual y comparativo cuando ambas fechas existen", () => {
+  it("shows current and comparison blocks when both dates exist", () => {
     const html = renderToStaticMarkup(
       <ConsumptionDisplay
         period="MONTHLY"

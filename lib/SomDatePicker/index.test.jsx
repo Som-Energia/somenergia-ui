@@ -10,7 +10,7 @@ vi.mock("../i18n", () => ({
 }))
 
 describe("SomDatePicker", () => {
-  it("renderiza botones prev/next por defecto", () => {
+  it("renders prev/next buttons by default", () => {
     const html = renderToStaticMarkup(
       <SomDatePicker
         firstDate={dayjs("2025-01-01")}
@@ -24,7 +24,7 @@ describe("SomDatePicker", () => {
     expect(html).toContain("next-button")
   })
 
-  it("no renderiza botones si prevNextButtons=false", () => {
+  it("does not render prev/next buttons when prevNextButtons is false", () => {
     const html = renderToStaticMarkup(
       <SomDatePicker
         prevNextButtons={false}

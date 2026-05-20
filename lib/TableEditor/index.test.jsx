@@ -11,50 +11,50 @@ vi.mock("../i18n", () => ({
 describe("TableEditor", () => {
   const columns = [
     { id: "id", label: "ID", searchable: true },
-    { id: "name", label: "Nombre", searchable: true },
+    { id: "name", label: "Name", searchable: true },
   ]
 
-  it("renderiza filas cuando hay datos", () => {
+  it("renders rows when data is provided", () => {
     const html = renderToStaticMarkup(
       <TableEditor
-        title="Tabla"
+        title="Table"
         columns={columns}
         rows={[
-          { id: "1", name: "Ana" },
+          { id: "1", name: "Anna" },
           { id: "2", name: "Pol" },
         ]}
       />,
     )
 
-    expect(html).toContain("Ana")
+    expect(html).toContain("Anna")
     expect(html).toContain("Pol")
   })
 
-  it("renderiza placeholder cuando no hay datos", () => {
+  it("renders placeholder when there is no data", () => {
     const html = renderToStaticMarkup(
       <TableEditor
-        title="Tabla"
+        title="Table"
         columns={columns}
         rows={[]}
-        noDataPlaceHolder={<span>Sin datos</span>}
+        noDataPlaceHolder={<span>No data</span>}
       />,
     )
 
-    expect(html).toContain("Sin datos")
+    expect(html).toContain("No data")
   })
 
-  it("muestra loading cuando loading=true", () => {
+  it("shows loading state when loading is true", () => {
     const html = renderToStaticMarkup(
-      <TableEditor title="Tabla" columns={columns} rows={[]} loading />,
+      <TableEditor title="Table" columns={columns} rows={[]} loading />,
     )
 
     expect(html).toContain("progressbar")
   })
 
-  it("renderiza paginador si se pasan pageSizes", () => {
+  it("renders pagination controls when pageSizes is provided", () => {
     const html = renderToStaticMarkup(
       <TableEditor
-        title="Tabla"
+        title="Table"
         columns={columns}
         rows={[]}
         pageSizes={[5, 10]}
@@ -65,10 +65,10 @@ describe("TableEditor", () => {
     expect(html).toContain("Rows per page")
   })
 
-  it("muestra '-' cuando una celda es null o undefined", () => {
+  it("shows '-' when a cell value is null or undefined", () => {
     const html = renderToStaticMarkup(
       <TableEditor
-        title="Tabla"
+        title="Table"
         columns={columns}
         rows={[{ id: "1", name: null }, { id: "2" }]}
       />,
@@ -77,18 +77,18 @@ describe("TableEditor", () => {
     expect(html).toContain("-")
   })
 
-  it("renderiza controles de seleccion y acciones por item", () => {
+  it("renders selection controls and per-item actions", () => {
     const html = renderToStaticMarkup(
       <TableEditor
-        title="Tabla"
+        title="Table"
         columns={columns}
-        rows={[{ id: "1", name: "Ana" }]}
-        selectionActions={[{ title: "Eliminar seleccion" }]}
-        itemActions={[{ title: "Editar", icon: <span>i</span> }]}
+        rows={[{ id: "1", name: "Anna" }]}
+        selectionActions={[{ title: "Remove selection" }]}
+        itemActions={[{ title: "Edit", icon: <span>i</span> }]}
       />,
     )
 
     expect(html).toContain("TABLE_EDITOR.SELECT_ALL")
-    expect(html).toContain("Editar")
+    expect(html).toContain("Edit")
   })
 })
