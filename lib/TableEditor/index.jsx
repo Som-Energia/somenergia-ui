@@ -76,77 +76,75 @@ function collapseStyle(hidden) {
   }
 }
 
-const ItemRow = React.memo(
-  function ItemRow(
-    row,
-    idField,
-    selected,
-    hidden,
-    columns,
-    selectable,
-    actions,
-    handleClick,
-    handleSelect,
-  ) {
-    const id = row[idField]
-    const labelId = `enhanced-table-checkbox-${id}`
+const ItemRow = React.memo(function ItemRow({
+  row,
+  idField,
+  selected,
+  hidden,
+  columns,
+  selectable,
+  actions,
+  handleClick,
+  handleSelect,
+}) {
+  const id = row[idField]
+  const labelId = `enhanced-table-checkbox-${id}`
 
-    const result = (
-      <TableRow
-        sx={collapseStyle(hidden)}
-        hover
-        onClick={() => handleClick(id)}
-        role="checkbox"
-        aria-checked={selected}
-        tabIndex={-1}
-        selected={selected}
-        id={labelId}>
-        {selectable && (
-          <TableCell padding="checkbox">
+  const result = (
+    <TableRow
+      sx={collapseStyle(hidden)}
+      hover
+      onClick={() => handleClick(id)}
+      role="checkbox"
+      aria-checked={selected}
+      tabIndex={-1}
+      selected={selected}
+      id={labelId}>
+      {selectable && (
+        <TableCell padding="checkbox">
+          <Box>
+            <Checkbox
+              sx={{ padding: 0 }}
+              color="primary"
+              checked={selected}
+              onClick={(e) => {
+                handleSelect(id)
+                e.stopPropagation()
+              }}
+              inputProps={{
+                "aria-labelledby": labelId,
+              }}
+            />
+          </Box>
+        </TableCell>
+      )}
+      {columns.map((column, i) => {
+        return (
+          <TableCell
+            align={column.numeric ? "right" : "left"}
+            key={`${column.id}_${id}`}
+            padding={i === 0 && selectable ? "none" : "normal"}>
             <Box>
-              <Checkbox
-                sx={{ padding: 0 }}
-                color="primary"
-                checked={selected}
-                onClick={(e) => {
-                  handleSelect(id)
-                  e.stopPropagation()
-                }}
-                inputProps={{
-                  "aria-labelledby": labelId,
-                }}
-              />
+              {column.view
+                ? column.view(row)
+                : row[column.id] === undefined
+                  ? "-"
+                  : row[column.id] === null
+                    ? "-"
+                    : row[column.id]}
             </Box>
           </TableCell>
-        )}
-        {columns.map((column, i) => {
-          return (
-            <TableCell
-              align={column.numeric ? "right" : "left"}
-              key={`${column.id}_${id}`}
-              padding={i === 0 && selectable ? "none" : "normal"}>
-              <Box>
-                {column.view
-                  ? column.view(row)
-                  : row[column.id] === undefined
-                    ? "-"
-                    : row[column.id] === null
-                      ? "-"
-                      : row[column.id]}
-              </Box>
-            </TableCell>
-          )
-        })}
-        {actions.length !== 0 && (
-          <TableCell>
-            <ActionButtons size="small" actions={actions} context={row} />
-          </TableCell>
-        )}
-      </TableRow>
-    )
-    return result
-  },
-)
+        )
+      })}
+      {actions.length !== 0 && (
+        <TableCell>
+          <ActionButtons size="small" actions={actions} context={row} />
+        </TableCell>
+      )}
+    </TableRow>
+  )
+  return result
+})
 
 // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
@@ -404,7 +402,7 @@ const ColumnsType = PropTypes.arrayOf(
     /** A functor receiving the full row object and returning the cell content.
       By default, stringifies the value of the field refered by `id`,
       unless such value is null or undefined which are turned into '-'. */
-    view: PropTypes.Element,
+    view: PropTypes.func,
   }),
 )
 
@@ -416,8 +414,8 @@ ItemRow.propTypes = {
   columns: PropTypes.array,
   selectable: PropTypes.bool,
   actions: PropTypes.any,
-  handleClick: PropTypes.handleClick,
-  handleSelect: PropTypes.handleSelect,
+  handleClick: PropTypes.func,
+  handleSelect: PropTypes.func,
 }
 
 TableEditor.propTypes = {

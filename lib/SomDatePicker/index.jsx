@@ -1,3 +1,8 @@
+import "dayjs/locale/ca"
+import "dayjs/locale/es"
+import "dayjs/locale/eu"
+import "dayjs/locale/gl"
+
 import ArrowBackIosOutlined from "@mui/icons-material/ArrowBackIosOutlined"
 import ArrowForwardIosOutlined from "@mui/icons-material/ArrowForwardIosOutlined"
 import { Box, Button } from "@mui/material"
@@ -26,6 +31,10 @@ export default function SomDatePicker({
   shouldDisableDate = () => {},
 }) {
   const { i18n } = useTranslation()
+  const baseLanguage = (i18n?.language || "en").toLowerCase().split("-")[0]
+  const adapterLocale = ["ca", "es", "eu", "gl"].includes(baseLanguage)
+    ? baseLanguage
+    : "en"
   const dayjsperiods = {
     DAILY: "d",
     WEEKLY: "w",
@@ -65,7 +74,7 @@ export default function SomDatePicker({
       }}>
       <LocalizationProvider
         dateAdapter={AdapterDayjs}
-        adapterLocale={i18n.language}>
+        adapterLocale={adapterLocale}>
         {prevNextButtons && (
           <Button
             disabled={disabledNextPrev}
