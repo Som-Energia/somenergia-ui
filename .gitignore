@@ -1,6 +1,9 @@
 # Vite 
 .vite
 
+# Opencode
+.atl
+
 # Dependencies
 package-lock.json
 bun.lock

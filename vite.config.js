@@ -1,12 +1,13 @@
 import viteyaml from "@modyfi/vite-plugin-yaml"
 import react from "@vitejs/plugin-react"
-import { glob } from "glob"
+import pkg from "glob"
 import { fileURLToPath } from "node:url"
 import { extname, relative, resolve } from "path"
 import { defineConfig } from "vite"
 import eslint from "vite-plugin-eslint2"
 import svgr from "vite-plugin-svgr"
 
+const { glob } = pkg
 export default defineConfig({
   plugins: [
     react(),
@@ -53,5 +54,16 @@ export default defineConfig({
         assetFileNames: "assets/[name]-[hash][extname]",
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./test/setupTests.js",
+    exclude: [
+      "**/node_modules/**",
+      "**/coverage/**",
+      "**/src/**",
+      "**/public/**",
+    ],
   },
 })
