@@ -20,6 +20,7 @@ const SomStepper = (props) => {
     nextButtonLabel = "Next",
     prevButtonLabel = "Previous",
     finishButton = null,
+    hidePreviousButton = false,
     children,
   } = props
 
@@ -38,27 +39,29 @@ const SomStepper = (props) => {
 
   return (
     <>
-      {showStepProgress && (
+      {showStepProgress && steps.length > 0 && (
         <Typography color="secondary">
           {showStepTitle && stepTitle}{" "}
-          {steps.length && currentStepNum + "/" + maxStepsNum}
+          {steps.length > 0 && currentStepNum + "/" + maxStepsNum}
         </Typography>
       )}
-      {steps.length && (
-        <LinearProgress
-          variant="determinate"
-          value={(currentStepNum / maxStepsNum) * 100}
-          color="secondary"
-          sx={{
-            marginBottom: "65px",
-            height: 6,
-            borderRadius: "100px",
-            backgroundColor: "secondary.extraDark",
-            "& .MuiLinearProgress-bar": {
-              backgroundColor: "primary.mainOrange",
-            },
-          }}
-        />
+      {showStepProgress && steps.length > 0 && (
+        <>
+          <LinearProgress
+            variant="determinate"
+            value={(currentStepNum / maxStepsNum) * 100}
+            color="secondary"
+            sx={{
+              marginBottom: "65px",
+              height: 6,
+              borderRadius: "100px",
+              backgroundColor: "secondary.extraDark",
+              "& .MuiLinearProgress-bar": {
+                backgroundColor: "primary.mainOrange",
+              },
+            }}
+          />
+        </>
       )}
 
       {children ?? steps.at(activeStep) ?? null}
@@ -70,18 +73,20 @@ const SomStepper = (props) => {
         sx={{
           marginTop: "2rem",
           justifyContent:
-            activeStep === lastStepIndex && finishButton
+            activeStep === lastStepIndex && finishButton && hidePreviousButton
               ? "center"
               : "space-between",
           alignItems: "center",
         }}>
-        {activeStep > 0 && activeStep <= lastStepIndex && (
-          <Grid item size={{ sm: 2, xs: 12 }}>
-            <PrevButton onClick={() => prevStep()}>
-              {prevButtonLabel}
-            </PrevButton>
-          </Grid>
-        )}
+        {!hidePreviousButton &&
+          activeStep > 0 &&
+          activeStep <= lastStepIndex && (
+            <Grid item size={{ sm: 2, xs: 12 }}>
+              <PrevButton onClick={() => prevStep()}>
+                {prevButtonLabel}
+              </PrevButton>
+            </Grid>
+          )}
 
         {activeStep < lastStepIndex && (
           <Grid

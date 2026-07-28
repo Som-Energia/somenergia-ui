@@ -10,15 +10,20 @@ const SomStepperLinearProgress = (props) => {
     stepTitle,
   } = props
 
+  const stepsLength = Object.keys(steps).length || 0
+  const currentStepNum = activeStep > stepsLength ? stepsLength : activeStep + 1
+
   const numberSteps = stepsNum || Object.keys(steps).length
   const currentStep = activeStep + 1
 
   return (
     <>
-      <Typography color="secondary">
-        {showStepTitle && stepTitle} {currentStep + "/" + numberSteps}
-      </Typography>
-      {numberSteps && (
+      {numberSteps > 0 && (
+        <Typography color="secondary">
+          {showStepTitle && stepTitle} {currentStepNum + "/" + numberSteps}
+        </Typography>
+      )}
+      {numberSteps > 0 && (
         <LinearProgress
           variant="determinate"
           value={(currentStep / numberSteps) * 100}
