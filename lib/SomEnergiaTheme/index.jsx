@@ -22,7 +22,7 @@ const customTypographies = ["pagetitle", "pagesubtitle", "homeButtons"]
 export default function SomEnergiaTheme(isDarkMode) {
   const theme = createTheme({
     typography: {
-      fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Outfit", "Helvetica", "Arial", sans-serif',
       // Custom variant for home page paragraphs
       homeButtons: {
         fontSize: 22,

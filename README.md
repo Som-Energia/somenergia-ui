@@ -10,6 +10,18 @@ Common React/MUI components for Som Energia UI projects
 npm install --save @somenergia/somenergia-ui
 ```
 
+## Loading fonts
+
+If your project uses `SomEnergiaTheme` or `GlobalTheming`, load the Som Energia font in the host application so the components render with the intended typography.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+  rel="stylesheet" />
+```
+
+`SomEnergiaTheme` uses `Outfit` as the default font family. If the host application does not load the font, the browser will fall back to `Helvetica`, `Arial`, and `sans-serif`.
+
 ## Configuring i18n on your project with somenergia-ui components
 
 This library requires i18n configuration for multi-language support. Simply provide the host project's i18n instance, and the library will handle registering the necessary translations.

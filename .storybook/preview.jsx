@@ -38,7 +38,7 @@ const preview = {
         "SomEnergia Light": SomEnergiaTheme(false),
         "SomEnergia Dark": SomEnergiaTheme(true),
       },
-      defaultTheme: "mui",
+      defaultTheme: "SomEnergia Light",
     }),
   ],
 }
