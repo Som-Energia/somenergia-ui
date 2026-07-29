@@ -1,5 +1,12 @@
 # Change log
 
+## [unreleased]
+
+- Add SomStepper and SomStepperLinearProgress components
+- Apply SomEnergia color styles
+- Use Outfit as the official font family
+- Improve SomStepper and SomStepperLinearProgress Storybook coverage
+
 ## 1.1.2 2026-05-19
 
 - Fix: Restore displaced prop on CurveChart component
