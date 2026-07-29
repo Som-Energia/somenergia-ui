@@ -32,9 +32,9 @@ const SomStepperLinearProgress = (props) => {
             marginBottom: "65px",
             height: 6,
             borderRadius: "100px",
-            backgroundColor: "secondary.extraDark",
+            backgroundColor: "text.primary",
             "& .MuiLinearProgress-bar": {
-              backgroundColor: "primary.mainOrange",
+              backgroundColor: "accent.main",
             },
           }}
         />
