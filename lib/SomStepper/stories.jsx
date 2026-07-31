@@ -79,20 +79,11 @@ const meta = {
     finishButton: {
       control: false,
     },
-    showStepProgress: {
-      control: "boolean",
-    },
-    showStepTitle: {
-      control: "boolean",
-    },
     disableNext: {
       control: "boolean",
     },
     hidePreviousButton: {
       control: "boolean",
-    },
-    stepTitle: {
-      control: "text",
     },
     nextButtonLabel: {
       control: "text",
@@ -104,9 +95,6 @@ const meta = {
   args: {
     activeStep: 0,
     steps: defaultSteps,
-    stepTitle: "Step",
-    showStepProgress: true,
-    showStepTitle: true,
     disableNext: false,
     nextButtonLabel: "Next",
     prevButtonLabel: "Previous",
@@ -196,22 +184,6 @@ export const NextDisabled = {
   render: ControlledStepper,
   args: {
     disableNext: true,
-    finishButton: <SubmitButton variant="contained">Finish</SubmitButton>,
-  },
-}
-
-export const WithoutProgress = {
-  render: ControlledStepper,
-  args: {
-    showStepProgress: false,
-    finishButton: <SubmitButton variant="contained">Finish</SubmitButton>,
-  },
-}
-
-export const WithoutProgressTitle = {
-  render: ControlledStepper,
-  args: {
-    showStepTitle: false,
     finishButton: <SubmitButton variant="contained">Finish</SubmitButton>,
   },
 }

@@ -48,6 +48,7 @@ export default function SomEnergiaTheme(isDarkMode) {
       tonalOffset: 0.2,
       text: {
         primary: isDarkMode ? "#bdbdbd" : "#4d4d4d",
+        caption: "#0B2E34",
       },
       primary: {
         main: "#c5f47c",

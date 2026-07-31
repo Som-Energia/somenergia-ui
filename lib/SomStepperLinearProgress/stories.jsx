@@ -1,10 +1,6 @@
 import SomStepperLinearProgress from "."
 
-const defaultSteps = {
-  STEP1: 1,
-  STEP2: 2,
-  STEP3: 3,
-}
+const defaultTotalSteps = 3
 
 const meta = {
   title: "Base Components/SomStepperLinearProgress",
@@ -21,16 +17,13 @@ const meta = {
     ),
   ],
   argTypes: {
-    activeStep: {
+    currentStep: {
       control: {
         type: "number",
         min: 0,
       },
     },
-    steps: {
-      control: false,
-    },
-    stepsNum: {
+    totalSteps: {
       control: {
         type: "number",
         min: 0,
@@ -44,9 +37,8 @@ const meta = {
     },
   },
   args: {
-    activeStep: 0,
-    steps: defaultSteps,
-    stepsNum: undefined,
+    currentStep: 1,
+    totalSteps: defaultTotalSteps,
     showStepTitle: false,
     stepTitle: "Step",
   },
@@ -58,7 +50,7 @@ export const Default = {}
 
 export const WithStepTitle = {
   args: {
-    activeStep: 1,
+    currentStep: 2,
     showStepTitle: true,
     stepTitle: "STEP_TITLE",
   },
@@ -66,33 +58,25 @@ export const WithStepTitle = {
 
 export const FirstStep = {
   args: {
-    activeStep: 0,
+    currentStep: 1,
   },
 }
 
 export const MiddleStep = {
   args: {
-    activeStep: 1,
+    currentStep: 2,
   },
 }
 
 export const LastStep = {
   args: {
-    activeStep: Object.keys(defaultSteps).length - 1,
+    currentStep: defaultTotalSteps,
   },
 }
 
-export const WithExplicitStepCount = {
+export const Empty = {
   args: {
-    activeStep: 1,
-    steps: {},
-    stepsNum: 4,
-  },
-}
-
-export const WithoutSteps = {
-  args: {
-    steps: {},
-    stepsNum: undefined,
+    currentStep: 0,
+    totalSteps: 0,
   },
 }

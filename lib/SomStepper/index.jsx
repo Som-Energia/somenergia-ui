@@ -1,8 +1,6 @@
 import { useCallback } from "react"
 
 import { Grid2 as Grid } from "@mui/material"
-import LinearProgress from "@mui/material/LinearProgress"
-import Typography from "@mui/material/Typography"
 
 import NextButton from "../Buttons/NextButton"
 import PrevButton from "../Buttons/PrevButton"
@@ -12,9 +10,6 @@ const SomStepper = (props) => {
     activeStep = 0,
     setActiveStep,
     steps = [],
-    stepTitle,
-    showStepProgress = true,
-    showStepTitle = false,
     disableNext = true,
     nextButton,
     nextButtonLabel = "Next",
@@ -32,38 +27,10 @@ const SomStepper = (props) => {
     setActiveStep((prev) => Math.max(0, prev - 1))
   }, [setActiveStep])
 
-  const currentStepNum =
-    activeStep >= steps.length ? steps.length : activeStep + 1
-  const maxStepsNum = steps.length
   const lastStepIndex = steps.length - 1
 
   return (
     <>
-      {showStepProgress && steps.length > 0 && (
-        <Typography color="secondary">
-          {showStepTitle && stepTitle}{" "}
-          {steps.length > 0 && currentStepNum + "/" + maxStepsNum}
-        </Typography>
-      )}
-      {showStepProgress && steps.length > 0 && (
-        <>
-          <LinearProgress
-            variant="determinate"
-            value={(currentStepNum / maxStepsNum) * 100}
-            color="accent"
-            sx={{
-              marginBottom: "65px",
-              height: 6,
-              borderRadius: "100px",
-              backgroundColor: "text.primary",
-              "& .MuiLinearProgress-bar": {
-                backgroundColor: "accent.main",
-              },
-            }}
-          />
-        </>
-      )}
-
       {children ?? steps.at(activeStep) ?? null}
 
       <Grid

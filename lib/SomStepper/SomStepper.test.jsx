@@ -1,7 +1,7 @@
-import { render } from "@testing-library/react"
-import { expect } from "vitest"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { vi } from "vitest"
 
-import SomStepper from "./"
+import SomStepper from "."
 
 const steps = [
   <div key={0}>HELLO</div>,
@@ -9,86 +9,82 @@ const steps = [
   <div key={2}>BYE</div>,
 ]
 
-describe("SomStepper component ", async () => {
-  // avoid warnings
+describe("SomStepper", () => {
+  test("renders the active step and only the next button on the first step", () => {
+    render(<SomStepper steps={steps} activeStep={0} disableNext={false} />)
 
-  describe("SomStepper with steps", () => {
-    test("SomStepper renders", () => {
-      const { queryByRole } = render(
-        <SomStepper steps={steps} activeStep={0} />,
-      )
-
-      expect(queryByRole("progressbar")).toBeInTheDocument()
-    })
-
-    test("SomStepper renders exact number of steps", () => {
-      const { queryByText } = render(
-        <SomStepper steps={steps} activeStep={1} />,
-      )
-
-      const expectedText = `2/${steps.length}`
-      expect(queryByText(expectedText)).toBeInTheDocument()
-    })
-
-    test("SomStepper limit the max steps number when overflow activeStep", () => {
-      const { queryByText } = render(
-        <SomStepper steps={steps} activeStep={99} />,
-      )
-
-      const expectedText = `${steps.length}/${steps.length}`
-      expect(queryByText(expectedText)).toBeInTheDocument()
-    })
-
-    test("SomStepper with step title renders without crashing", () => {
-      const { queryByText } = render(
-        <SomStepper
-          steps={steps}
-          activeStep={1}
-          showStepTitle
-          stepTitle={"STEP_TITLE"}
-        />,
-      )
-
-      const expectedStepTitle = `STEP_TITLE 2/${steps.length}`
-      expect(
-        queryByText(expectedStepTitle, {
-          trim: false,
-          collapseWhitespace: false,
-        }),
-      ).toBeInTheDocument()
-    })
-
-    test("SomStepper renders with progressbar", () => {
-      const activeStep = 1
-      const { queryByRole } = render(
-        <SomStepper steps={steps} activeStep={activeStep} />,
-      )
-
-      // Calculate the progress
-      // activeStep starts at 0
-      const internalActiveStep = activeStep + 1
-      const numSteps = steps.length
-      // Component calculate percent with Math.ceil
-      const expectedValue = Math.ceil((internalActiveStep / numSteps) * 100)
-
-      // Rendered progress value
-      const progressValue = Number(
-        queryByRole("progressbar").getAttribute("aria-valuenow"),
-      )
-      expect(expectedValue).toBe(progressValue)
-    })
+    expect(screen.getByText("HELLO")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument()
+    expect(
+      screen.queryByRole("button", { name: "Previous" }),
+    ).not.toBeInTheDocument()
   })
 
-  describe("SomStepper without steps", () => {
-    test("SomStepper renders", () => {
-      const { queryByRole } = render(<SomStepper />)
-      expect(queryByRole("progressbar")).not.toBeInTheDocument()
-    })
-    test("SomStepper without the steps progressbar header", () => {
-      const { queryByText } = render(
-        <SomStepper showStepProgress={false}>Content</SomStepper>,
-      )
-      expect(queryByText("STEP_TITLE")).not.toBeInTheDocument()
-    })
+  test("calls setActiveStep with a bounded updater when next is clicked", () => {
+    const setActiveStep = vi.fn()
+
+    render(
+      <SomStepper
+        steps={steps}
+        activeStep={1}
+        setActiveStep={setActiveStep}
+        disableNext={false}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Next" }))
+
+    expect(setActiveStep).toHaveBeenCalledTimes(1)
+
+    const updateStep = setActiveStep.mock.calls[0][0]
+    expect(updateStep(1)).toBe(2)
+    expect(updateStep(steps.length)).toBe(steps.length)
+  })
+
+  test("renders previous and next buttons on intermediate steps with custom labels", () => {
+    render(
+      <SomStepper
+        steps={steps}
+        activeStep={1}
+        disableNext={false}
+        nextButtonLabel="Continue"
+        prevButtonLabel="Back"
+      />,
+    )
+
+    expect(screen.getByText("DARLING")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Continue" })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Back" })).toBeInTheDocument()
+  })
+
+  test("renders the finish button on the last step and hides navigation when requested", () => {
+    render(
+      <SomStepper
+        steps={steps}
+        activeStep={steps.length - 1}
+        hidePreviousButton
+        finishButton={<button type="button">Finish</button>}
+      />,
+    )
+
+    expect(screen.getByText("BYE")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Finish" })).toBeInTheDocument()
+    expect(
+      screen.queryByRole("button", { name: "Next" }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole("button", { name: "Previous" }),
+    ).not.toBeInTheDocument()
+  })
+
+  test("renders children instead of the step content when provided", () => {
+    render(
+      <SomStepper steps={steps} activeStep={1}>
+        Custom content
+      </SomStepper>,
+    )
+
+    expect(screen.getByText("Custom content")).toBeInTheDocument()
+    expect(screen.queryByText("DARLING")).not.toBeInTheDocument()
   })
 })
