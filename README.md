@@ -1,3 +1,9 @@
+[![CI](https://github.com/Som-Energia/somenergia-ui/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/Som-Energia/somenergia-ui/actions/workflows/ci.yaml)
+[![Publish Package to npmjs](https://github.com/Som-Energia/somenergia-ui/actions/workflows/publish.yaml/badge.svg?branch=main)](https://github.com/Som-Energia/somenergia-ui/actions/workflows/publish.yaml)
+[![npm version](https://img.shields.io/npm/v/%40somenergia%2Fsomenergia-ui)](https://www.npmjs.com/package/@somenergia/somenergia-ui)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![Docs](https://img.shields.io/badge/docs-storybook-informational)](https://som-energia.github.io/somenergia-ui/)
+
 # somenergia-ui
 
 Common React/MUI components for Som Energia UI projects

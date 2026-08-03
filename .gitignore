@@ -2,7 +2,6 @@
 .vite
 
 # Dependencies
-package-lock.json
 bun.lock
 
 # Storybook
