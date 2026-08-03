@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- Fix: Prevent TableEditor Storybook crash by correcting ItemRow props handling and adding safe defaults for array props
+
 ## 1.1.2 2026-05-19
 
 - Fix: Restore displaced prop on CurveChart component
