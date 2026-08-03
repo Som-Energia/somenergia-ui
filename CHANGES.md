@@ -1,5 +1,10 @@
 # Change log
 
+## 1.1.5 2026-08-03
+
+- CI: Add ci workflow to build, test and validate changes
+- Improve README with status badges
+
 ## 1.1.4 2026-08-03
 
 - Fix: Peer dependencies problems
