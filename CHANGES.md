@@ -1,5 +1,9 @@
 # Change log
 
+## 1.1.4 2026-08-03
+
+- Fix: Peer dependencies problems
+
 ## 1.1.3 2026-08-03
 
 - Fix: Prevent TableEditor Storybook crash by correcting ItemRow props handling and adding safe defaults for array props
