@@ -1,3 +1,5 @@
+[![Publish Package to npmjs](https://github.com/Som-Energia/somenergia-ui/actions/workflows/publish.yaml/badge.svg?branch=main)](https://github.com/Som-Energia/somenergia-ui/actions/workflows/publish.yaml)
+
 # somenergia-ui
 
 Common React/MUI components for Som Energia UI projects
