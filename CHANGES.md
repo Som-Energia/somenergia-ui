@@ -7,6 +7,19 @@
 - Use Outfit as the official font family
 - Improve SomStepper and SomStepperLinearProgress Storybook coverage
 
+## 1.1.5 2026-08-03
+
+- CI: Add ci workflow to build, test and validate changes
+- Improve README with status badges
+
+## 1.1.4 2026-08-03
+
+- Fix: Peer dependencies problems
+
+## 1.1.3 2026-08-03
+
+- Fix: Prevent TableEditor Storybook crash by correcting ItemRow props handling and adding safe defaults for array props
+
 ## 1.1.2 2026-05-19
 
 - Fix: Restore displaced prop on CurveChart component

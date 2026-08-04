@@ -76,77 +76,75 @@ function collapseStyle(hidden) {
   }
 }
 
-const ItemRow = React.memo(
-  function ItemRow(
-    row,
-    idField,
-    selected,
-    hidden,
-    columns,
-    selectable,
-    actions,
-    handleClick,
-    handleSelect,
-  ) {
-    const id = row[idField]
-    const labelId = `enhanced-table-checkbox-${id}`
+const ItemRow = React.memo(function ItemRow({
+  row,
+  idField,
+  selected,
+  hidden,
+  columns,
+  selectable,
+  actions,
+  handleClick,
+  handleSelect,
+}) {
+  const id = row[idField]
+  const labelId = `enhanced-table-checkbox-${id}`
 
-    const result = (
-      <TableRow
-        sx={collapseStyle(hidden)}
-        hover
-        onClick={() => handleClick(id)}
-        role="checkbox"
-        aria-checked={selected}
-        tabIndex={-1}
-        selected={selected}
-        id={labelId}>
-        {selectable && (
-          <TableCell padding="checkbox">
+  const result = (
+    <TableRow
+      sx={collapseStyle(hidden)}
+      hover
+      onClick={() => handleClick(id)}
+      role="checkbox"
+      aria-checked={selected}
+      tabIndex={-1}
+      selected={selected}
+      id={labelId}>
+      {selectable && (
+        <TableCell padding="checkbox">
+          <Box>
+            <Checkbox
+              sx={{ padding: 0 }}
+              color="primary"
+              checked={selected}
+              onClick={(e) => {
+                handleSelect(id)
+                e.stopPropagation()
+              }}
+              inputProps={{
+                "aria-labelledby": labelId,
+              }}
+            />
+          </Box>
+        </TableCell>
+      )}
+      {columns.map((column, i) => {
+        return (
+          <TableCell
+            align={column.numeric ? "right" : "left"}
+            key={`${column.id}_${id}`}
+            padding={i === 0 && selectable ? "none" : "normal"}>
             <Box>
-              <Checkbox
-                sx={{ padding: 0 }}
-                color="primary"
-                checked={selected}
-                onClick={(e) => {
-                  handleSelect(id)
-                  e.stopPropagation()
-                }}
-                inputProps={{
-                  "aria-labelledby": labelId,
-                }}
-              />
+              {column.view
+                ? column.view(row)
+                : row[column.id] === undefined
+                  ? "-"
+                  : row[column.id] === null
+                    ? "-"
+                    : row[column.id]}
             </Box>
           </TableCell>
-        )}
-        {columns.map((column, i) => {
-          return (
-            <TableCell
-              align={column.numeric ? "right" : "left"}
-              key={`${column.id}_${id}`}
-              padding={i === 0 && selectable ? "none" : "normal"}>
-              <Box>
-                {column.view
-                  ? column.view(row)
-                  : row[column.id] === undefined
-                    ? "-"
-                    : row[column.id] === null
-                      ? "-"
-                      : row[column.id]}
-              </Box>
-            </TableCell>
-          )
-        })}
-        {actions.length !== 0 && (
-          <TableCell>
-            <ActionButtons size="small" actions={actions} context={row} />
-          </TableCell>
-        )}
-      </TableRow>
-    )
-    return result
-  },
-)
+        )
+      })}
+      {actions.length !== 0 && (
+        <TableCell>
+          <ActionButtons size="small" actions={actions} context={row} />
+        </TableCell>
+      )}
+    </TableRow>
+  )
+  return result
+})
 
 // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
@@ -179,8 +177,8 @@ function TableEditor(props) {
   const {
     idField = "id",
     title,
-    columns,
-    rows,
+    columns = [],
+    rows = [],
     defaultPageSize = 10,
     pageSizes = [],
     actions = [],
