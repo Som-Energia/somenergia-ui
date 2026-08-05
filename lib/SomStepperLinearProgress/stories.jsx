@@ -37,7 +37,7 @@ const meta = {
     },
   },
   args: {
-    currentStep: 1,
+    currentStep: 0,
     totalSteps: defaultTotalSteps,
     showStepTitle: false,
     stepTitle: "Step",
@@ -50,7 +50,7 @@ export const Default = {}
 
 export const WithStepTitle = {
   args: {
-    currentStep: 2,
+    currentStep: 1,
     showStepTitle: true,
     stepTitle: "STEP_TITLE",
   },
@@ -58,13 +58,13 @@ export const WithStepTitle = {
 
 export const FirstStep = {
   args: {
-    currentStep: 1,
+    currentStep: 0,
   },
 }
 
 export const MiddleStep = {
   args: {
-    currentStep: 2,
+    currentStep: 1,
   },
 }
 

@@ -15,7 +15,7 @@ const SomStepper = (props) => {
     nextButtonLabel = "Next",
     prevButtonLabel = "Previous",
     finishButton = null,
-    hidePreviousButton = false,
+    hidePrevButton = false,
     children,
   } = props
 
@@ -40,20 +40,18 @@ const SomStepper = (props) => {
         sx={{
           marginTop: "2rem",
           justifyContent:
-            activeStep === lastStepIndex && finishButton && hidePreviousButton
+            activeStep === lastStepIndex && finishButton && hidePrevButton
               ? "center"
               : "space-between",
           alignItems: "center",
         }}>
-        {!hidePreviousButton &&
-          activeStep > 0 &&
-          activeStep <= lastStepIndex && (
-            <Grid item size={{ sm: 2, xs: 12 }}>
-              <PrevButton onClick={() => prevStep()}>
-                {prevButtonLabel}
-              </PrevButton>
-            </Grid>
-          )}
+        {!hidePrevButton && activeStep > 0 && activeStep <= lastStepIndex && (
+          <Grid item size={{ sm: 2, xs: 12 }}>
+            <PrevButton onClick={() => prevStep()}>
+              {prevButtonLabel}
+            </PrevButton>
+          </Grid>
+        )}
 
         {activeStep < lastStepIndex && (
           <Grid
