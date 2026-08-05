@@ -62,7 +62,7 @@ describe("SomStepper", () => {
       <SomStepper
         steps={steps}
         activeStep={steps.length - 1}
-        hidePreviousButton
+        hidePrevButton
         finishButton={<button type="button">Finish</button>}
       />,
     )

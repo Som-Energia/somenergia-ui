@@ -4,7 +4,7 @@ import SomStepperLinearProgress from "./"
 
 describe("SomStepperLinearProgress", () => {
   test("renders the current step label and progressbar when totalSteps is greater than zero", () => {
-    render(<SomStepperLinearProgress totalSteps={3} currentStep={2} />)
+    render(<SomStepperLinearProgress totalSteps={3} currentStep={1} />)
 
     expect(screen.getByText("2/3")).toBeInTheDocument()
     expect(screen.getByRole("progressbar")).toBeInTheDocument()
@@ -14,7 +14,7 @@ describe("SomStepperLinearProgress", () => {
     render(
       <SomStepperLinearProgress
         totalSteps={3}
-        currentStep={2}
+        currentStep={1}
         showStepTitle
         stepTitle="STEP_TITLE"
       />,
@@ -24,7 +24,7 @@ describe("SomStepperLinearProgress", () => {
   })
 
   test("sets the progress value from currentStep over totalSteps", () => {
-    render(<SomStepperLinearProgress totalSteps={3} currentStep={2} />)
+    render(<SomStepperLinearProgress totalSteps={3} currentStep={1} />)
 
     const progressValue = Number(
       screen.getByRole("progressbar").getAttribute("aria-valuenow"),

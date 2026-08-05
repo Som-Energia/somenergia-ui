@@ -82,7 +82,7 @@ const meta = {
     disableNext: {
       control: "boolean",
     },
-    hidePreviousButton: {
+    hidePrevButton: {
       control: "boolean",
     },
     nextButtonLabel: {
@@ -171,7 +171,7 @@ export const LastStepCenteredFinishButton = {
   render: ControlledStepper,
   args: {
     activeStep: defaultSteps.length - 1,
-    hidePreviousButton: true,
+    hidePrevButton: true,
     finishButton: (
       <SubmitButton variant="contained" color="primary">
         Confirm
