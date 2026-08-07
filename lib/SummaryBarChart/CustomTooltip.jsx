@@ -17,7 +17,6 @@ export const CustomTooltip = ({
 }) => {
   if (active && payload && payload.length) {
     const date = dayjs(payload[0].payload.date)
-    const dateFormat = `${date.format("DD/MM/YYYY")}`
     const formatWithHour = formatTooltipLabel(
       period,
       date,
@@ -34,12 +33,6 @@ export const CustomTooltip = ({
             justifyContent: "center",
             alignItems: "center",
           }}>
-          <Typography
-            variant="subtitle2"
-            sx={{
-              color: "#585857",
-              fontWeight: "bold",
-            }}>{`${dateFormat}`}</Typography>
           <Typography
             variant="subtitle2"
             sx={{
