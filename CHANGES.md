@@ -1,5 +1,10 @@
 # Change log
 
+## 1.1.7 2026-08-07
+
+- Fix: Hourly tooltip label
+- Fix: Tooltip duplicated date
+
 ## 1.1.5 2026-08-03
 
 - CI: Add ci workflow to build, test and validate changes
