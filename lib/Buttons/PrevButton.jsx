@@ -27,6 +27,7 @@ function PrevButton(props) {
         boxSizing: "border-box",
       }}
       data-cy="prev"
+      type="button"
       startIcon={startIcon}
       disabled={disabled}
       onClick={onClick}>

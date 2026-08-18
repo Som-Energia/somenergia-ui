@@ -10,7 +10,7 @@ function SubmitButton(props) {
     <Button
       tabIndex={0}
       sx={{ ...buttonDark }}
-      type="button"
+      type="submit"
       data-cy="next"
       variant="contained"
       disabled={disabled}
