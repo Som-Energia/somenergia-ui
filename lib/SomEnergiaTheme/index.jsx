@@ -22,7 +22,7 @@ const customTypographies = ["pagetitle", "pagesubtitle", "homeButtons"]
 export default function SomEnergiaTheme(isDarkMode) {
   const theme = createTheme({
     typography: {
-      fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Outfit", "Helvetica", "Arial", sans-serif',
       // Custom variant for home page paragraphs
       homeButtons: {
         fontSize: 22,
@@ -31,13 +31,13 @@ export default function SomEnergiaTheme(isDarkMode) {
       },
       pagetitle: {
         fontSize: 20,
-        fontWeight: 400, // from style guide
+        fontWeight: 400,
         lineHeight: 1,
       },
       pagesubtitle: {
         fontSize: 20,
         //fontWeight: 800, // from style guide
-        fontWeight: 700, //
+        fontWeight: 700,
         lineHeight: 1,
       },
     },
@@ -48,17 +48,18 @@ export default function SomEnergiaTheme(isDarkMode) {
       tonalOffset: 0.2,
       text: {
         primary: isDarkMode ? "#bdbdbd" : "#4d4d4d",
+        caption: "#0B2E34",
       },
       primary: {
-        //main: '#96D600', //'hsl(78, 100%, 42%)', // from style guide
-        main: "#96b633", // from webforms-ui
-        contrastText: "white",
+        main: "#c5f47c",
+        contrastText: "#0B2E34",
+        dark: "#b6e471",
       },
       secondary: {
-        //main: '#E0E723', //'hsl(62, 80%, 52%)', // from style guide
-        // main: '#a1a1a1', // from webforms-ui
-        // main: '#e6cc00', // Original design
-        main: "#e2e2e2", // From mentxu design 2023-10-26
+        main: "#c4c4c4",
+      },
+      accent: {
+        main: "#ff632b",
       },
       pagetitle: {
         main: "#4d4d4d",

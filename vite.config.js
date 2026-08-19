@@ -54,4 +54,15 @@ export default defineConfig({
       },
     },
   },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./test/setupTests.js",
+    exclude: [
+      "**/node_modules/**",
+      "**/coverage/**",
+      "**/src/**",
+      "**/public/**",
+    ],
+  },
 })
