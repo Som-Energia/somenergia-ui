@@ -1,8 +1,8 @@
 # Change log
 
-## [unreleased]
+## 1.2.0 2026-08-19
 
-- Add SomStepper and SomStepperLinearProgress components
+- New: SomStepper and SomStepperLinearProgress components
 - Apply SomEnergia color styles
 - Use Outfit as the official font family
 - Improve SomStepper and SomStepperLinearProgress Storybook coverage
