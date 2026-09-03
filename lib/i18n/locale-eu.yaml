@@ -1,13 +1,17 @@
-TABLE_EDITOR:
-  LOADING: Datuak kargatzen...
-  SELECT_ALL: Hautatu dena
-  ACTIONS: Ekintzak
-  SORTED_DESCENDING: Beheranzko ordena
-  SORTED_ASCENDING: Goranzko ordena
-  N_SELECTED_one: 'elementu hautatu {{count}}'
-  N_SELECTED_other: '{{count}} elementu hautatu'
-  PLACEHOLDER_SEARCH: Bilatu...
-  LABEL_SEARCH: Bilatu
-  N_ITEMS_FILTERED_one: Bilaketak elementu 1 ezkutatzen du
-  N_ITEMS_FILTERED_other: Bilaketak {{count}} elementu ezkutatzen ditu
-  CLEAR_FILTER: Erakutsi denak
+SUMDISPLAY.TOTAL_DAILY: Eguneko guztira
+SUMDISPLAY.TOTAL_MONTHLY: Hileko guztira
+SUMDISPLAY.TOTAL_WEEKLY: Asteko guztira
+SUMDISPLAY.TOTAL_YEARLY: Urteko guztira
+TABLE_EDITOR.ACTIONS: Ekintzak
+TABLE_EDITOR.CLEAR_FILTER: Erakutsi denak
+TABLE_EDITOR.LABEL_SEARCH: Bilatu
+TABLE_EDITOR.N_ITEMS_FILTERED_one: Bilaketak elementu 1 ezkutatzen du
+TABLE_EDITOR.N_ITEMS_FILTERED_many: TABLE_EDITOR.N_ITEMS_FILTERED
+TABLE_EDITOR.N_ITEMS_FILTERED_other: Bilaketak {{count}} elementu ezkutatzen ditu
+TABLE_EDITOR.N_SELECTED_one: "{{count}} elementu hautatuta"
+TABLE_EDITOR.N_SELECTED_many: TABLE_EDITOR.N_SELECTED
+TABLE_EDITOR.N_SELECTED_other: "{{count}} elementu hautatu"
+TABLE_EDITOR.PLACEHOLDER_SEARCH: Bilatu...
+TABLE_EDITOR.SELECT_ALL: Hautatu dena
+TABLE_EDITOR.SORTED_ASCENDING: Goranzko ordena
+TABLE_EDITOR.SORTED_DESCENDING: Beheranzko ordena
