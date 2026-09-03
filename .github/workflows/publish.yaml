@@ -20,9 +20,9 @@ jobs:
           git config --global user.name "webapps"
           git config --global user.email "webapps@somenergia.coop"
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '22.x'
+          node-version: '24.20.0'
           cache: npm
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
