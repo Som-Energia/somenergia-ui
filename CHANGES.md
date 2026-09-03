@@ -1,5 +1,10 @@
 # Change log
 
+## Unreleased
+
+- CI: upgrade node version
+- Fix: i18n node 24 package
+
 ## 1.2.0 2026-08-19
 
 - New: SomStepper and SomStepperLinearProgress components
