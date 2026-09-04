@@ -70,7 +70,7 @@ export const MiddleStep = {
 
 export const LastStep = {
   args: {
-    currentStep: defaultTotalSteps,
+    currentStep: defaultTotalSteps - 1,
   },
 }
 
