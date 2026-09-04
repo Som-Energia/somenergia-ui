@@ -155,3 +155,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# i18next temporal files
+locale-xx.json

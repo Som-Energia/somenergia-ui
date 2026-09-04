@@ -1,18 +1,17 @@
-TABLE_EDITOR:
-  LOADING: Cargando datos...
-  SELECT_ALL: Selecciona todo
-  ACTIONS: Acciones
-  SORTED_DESCENDING: Orden descendente
-  SORTED_ASCENDING: Orden ascendiente
-  N_SELECTED_one: "{{count}} elemento seleccionado"
-  N_SELECTED_other: "{{count}} elementos seleccionados"
-  PLACEHOLDER_SEARCH: "Busca..."
-  LABEL_SEARCH: "Busca"
-  N_ITEMS_FILTERED_one: La búsqueda oculta 1 elemento
-  N_ITEMS_FILTERED_other: La búsqueda oculta {{count}} elementos
-  CLEAR_FILTER: Mostrar todos
-SUMDISPLAY:
-  TOTAL_DAILY: Total diario
-  TOTAL_WEEKLY: Total semanal
-  TOTAL_MONTHLY: Total mensual
-  TOTAL_YEARLY: Total anual
+SUMDISPLAY.TOTAL_DAILY: Total diario
+SUMDISPLAY.TOTAL_MONTHLY: Total mensual
+SUMDISPLAY.TOTAL_WEEKLY: Total semanal
+SUMDISPLAY.TOTAL_YEARLY: Total anual
+TABLE_EDITOR.ACTIONS: Acciones
+TABLE_EDITOR.CLEAR_FILTER: Mostrar todos
+TABLE_EDITOR.LABEL_SEARCH: Busca
+TABLE_EDITOR.N_ITEMS_FILTERED_one: La búsqueda oculta 1 elemento
+TABLE_EDITOR.N_ITEMS_FILTERED_many: TABLE_EDITOR.N_ITEMS_FILTERED
+TABLE_EDITOR.N_ITEMS_FILTERED_other: La búsqueda oculta {{count}} elementos
+TABLE_EDITOR.N_SELECTED_one: "{{count}} elemento seleccionado"
+TABLE_EDITOR.N_SELECTED_many: TABLE_EDITOR.N_SELECTED
+TABLE_EDITOR.N_SELECTED_other: "{{count}} elementos seleccionados"
+TABLE_EDITOR.PLACEHOLDER_SEARCH: Busca...
+TABLE_EDITOR.SELECT_ALL: Selecciona todo
+TABLE_EDITOR.SORTED_ASCENDING: Orden ascendiente
+TABLE_EDITOR.SORTED_DESCENDING: Orden descendente
