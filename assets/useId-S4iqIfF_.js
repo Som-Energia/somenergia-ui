@@ -1,0 +1,1 @@
+import{r as s,a as c}from"./index-DRjF_FHU.js";const r=typeof window<"u"?s.useLayoutEffect:s.useEffect;let n=0;function o(e){const[t,a]=s.useState(e),f=e||t;return s.useEffect(()=>{t==null&&(n+=1,a(`mui-${n}`))},[t]),f}const d={...c},u=d.useId;function I(e){if(u!==void 0){const t=u();return e??t}return o(e)}export{I as a,r as u};

@@ -1,0 +1,1 @@
+function a(r,...o){const e=new URL(`https://mui.com/production-error/?code=${r}`);return o.forEach(s=>e.searchParams.append("args[]",s)),`Minified MUI error #${r}; visit ${e} for the full message.`}export{a as f};
