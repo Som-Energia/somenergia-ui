@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## 1.3.0 2026-09-04
 
 - CI: upgrade node version
 - Fix: i18n node 24 package
