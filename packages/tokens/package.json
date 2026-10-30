@@ -1,0 +1,28 @@
+{
+  "name": "@somenergia/tokens",
+  "version": "1.0.0",
+  "description": "Som Energia design tokens: colors, typography, radii and spacing as JS and CSS custom properties",
+  "license": "AGPL-3.0",
+  "homepage": "https://github.com/Som-Energia/somenergia-ui/tree/main/packages/tokens",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Som-Energia/somenergia-ui.git",
+    "directory": "packages/tokens"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "src/index.js",
+    "dist"
+  ],
+  "exports": {
+    ".": "./src/index.js",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "scripts": {
+    "build": "node scripts/build-css.js",
+    "prepack": "npm run build"
+  }
+}

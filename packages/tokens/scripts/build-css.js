@@ -1,12 +1,11 @@
-// Writes dist/tokens.css from lib/tokens. Runs after vite build,
-// which empties dist/ first.
+// Writes dist/tokens.css from src/index.js.
 
 import { mkdirSync, writeFileSync } from "node:fs"
 import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
-import tokens from "../lib/tokens/index.js"
-import tokensToCss from "../lib/tokens/css.js"
+import tokensToCss from "../src/css.js"
+import tokens from "../src/index.js"
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const output = resolve(root, "dist/tokens.css")

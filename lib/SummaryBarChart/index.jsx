@@ -1,3 +1,5 @@
+import tokens from "@somenergia/tokens"
+
 import PropTypes from "prop-types"
 import {
   Bar,
@@ -12,7 +14,6 @@ import {
   YAxis,
 } from "recharts"
 
-import tokens from "../tokens"
 import {
   buildTicks,
   formatDecimal,

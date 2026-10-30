@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 
-import tokens from "../tokens"
+import tokens from "@somenergia/tokens"
 
 const color = tokens.color.light
 

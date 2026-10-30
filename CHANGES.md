@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- New: design tokens in `lib/tokens`, exported as `tokens` and `@somenergia/somenergia-ui/tokens`
-- New: `@somenergia/somenergia-ui/tokens.css` with `--som-*` CSS custom properties
+- New: `@somenergia/tokens` package (`packages/tokens`) with design tokens as JS and `--som-*` CSS custom properties
+- New: `tokens` re-exported from `@somenergia/somenergia-ui`
 - New: `GlobalTheming` sets `data-theme` on `<html>` following the color mode
 - Refactor: `SomEnergiaTheme`, charts and buttons read colors from tokens (no visual changes)
 

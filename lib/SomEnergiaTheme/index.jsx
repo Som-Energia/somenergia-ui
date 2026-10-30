@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
 
-import tokens from "../tokens"
+import tokens from "@somenergia/tokens"
 
 // TODO: This list must be updated if standard MUI typographies change
 const standardTypographies = [

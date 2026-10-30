@@ -1,7 +1,7 @@
 // Design tokens: the single source of truth for Som Energia styles.
 //
-// SomEnergiaTheme builds the MUI theme from these values and
-// scripts/build-tokens-css.js turns them into dist/tokens.css
+// @somenergia/somenergia-ui builds its MUI theme from these values and
+// scripts/build-css.js turns them into dist/tokens.css
 // (as --som-* CSS custom properties) for projects without MUI.
 //
 // Values must be literal (no var(...)) because MUI color helpers

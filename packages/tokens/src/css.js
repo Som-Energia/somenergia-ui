@@ -32,7 +32,7 @@ export default function tokensToCss(tokens) {
   }
   const dark = { color: tokens.color.dark }
 
-  return `/* Generated from lib/tokens by scripts/build-tokens-css.js. Do not edit. */
+  return `/* Generated from @somenergia/tokens src/index.js. Do not edit. */
 :root {
   color-scheme: light;
 ${declarations(shared, "  ")}

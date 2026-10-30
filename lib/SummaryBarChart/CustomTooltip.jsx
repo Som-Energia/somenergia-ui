@@ -2,10 +2,11 @@ import { Paper, Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import { alpha } from "@mui/system/colorManipulator"
 
+import tokens from "@somenergia/tokens"
+
 import dayjs from "dayjs"
 import PropTypes from "prop-types"
 
-import tokens from "../tokens"
 import { formatTooltipLabel } from "../utils/chart.utils"
 
 export const CustomTooltip = ({

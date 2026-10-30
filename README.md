@@ -30,40 +30,19 @@ If your project uses `SomEnergiaTheme` or `GlobalTheming`, load the Som Energia 
 
 ## Design tokens
 
-Som Energia colors, typography, radii and spacing live in `lib/tokens`, the single source of truth.
-`SomEnergiaTheme` builds the MUI theme from them, and the build turns them into CSS custom properties.
-
-### From JavaScript
+Som Energia colors, typography, radii and spacing live in [`@somenergia/tokens`](packages/tokens),
+a dependency-free package in this repository (`packages/tokens`) that is the single source of truth.
+`SomEnergiaTheme` builds the MUI theme from it, and it is re-exported here as `tokens`:
 
 ```js
 import { tokens } from "@somenergia/somenergia-ui"
-
-tokens.color.light.primary
-tokens.color.dark.text
-tokens.radius.xl
 ```
 
-### From CSS (projects without MUI)
+Projects without MUI should install `@somenergia/tokens` alone and import its CSS custom properties.
+See [its README](packages/tokens/README.md).
 
-```js
-import "@somenergia/somenergia-ui/tokens.css"
-```
-
-```css
-.card {
-  color: var(--som-color-text);
-  background: var(--som-color-surface);
-  border-radius: var(--som-radius-lg);
-  padding: var(--som-space-4);
-  font-family: var(--som-font-family);
-}
-```
-
-Dark colors apply with `<html data-theme="dark">`, or following the system preference
-unless `data-theme="light"` is set. `GlobalTheming` keeps `data-theme` in sync with the
-selected color mode, so plain CSS and MUI components always match.
-
-Never edit `dist/tokens.css`: change `lib/tokens/index.js` and rebuild.
+`GlobalTheming` sets `data-theme` on `<html>` following the color mode, so plain CSS using the tokens
+and MUI components always match.
 
 ## Configuring i18n on your project with somenergia-ui components
 
@@ -103,7 +82,7 @@ registerSomEnergiaI18n(i18n)
 
 ## Adding dependencies
 
-- Do not add them in `package.json`'s `dependencies` key
+- Do not add them in `package.json`'s `dependencies` key (except `@somenergia/tokens`, which lives in this repository)
 - Add them both in `peerDependencies` and `developmentDependencies`
 - Ensure they are filtered by the `externals` in `vite-config.js`' `build.rollupOptions.externals`
 - If the build creates a `vendor-***.js` as output, means that you failed to filter it
