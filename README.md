@@ -90,47 +90,122 @@ registerSomEnergiaI18n(i18n)
 
 ## Using unreleased components in another project
 
-First build the library locally
+First build the library locally (it also builds `packages/tokens`):
 
 ```bash
 npm run build
 ```
 
-From the other project run:
+From the other project install both packages. `@somenergia/tokens` goes first because, while it is
+not published with the version `somenergia-ui` requires, npm can't find it in the registry:
 
 ```bash
-npm install ../somenergia-ui
+npm install ../somenergia-ui/packages/tokens ../somenergia-ui
 ```
 
 ## Release process
 
-- Update version package.json and CHANGES.md
-- Tag the release somenergia-ui-M.m.p
-- On pushing the version tag, automated CI will publish the package in npm
-- Right now the storybook of the CI is failing so the following command must be run by hand
+This repository publishes two npm packages with independent versions:
+
+| Package | Folder | Version in |
+|---|---|---|
+| `@somenergia/tokens` | `packages/tokens` | `packages/tokens/package.json` |
+| `@somenergia/somenergia-ui` | repository root | `package.json` |
+
+`somenergia-ui` depends on `@somenergia/tokens`, so **tokens are always published first**.
+
+### 1. Decide the versions
+
+- **`@somenergia/tokens`**: bump it only if `packages/tokens` changed since its last release.
+  - Major: a token is renamed or removed, or a value changes visibly (it restyles every Som Energia project).
+  - Minor: new tokens or new files (for example a new CSS export).
+  - Patch: fixes that don't change any value.
+- **`@somenergia/somenergia-ui`**: as usual. A tokens major bump that changes how components look is
+  a major bump here too.
+- If tokens got a new **major** version, update the range in the root `package.json`
+  (`"@somenergia/tokens": "^X.0.0"`) and run `npm install` so `package-lock.json` follows.
+
+### 2. Prepare the release commit
+
+- Update the versions in `packages/tokens/package.json` and/or `package.json`
+- Move the `Unreleased` entries of `CHANGES.md` under the new version and date
+- Check everything passes as in CI:
+
+```bash
+npm ci
+npm run lint
+npm run test:ci
+npm run build
+```
+
+- Review what each package will publish:
+
+```bash
+npm pack --dry-run -w @somenergia/tokens   # src/index.js, dist/tokens.css, dist/fonts.css, dist/fonts/*
+npm pack --dry-run                          # dist/
+```
+
+### 3. Publish
+
+#### Automatic (CI)
+
+- Tag the release `somenergia-ui-M.m.p` and push the tag. Don't also create a GitHub release:
+  the workflow runs on both, and the second run fails because the version is already on npm
+- The `publish.yaml` workflow publishes `@somenergia/tokens` only if its version is not on npm yet,
+  then publishes `@somenergia/somenergia-ui`
+- The workflow's last step, "Deploy Storybook", fails: `gh-pages` can't push to the `gh-pages` branch
+  because the job has no git credentials (`fatal: could not read Username for 'https://github.com'`)
+  and only `contents: read` permission. The npm packages are already published by then.
+  Deploy Storybook by hand from your machine:
 
 ```bash
 npm run deploy-storybook
 ```
 
-## Manual publish version
+#### Manual
 
-Create a tag and update package.json version and execute:
+Tokens first (skip it if its version is already on npm, check with `npm view @somenergia/tokens versions`):
+
+```bash
+NPM_TOKEN=[...token] npm publish -w @somenergia/tokens --access public
+```
+
+Then the library:
 
 ```bash
 NPM_TOKEN=[...token] npm publish
 ```
 
-The release is an existing version update
+`prepack` builds `packages/tokens/dist` and `prepare` builds the library, so there is no need to build by hand.
+
+The first publication of `@somenergia/tokens` creates the package on npm:
+the token or user must be allowed to create packages in the `@somenergia` scope.
+
+If the release is an existing version update:
 
 ```bash
+NPM_TOKEN=[...token] npm dist-tag add @somenergia/tokens@[...version] latest
 NPM_TOKEN=[...token] npm dist-tag add @somenergia/somenergia-ui@[...version] latest
 ```
 
-## Alpha publications
+### 4. After publishing
 
-Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`
+- Check both versions are on npm:
 
 ```bash
+npm view @somenergia/tokens version
+npm view @somenergia/somenergia-ui version
+```
+
+- Install the new version in a consuming project and check it looks right in light and dark mode
+
+## Alpha publications
+
+Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`.
+If tokens changed, publish an alpha of them first and make the root `package.json` depend on that
+exact alpha version (`"@somenergia/tokens": "1.1.0-alpha.1"`), because `^` ranges skip prereleases.
+
+```bash
+NPM_TOKEN=[...token] npm publish -w @somenergia/tokens --access public --tag alpha
 NPM_TOKEN=[...token] npm publish --tag alpha
 ```
