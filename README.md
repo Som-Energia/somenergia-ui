@@ -28,6 +28,43 @@ If your project uses `SomEnergiaTheme` or `GlobalTheming`, load the Som Energia 
 
 `SomEnergiaTheme` uses `Outfit` as the default font family. If the host application does not load the font, the browser will fall back to `Helvetica`, `Arial`, and `sans-serif`.
 
+## Design tokens
+
+Som Energia colors, typography, radii and spacing live in `lib/tokens`, the single source of truth.
+`SomEnergiaTheme` builds the MUI theme from them, and the build turns them into CSS custom properties.
+
+### From JavaScript
+
+```js
+import { tokens } from "@somenergia/somenergia-ui"
+
+tokens.color.light.primary
+tokens.color.dark.text
+tokens.radius.xl
+```
+
+### From CSS (projects without MUI)
+
+```js
+import "@somenergia/somenergia-ui/tokens.css"
+```
+
+```css
+.card {
+  color: var(--som-color-text);
+  background: var(--som-color-surface);
+  border-radius: var(--som-radius-lg);
+  padding: var(--som-space-4);
+  font-family: var(--som-font-family);
+}
+```
+
+Dark colors apply with `<html data-theme="dark">`, or following the system preference
+unless `data-theme="light"` is set. `GlobalTheming` keeps `data-theme` in sync with the
+selected color mode, so plain CSS and MUI components always match.
+
+Never edit `dist/tokens.css`: change `lib/tokens/index.js` and rebuild.
+
 ## Configuring i18n on your project with somenergia-ui components
 
 This library requires i18n configuration for multi-language support. Simply provide the host project's i18n instance, and the library will handle registering the necessary translations.

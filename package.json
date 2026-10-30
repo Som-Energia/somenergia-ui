@@ -17,11 +17,16 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js"
-    }
+    },
+    "./tokens": {
+      "import": "./dist/tokens/index.es.js"
+    },
+    "./tokens.css": "./dist/tokens.css"
   },
   "scripts": {
     "dev": "npm run lint:todos; vite",
-    "build": "vite build",
+    "build": "vite build && npm run build:tokens-css",
+    "build:tokens-css": "node scripts/build-tokens-css.js",
     "lint": "eslint ./lib --ext js,jsx --report-unused-disable-directives",
     "lint:fix": "eslint ./lib --ext js,jsx --fix",
     "lint:todos": "todos ./lib",

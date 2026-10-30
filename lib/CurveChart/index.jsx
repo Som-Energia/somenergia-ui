@@ -10,6 +10,7 @@ import {
   YAxis,
 } from "recharts"
 
+import tokens from "../tokens"
 import {
   domainFromData,
   formatDecimal,
@@ -20,6 +21,8 @@ import {
   setChartLang,
   ticksFromData,
 } from "../utils/chart.utils"
+
+const chartColor = tokens.color.light.chart
 
 function CurveChart({
   data,
@@ -36,7 +39,11 @@ function CurveChart({
     <div style={{ height: "450px" }}>
       <ResponsiveContainer>
         <LineChart width={730} height={250} data={mixedData}>
-          <CartesianGrid stroke="#ccc" strokeWidth={0.5} vertical={false} />
+          <CartesianGrid
+            stroke={chartColor.gridSoft}
+            strokeWidth={0.5}
+            vertical={false}
+          />
           <XAxis
             dataKey="date"
             type="number"
@@ -59,7 +66,7 @@ function CurveChart({
               value={Ylegend}
               angle={-90}
               position="insideLeft"
-              fill="#969696"
+              fill={chartColor.axisLabel}
             />
           </YAxis>
           <Tooltip
@@ -72,7 +79,7 @@ function CurveChart({
           <Line
             type="monotone"
             dataKey="value"
-            stroke="#96b633"
+            stroke={chartColor.production}
             dot={false}
             strokeWidth={3}
             activeDot={{ r: 6 }}
@@ -81,7 +88,7 @@ function CurveChart({
             <Line
               type="monotone"
               dataKey="compValue"
-              stroke="#f2970f"
+              stroke={chartColor.foreseen}
               dot={false}
               strokeWidth={3}
               activeDot={{ r: 6 }}

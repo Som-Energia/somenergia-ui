@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased
+
+- New: design tokens in `lib/tokens`, exported as `tokens` and `@somenergia/somenergia-ui/tokens`
+- New: `@somenergia/somenergia-ui/tokens.css` with `--som-*` CSS custom properties
+- New: `GlobalTheming` sets `data-theme` on `<html>` following the color mode
+- Refactor: `SomEnergiaTheme`, charts and buttons read colors from tokens (no visual changes)
+
 ## 1.3.0 2026-09-04
 
 - CI: upgrade node version

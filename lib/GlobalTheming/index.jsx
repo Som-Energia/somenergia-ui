@@ -22,6 +22,8 @@ const ColorModeContext = React.createContext({
  *
  * - It applies the global css reset with CssBaseline.
  * - It activates the SomEnergiaTheme or any other provided,
+ * - It sets data-theme="light|dark" on <html> so plain CSS
+ *   using the tokens.css variables follows the same color mode.
  * - It provides a context, ColorModeContext, to switch among
  *   color light and dark modes and syncs it among all the tabs
  *   of the browser.
@@ -50,6 +52,10 @@ function GlobalTheme({ children, customTheme }) {
     () => (customTheme ?? SomEnergiaTheme)(isDarkMode),
     [isDarkMode, customTheme],
   )
+
+  React.useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? "dark" : "light"
+  }, [isDarkMode])
 
   return (
     <ColorModeContext.Provider value={colorModeContext}>

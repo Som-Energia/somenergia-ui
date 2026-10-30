@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts"
 
+import tokens from "../tokens"
 import {
   buildTicks,
   formatDecimal,
@@ -20,6 +21,8 @@ import {
 } from "../utils/chart.utils"
 import { CustomLegend } from "./CustomLegend"
 import { CustomTooltip } from "./CustomTooltip"
+
+const chartColor = tokens.color.light.chart
 
 function SummaryPeriodChart({
   data,
@@ -41,7 +44,11 @@ function SummaryPeriodChart({
     <div style={{ height: "450px" }}>
       <ResponsiveContainer>
         <BarChart width={730} height={250} data={data.periods}>
-          <CartesianGrid stroke="#616161" strokeWidth={0.5} vertical={false} />
+          <CartesianGrid
+            stroke={chartColor.grid}
+            strokeWidth={0.5}
+            vertical={false}
+          />
           <XAxis dataKey="range" padding={{ left: 24, right: 24 }} hide />
           <XAxis
             dataKey="date"
@@ -67,7 +74,7 @@ function SummaryPeriodChart({
               value={Ylegend}
               angle={-90}
               position="insideLeft"
-              fill="#969696"
+              fill={chartColor.axisLabel}
             />
           </YAxis>
           <Tooltip
@@ -79,7 +86,7 @@ function SummaryPeriodChart({
                 displaced={displaced}
               />
             }
-            cursor={{ fill: "#f2f2f2bb" }}
+            cursor={{ fill: chartColor.cursor }}
           />
 
           {legend && !referenceLineData && <Legend />}
