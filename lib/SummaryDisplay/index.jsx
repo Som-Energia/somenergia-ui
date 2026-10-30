@@ -1,8 +1,6 @@
 import { Box, Typography } from "@mui/material"
 
-import tokens from "@somenergia/tokens"
-
-const color = tokens.color.light
+import useTokenColors from "../hooks/TokenColors"
 
 export default function SummaryDisplay(props) {
   const {
@@ -12,6 +10,7 @@ export default function SummaryDisplay(props) {
     description,
     color: valueColor = "primary",
   } = props
+  const color = useTokenColors()
 
   const formatValue = (value) => {
     return Number.isNaN(value)

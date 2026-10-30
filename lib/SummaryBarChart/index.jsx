@@ -1,5 +1,3 @@
-import tokens from "@somenergia/tokens"
-
 import PropTypes from "prop-types"
 import {
   Bar,
@@ -14,6 +12,7 @@ import {
   YAxis,
 } from "recharts"
 
+import useTokenColors from "../hooks/TokenColors"
 import {
   buildTicks,
   formatDecimal,
@@ -22,8 +21,6 @@ import {
 } from "../utils/chart.utils"
 import { CustomLegend } from "./CustomLegend"
 import { CustomTooltip } from "./CustomTooltip"
-
-const chartColor = tokens.color.light.chart
 
 function SummaryPeriodChart({
   data,
@@ -40,6 +37,7 @@ function SummaryPeriodChart({
   displaced = false,
   scale = "band",
 }) {
+  const chartColor = useTokenColors().chart
   setChartLang(lang)
   return (
     <div style={{ height: "450px" }}>

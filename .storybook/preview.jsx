@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 import { withThemeFromJSXProvider } from "@storybook/addon-themes"
 
+import "@somenergia/tokens/fonts.css"
+
 import SomEnergiaTheme from "../lib/SomEnergiaTheme"
 import i18n from "./i18next"
 

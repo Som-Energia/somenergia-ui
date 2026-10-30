@@ -1,5 +1,3 @@
-import tokens from "@somenergia/tokens"
-
 import PropTypes from "prop-types"
 import {
   CartesianGrid,
@@ -12,6 +10,7 @@ import {
   YAxis,
 } from "recharts"
 
+import useTokenColors from "../hooks/TokenColors"
 import {
   domainFromData,
   formatDecimal,
@@ -23,8 +22,6 @@ import {
   ticksFromData,
 } from "../utils/chart.utils"
 
-const chartColor = tokens.color.light.chart
-
 function CurveChart({
   data,
   period,
@@ -33,6 +30,7 @@ function CurveChart({
   Ylegend = "kWh",
   displaced = false,
 }) {
+  const chartColor = useTokenColors().chart
   setChartLang(lang)
   const mixedData = mergeData(data, compareData)
 

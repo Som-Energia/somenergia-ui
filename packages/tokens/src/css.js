@@ -26,7 +26,7 @@ function declarations(values, indent) {
 
 export default function tokensToCss(tokens) {
   const shared = {
-    font: { family: tokens.fontFamily },
+    font: tokens.font,
     radius: tokens.radius,
     space: tokens.space,
   }

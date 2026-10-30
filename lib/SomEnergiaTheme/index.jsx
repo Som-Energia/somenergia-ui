@@ -25,7 +25,7 @@ export default function SomEnergiaTheme(isDarkMode) {
   const color = isDarkMode ? tokens.color.dark : tokens.color.light
   const theme = createTheme({
     typography: {
-      fontFamily: tokens.fontFamily,
+      fontFamily: tokens.font.family,
       // Custom variant for home page paragraphs
       homeButtons: {
         fontSize: 22,
@@ -53,9 +53,14 @@ export default function SomEnergiaTheme(isDarkMode) {
         default: color.background,
         paper: color.surface,
       },
+      divider: color.border,
       text: {
         primary: color.text,
+        secondary: color.textMuted,
         caption: color.textCaption,
+      },
+      error: {
+        main: color.danger,
       },
       primary: {
         main: color.primary,

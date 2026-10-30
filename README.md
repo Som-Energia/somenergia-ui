@@ -18,15 +18,14 @@ npm install --save @somenergia/somenergia-ui
 
 ## Loading fonts
 
-If your project uses `SomEnergiaTheme` or `GlobalTheming`, load the Som Energia font in the host application so the components render with the intended typography.
+`SomEnergiaTheme` uses `Outfit` as the default font family. Load it once in the host application
+from `@somenergia/tokens` (a dependency of this library), which ships the font files, so you don't depend on Google Fonts:
 
-```html
-<link
-  href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-  rel="stylesheet" />
+```js
+import "@somenergia/tokens/fonts.css"
 ```
 
-`SomEnergiaTheme` uses `Outfit` as the default font family. If the host application does not load the font, the browser will fall back to `Helvetica`, `Arial`, and `sans-serif`.
+If the host application does not load the font, the browser falls back to the system sans-serif font.
 
 ## Design tokens
 

@@ -33,6 +33,14 @@ Dark colors apply with `<html data-theme="dark">`, or following the system
 preference unless `data-theme="light"` is set. `GlobalTheming` from
 `@somenergia/somenergia-ui` keeps `data-theme` in sync with its color mode.
 
+## Font
+
+`fonts.css` declares the Outfit variable font (OFL-1.1) with its files bundled in the package:
+
+```js
+import "@somenergia/tokens/fonts.css"
+```
+
 ## From JavaScript
 
 ```js
