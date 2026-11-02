@@ -19,14 +19,17 @@
       "import": "./dist/index.es.js"
     }
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "npm run lint:todos; vite",
-    "build": "vite build",
-    "lint": "eslint ./lib --ext js,jsx --report-unused-disable-directives",
-    "lint:fix": "eslint ./lib --ext js,jsx --fix",
+    "build": "npm run build -w @somenergia/tokens && vite build",
+    "lint": "eslint ./lib ./packages --ext js,jsx --report-unused-disable-directives",
+    "lint:fix": "eslint ./lib ./packages --ext js,jsx --fix",
     "lint:todos": "todos ./lib",
-    "format": "prettier --write ./lib",
-    "format:check": "prettier --check ./lib",
+    "format": "prettier --write ./lib ./packages",
+    "format:check": "prettier --check ./lib ./packages",
     "test": "vitest",
     "test:ci": "vitest run",
     "preview": "vite preview",
@@ -35,6 +38,9 @@
     "build-storybook": "storybook build",
     "prepare": "npm run build",
     "i18n-extract": "i18next-cli -c ./i18next-cli.config.mjs extract"
+  },
+  "dependencies": {
+    "@somenergia/tokens": "^1.0.0"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.11.1",

@@ -29,6 +29,14 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+      - name: Publish @somenergia/tokens to npm if its version is new
+        run: |
+          VERSION=$(node -p "require('./packages/tokens/package.json').version")
+          if npm view "@somenergia/tokens@$VERSION" version > /dev/null 2>&1; then
+            echo "@somenergia/tokens@$VERSION already published, skipping"
+          else
+            npm publish -w @somenergia/tokens --access public
+          fi
       - name: Publish to npm
         run: npm publish --access public
       - name: Deploy Storybook

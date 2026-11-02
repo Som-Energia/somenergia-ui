@@ -1,5 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
 
+import tokens from "@somenergia/tokens"
+
 // TODO: This list must be updated if standard MUI typographies change
 const standardTypographies = [
   "h1",
@@ -20,9 +22,10 @@ const standardTypographies = [
 const customTypographies = ["pagetitle", "pagesubtitle", "homeButtons"]
 
 export default function SomEnergiaTheme(isDarkMode) {
+  const color = isDarkMode ? tokens.color.dark : tokens.color.light
   const theme = createTheme({
     typography: {
-      fontFamily: '"Outfit", "Helvetica", "Arial", sans-serif',
+      fontFamily: tokens.font.family,
       // Custom variant for home page paragraphs
       homeButtons: {
         fontSize: 22,
@@ -46,33 +49,42 @@ export default function SomEnergiaTheme(isDarkMode) {
       //contrastThreshold: 0.2, // From webforms-ui
       contrastThreshold: 4.5, // Recommended by WCAG 2.1 Rule 1.4.3
       tonalOffset: 0.2,
+      background: {
+        default: color.background,
+        paper: color.surface,
+      },
+      divider: color.border,
       text: {
-        primary: isDarkMode ? "#bdbdbd" : "#4d4d4d",
-        caption: "#0B2E34",
+        primary: color.text,
+        secondary: color.textMuted,
+        caption: color.textCaption,
+      },
+      error: {
+        main: color.danger,
       },
       primary: {
-        main: "#c5f47c",
-        contrastText: "#0B2E34",
-        dark: "#b6e471",
+        main: color.primary,
+        contrastText: color.onPrimary,
+        dark: color.primaryHover,
       },
       secondary: {
-        main: "#c4c4c4",
+        main: color.secondary,
       },
       accent: {
-        main: "#ff632b",
+        main: color.accent,
       },
       pagetitle: {
-        main: "#4d4d4d",
+        main: color.pageTitle,
       },
       table: {
-        titleColor: "rgb(150,182,51,0.7)",
-        contentLight: "rgba(0, 0, 0, 0.03)",
-        contentDark: "#1A2027",
-        line: "#8080804a",
+        titleColor: color.table.title,
+        contentLight: color.table.contentLight,
+        contentDark: color.table.contentDark,
+        line: color.table.line,
       },
       chartlines: {
-        production: "#96b633",
-        foreseen: "#f2970f",
+        production: color.chart.production,
+        foreseen: color.chart.foreseen,
       },
     },
   })

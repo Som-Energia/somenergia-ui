@@ -37,6 +37,7 @@ export default defineConfig({
         /^@mui/,
         "@emotion",
         /^recharts/,
+        /^@somenergia\/tokens/,
       ],
       // create modlue A/B/module from lib/A/B/module.jsx
       input: Object.fromEntries(
@@ -61,7 +62,7 @@ export default defineConfig({
     exclude: [
       "**/node_modules/**",
       "**/coverage/**",
-      "**/src/**",
+      "src/**",
       "**/public/**",
     ],
   },

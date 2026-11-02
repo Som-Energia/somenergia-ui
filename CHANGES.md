@@ -1,5 +1,19 @@
 # Change log
 
+## Unreleased
+
+- New: `@somenergia/tokens` package (`packages/tokens`) with design tokens as JS and `--som-*` CSS custom properties
+- New: `tokens` re-exported from `@somenergia/somenergia-ui`
+- New: `GlobalTheming` sets `data-theme` on `<html>` following the color mode
+- Refactor: `SomEnergiaTheme`, charts and buttons read colors from tokens
+- BREAKING: tokens and `SomEnergiaTheme` follow the somenergia.coop palette
+  (primary `#cdff80`, text `#0b2e34`, accent `#97d700`, own dark palette with `#061c20` background)
+- BREAKING: `tokens.fontFamily` is now `tokens.font.family`
+- New: `palette.divider`, `palette.text.secondary` and `palette.error` from tokens
+- New: `@somenergia/tokens/fonts.css` bundles the Outfit font, no Google Fonts needed
+- New: charts follow the dark color mode
+- Fix: `PrevButton` text is readable in dark mode
+
 ## 1.3.0 2026-09-04
 
 - CI: upgrade node version
