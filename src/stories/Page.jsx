@@ -2,14 +2,14 @@ import "./page.css"
 
 import React from "react"
 
-import { Header } from "./Header"
+import SomHeader from "../../lib/SomHeader"
 
 export const Page = () => {
   const [user, setUser] = React.useState()
 
   return (
     <article>
-      <Header
+      <SomHeader
         user={user}
         onLogin={() => setUser({ name: "Jane Doe" })}
         onLogout={() => setUser(undefined)}

@@ -37,7 +37,7 @@ export default defineConfig({
         /^@mui/,
         "@emotion",
         /^recharts/,
-        /^@somenergia\/tokens/,
+        /^@somenergia\/design-tokens/,
       ],
       // create modlue A/B/module from lib/A/B/module.jsx
       input: Object.fromEntries(

@@ -16,6 +16,8 @@ const config = {
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-controls",
   ],
+  // Logos, favicons and fonts for the branded manager UI (manager.js)
+  staticDirs: [{ from: "../node_modules/@somenergia/brand", to: "/brand" }],
   framework: {
     name: "@storybook/react-vite",
     options: {},

@@ -19,26 +19,28 @@ npm install --save @somenergia/somenergia-ui
 ## Loading fonts
 
 `SomEnergiaTheme` uses `Outfit` as the default font family. Load it once in the host application
-from `@somenergia/tokens` (a dependency of this library), which ships the font files, so you don't depend on Google Fonts:
+from [`@somenergia/brand`](https://github.com/Som-Energia/somenergia-design/tree/main/packages/brand)
+(a dependency of this library), which ships the font files, so you don't depend on Google Fonts:
 
 ```js
-import "@somenergia/tokens/fonts.css"
+import "@somenergia/brand/fonts.css"
 ```
 
 If the host application does not load the font, the browser falls back to the system sans-serif font.
 
 ## Design tokens
 
-Som Energia colors, typography, radii and spacing live in [`@somenergia/tokens`](packages/tokens),
-a dependency-free package in this repository (`packages/tokens`) that is the single source of truth.
+Som Energia colors, typography, radii and spacing live in
+[`@somenergia/design-tokens`](https://github.com/Som-Energia/somenergia-design/tree/main/packages/design-tokens),
+the single source of truth maintained in the `somenergia-design` repository.
 `SomEnergiaTheme` builds the MUI theme from it, and it is re-exported here as `tokens`:
 
 ```js
 import { tokens } from "@somenergia/somenergia-ui"
 ```
 
-Projects without MUI should install `@somenergia/tokens` alone and import its CSS custom properties.
-See [its README](packages/tokens/README.md).
+Projects without MUI should install `@somenergia/design-tokens` alone and import its CSS custom
+properties (`@somenergia/design-tokens/tokens.css`).
 
 `GlobalTheming` sets `data-theme` on `<html>` following the color mode, so plain CSS using the tokens
 and MUI components always match.
@@ -81,7 +83,7 @@ registerSomEnergiaI18n(i18n)
 
 ## Adding dependencies
 
-- Do not add them in `package.json`'s `dependencies` key (except `@somenergia/tokens`, which lives in this repository)
+- Do not add them in `package.json`'s `dependencies` key (except `@somenergia/design-tokens` and `@somenergia/brand`)
 - Add them both in `peerDependencies` and `developmentDependencies`
 - Ensure they are filtered by the `externals` in `vite-config.js`' `build.rollupOptions.externals`
 - If the build creates a `vendor-***.js` as output, means that you failed to filter it
@@ -90,44 +92,28 @@ registerSomEnergiaI18n(i18n)
 
 ## Using unreleased components in another project
 
-First build the library locally (it also builds `packages/tokens`):
+First build the library locally:
 
 ```bash
 npm run build
 ```
 
-From the other project install both packages. `@somenergia/tokens` goes first because, while it is
-not published with the version `somenergia-ui` requires, npm can't find it in the registry:
+Then install it from the other project:
 
 ```bash
-npm install ../somenergia-ui/packages/tokens ../somenergia-ui
+npm install ../somenergia-ui
 ```
 
 ## Release process
 
-This repository publishes two npm packages with independent versions:
+Tokens and brand assets are released from the `somenergia-design` repository. If a new
+`@somenergia/design-tokens` or `@somenergia/brand` major version is needed, publish it there first,
+update its range in `package.json` and run `npm install` so `package-lock.json` follows.
+A tokens major bump that changes how components look is a major bump here too.
 
-| Package | Folder | Version in |
-|---|---|---|
-| `@somenergia/tokens` | `packages/tokens` | `packages/tokens/package.json` |
-| `@somenergia/somenergia-ui` | repository root | `package.json` |
+### 1. Prepare the release commit
 
-`somenergia-ui` depends on `@somenergia/tokens`, so **tokens are always published first**.
-
-### 1. Decide the versions
-
-- **`@somenergia/tokens`**: bump it only if `packages/tokens` changed since its last release.
-  - Major: a token is renamed or removed, or a value changes visibly (it restyles every Som Energia project).
-  - Minor: new tokens or new files (for example a new CSS export).
-  - Patch: fixes that don't change any value.
-- **`@somenergia/somenergia-ui`**: as usual. A tokens major bump that changes how components look is
-  a major bump here too.
-- If tokens got a new **major** version, update the range in the root `package.json`
-  (`"@somenergia/tokens": "^X.0.0"`) and run `npm install` so `package-lock.json` follows.
-
-### 2. Prepare the release commit
-
-- Update the versions in `packages/tokens/package.json` and/or `package.json`
+- Update the version in `package.json`
 - Move the `Unreleased` entries of `CHANGES.md` under the new version and date
 - Check everything passes as in CI:
 
@@ -138,24 +124,22 @@ npm run test:ci
 npm run build
 ```
 
-- Review what each package will publish:
+- Review what will be published:
 
 ```bash
-npm pack --dry-run -w @somenergia/tokens   # src/index.js, dist/tokens.css, dist/fonts.css, dist/fonts/*
-npm pack --dry-run                          # dist/
+npm pack --dry-run   # dist/
 ```
 
-### 3. Publish
+### 2. Publish
 
 #### Automatic (CI)
 
 - Tag the release `somenergia-ui-M.m.p` and push the tag. Don't also create a GitHub release:
   the workflow runs on both, and the second run fails because the version is already on npm
-- The `publish.yaml` workflow publishes `@somenergia/tokens` only if its version is not on npm yet,
-  then publishes `@somenergia/somenergia-ui`
+- The `publish.yaml` workflow publishes `@somenergia/somenergia-ui`
 - The workflow's last step, "Deploy Storybook", fails: `gh-pages` can't push to the `gh-pages` branch
   because the job has no git credentials (`fatal: could not read Username for 'https://github.com'`)
-  and only `contents: read` permission. The npm packages are already published by then.
+  and only `contents: read` permission. The npm package is already published by then.
   Deploy Storybook by hand from your machine:
 
 ```bash
@@ -164,36 +148,23 @@ npm run deploy-storybook
 
 #### Manual
 
-Tokens first (skip it if its version is already on npm, check with `npm view @somenergia/tokens versions`):
-
-```bash
-NPM_TOKEN=[...token] npm publish -w @somenergia/tokens --access public
-```
-
-Then the library:
-
 ```bash
 NPM_TOKEN=[...token] npm publish
 ```
 
-`prepack` builds `packages/tokens/dist` and `prepare` builds the library, so there is no need to build by hand.
-
-The first publication of `@somenergia/tokens` creates the package on npm:
-the token or user must be allowed to create packages in the `@somenergia` scope.
+`prepare` builds the library, so there is no need to build by hand.
 
 If the release is an existing version update:
 
 ```bash
-NPM_TOKEN=[...token] npm dist-tag add @somenergia/tokens@[...version] latest
 NPM_TOKEN=[...token] npm dist-tag add @somenergia/somenergia-ui@[...version] latest
 ```
 
-### 4. After publishing
+### 3. After publishing
 
-- Check both versions are on npm:
+- Check the version is on npm:
 
 ```bash
-npm view @somenergia/tokens version
 npm view @somenergia/somenergia-ui version
 ```
 
@@ -202,10 +173,7 @@ npm view @somenergia/somenergia-ui version
 ## Alpha publications
 
 Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`.
-If tokens changed, publish an alpha of them first and make the root `package.json` depend on that
-exact alpha version (`"@somenergia/tokens": "1.1.0-alpha.1"`), because `^` ranges skip prereleases.
 
 ```bash
-NPM_TOKEN=[...token] npm publish -w @somenergia/tokens --access public --tag alpha
 NPM_TOKEN=[...token] npm publish --tag alpha
 ```
