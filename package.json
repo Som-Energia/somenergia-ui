@@ -19,17 +19,14 @@
       "import": "./dist/index.es.js"
     }
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "dev": "npm run lint:todos; vite",
-    "build": "npm run build -w @somenergia/tokens && vite build",
-    "lint": "eslint ./lib ./packages --ext js,jsx --report-unused-disable-directives",
-    "lint:fix": "eslint ./lib ./packages --ext js,jsx --fix",
+    "build": "vite build",
+    "lint": "eslint ./lib --ext js,jsx --report-unused-disable-directives",
+    "lint:fix": "eslint ./lib --ext js,jsx --fix",
     "lint:todos": "todos ./lib",
-    "format": "prettier --write ./lib ./packages",
-    "format:check": "prettier --check ./lib ./packages",
+    "format": "prettier --write ./lib",
+    "format:check": "prettier --check ./lib",
     "test": "vitest",
     "test:ci": "vitest run",
     "preview": "vite preview",
@@ -40,7 +37,8 @@
     "i18n-extract": "i18next-cli -c ./i18next-cli.config.mjs extract"
   },
   "dependencies": {
-    "@somenergia/tokens": "^1.0.0"
+    "@somenergia/brand": "^1.0.0",
+    "@somenergia/design-tokens": "^1.0.0"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.11.1",
@@ -68,10 +66,7 @@
     "@mui/material": "6.5.0",
     "@mui/styled-engine-sc": "6.4.9",
     "@mui/x-date-pickers": "7.29.4",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^15.0.7",
-    "@testing-library/user-event": "^14.6.1",
+    "@somenergia/frontend-config": "github:Som-Energia/frontend-config#v1.1.2",
     "@storybook/addon-controls": "8.6.14",
     "@storybook/addon-essentials": "8.6.14",
     "@storybook/addon-interactions": "8.6.14",
@@ -83,16 +78,20 @@
     "@storybook/react": "8.6.14",
     "@storybook/react-vite": "8.6.14",
     "@storybook/test": "8.6.14",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "18.3.28",
     "@types/react-dom": "18.3.7",
     "@types/recharts-scale": "1.0.3",
     "@vitejs/plugin-react": "4.7.0",
-    "@somenergia/frontend-config": "github:Som-Energia/frontend-config#v1.1.2",
     "dayjs": "1.11.19",
     "eslint": "9.39.4",
     "gh-pages": "6.3.0",
     "i18next": "25.8.10",
     "i18next-browser-languagedetector": "8.2.1",
+    "i18next-cli": "1.72.4",
     "jsdom": "^24.0.0",
     "prettier": "3.8.3",
     "prop-types": "15.8.1",
@@ -106,8 +105,7 @@
     "vite": "5.4.21",
     "vite-plugin-eslint2": "5.1.0",
     "vite-plugin-svgr": "4.5.0",
-    "vitest": "^3.2.7",
-    "i18next-cli": "1.72.4"
+    "vitest": "^3.2.7"
   },
   "engines": {
     "npm": ">=11.0.0 <12.0.0",

@@ -20,7 +20,11 @@ const config = {
   staticDirs: [{ from: "../node_modules/@somenergia/brand", to: "/brand" }],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {
+      // Avoid deferred Docs navigation in Firefox with React 18 concurrent roots.
+      // Otherwise the preview can stay stale until an interaction inside it.
+      legacyRootApi: true,
+    },
   },
   docs: {
     autodocs: "tag",
