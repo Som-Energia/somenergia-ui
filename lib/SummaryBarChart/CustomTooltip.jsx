@@ -5,6 +5,7 @@ import { alpha } from "@mui/system/colorManipulator"
 import dayjs from "dayjs"
 import PropTypes from "prop-types"
 
+import useTokenColors from "../hooks/TokenColors"
 import { formatTooltipLabel } from "../utils/chart.utils"
 
 export const CustomTooltip = ({
@@ -15,6 +16,7 @@ export const CustomTooltip = ({
   showTooltipKeys,
   displaced = false,
 }) => {
+  const chartColor = useTokenColors().chart
   if (active && payload && payload.length) {
     const date = dayjs(payload[0].payload.date)
     const formatWithHour = formatTooltipLabel(
@@ -36,7 +38,7 @@ export const CustomTooltip = ({
           <Typography
             variant="subtitle2"
             sx={{
-              color: "#585857",
+              color: chartColor.tooltipTitle,
               fontWeight: "bold",
             }}>{`${formatWithHour}`}</Typography>
           <Box p={1}>

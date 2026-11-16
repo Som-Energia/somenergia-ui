@@ -1,5 +1,27 @@
 # Change log
 
+## Unreleased
+
+- New: `SomHeader` base component (from the Storybook example) with the `@somenergia/brand` logo,
+  an optional `title` and translated session actions
+- New: `SomButton` base component (from the Storybook example) styled with design tokens,
+  with `primary`, `danger`, `size` and `disabled`
+- BREAKING: `@somenergia/tokens` (`packages/tokens`) is removed: tokens come from `@somenergia/design-tokens`
+  and fonts from `@somenergia/brand` (`@somenergia/tokens/fonts.css` becomes `@somenergia/brand/fonts.css`)
+- New: MUI typography (`h1`–`h6`, `subtitle*`, `body*`, `caption`, `button`) follows the Figma text styles
+- New: `palette.warning`, `palette.success`, `palette.info` and standard `Alert` colors from status tokens
+- New: `shape.borderRadius` from `tokens.radius.sm`
+- Storybook: branded manager (logo, favicon, Outfit) and `data-theme` synced with the toolbar theme
+- New: `tokens` re-exported from `@somenergia/somenergia-ui`
+- New: `GlobalTheming` sets `data-theme` on `<html>` following the color mode
+- Refactor: `SomEnergiaTheme`, charts and buttons read colors from tokens
+- BREAKING: tokens and `SomEnergiaTheme` follow the somenergia.coop palette
+  (primary `#cdff80`, text `#0b2e34`, accent `#97d700`, own dark palette with `#061c20` background)
+- BREAKING: `tokens.fontFamily` is now `tokens.font.family`
+- New: `palette.divider`, `palette.text.secondary` and `palette.error` from tokens
+- New: charts follow the dark color mode
+- Fix: `PrevButton` text is readable in dark mode
+
 ## 1.3.0 2026-09-04
 
 - CI: upgrade node version

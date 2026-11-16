@@ -1,3 +1,7 @@
+SOM_HEADER.LOG_IN: Hasi saioa
+SOM_HEADER.LOG_OUT: Itxi saioa
+SOM_HEADER.SIGN_UP: Erregistratu
+SOM_HEADER.WELCOME: Kaixo, <b>{{name}}</b>!
 SUMDISPLAY.TOTAL_DAILY: Eguneko guztira
 SUMDISPLAY.TOTAL_MONTHLY: Hileko guztira
 SUMDISPLAY.TOTAL_WEEKLY: Asteko guztira

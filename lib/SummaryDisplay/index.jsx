@@ -1,7 +1,16 @@
 import { Box, Typography } from "@mui/material"
 
+import useTokenColors from "../hooks/TokenColors"
+
 export default function SummaryDisplay(props) {
-  const { value, valueUnit, title, description, color = "primary" } = props
+  const {
+    value,
+    valueUnit,
+    title,
+    description,
+    color: valueColor = "primary",
+  } = props
+  const color = useTokenColors()
 
   const formatValue = (value) => {
     return Number.isNaN(value)
@@ -13,7 +22,10 @@ export default function SummaryDisplay(props) {
     <>
       <Box
         sx={{
-          color: color === "primary" ? "#96b633" : "#f2970f",
+          color:
+            valueColor === "primary"
+              ? color.chart.production
+              : color.chart.foreseen,
           justifyContent: "flex-end",
           display: "flex",
           gap: "0.6em",
@@ -53,7 +65,7 @@ export default function SummaryDisplay(props) {
           <Typography
             sx={{
               whiteSpace: "nowrap",
-              color: "#616161",
+              color: color.textMuted,
             }}>
             {title}
           </Typography>

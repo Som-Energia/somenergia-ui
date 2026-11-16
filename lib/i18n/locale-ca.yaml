@@ -1,3 +1,7 @@
+SOM_HEADER.LOG_IN: Inicia la sessió
+SOM_HEADER.LOG_OUT: Tanca la sessió
+SOM_HEADER.SIGN_UP: Registra't
+SOM_HEADER.WELCOME: Hola, <b>{{name}}</b>!
 SUMDISPLAY.TOTAL_DAILY: Total diari
 SUMDISPLAY.TOTAL_MONTHLY: Total mensual
 SUMDISPLAY.TOTAL_WEEKLY: Total setmanal

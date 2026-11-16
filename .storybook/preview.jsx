@@ -1,3 +1,6 @@
+import "@somenergia/brand/fonts.css"
+import "@somenergia/design-tokens/tokens.css"
+
 import { I18nextProvider } from "react-i18next"
 
 import CssBaseline from "@mui/material/CssBaseline"
@@ -52,6 +55,15 @@ const preview = {
           <Story />
         </I18nextProvider>
       )
+    },
+    // Keep data-theme in sync so plain CSS using --som-* variables
+    // follows the theme picked in the toolbar, as GlobalTheming does.
+    (Story, context) => {
+      const theme = context.globals.theme ?? "SomEnergia Light"
+      document.documentElement.dataset.theme = theme.endsWith("Dark")
+        ? "dark"
+        : "light"
+      return <Story />
     },
     withThemeFromJSXProvider({
       GlobalStyles: CssBaseline,

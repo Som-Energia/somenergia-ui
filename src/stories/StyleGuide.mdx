@@ -1,0 +1,69 @@
+import { Meta } from "@storybook/blocks"
+import { Logos, Typography, Colors, Spacing, Radii } from "./StyleGuide"
+
+<Meta title="Style Guide" />
+
+# Style Guide
+
+Som Energia's visual identity. Samples are generated directly from
+`@somenergia/brand` and `@somenergia/design-tokens`, without duplicating values.
+
+## Usage
+
+```js
+import "@somenergia/brand/fonts.css"
+import "@somenergia/design-tokens/tokens.css"
+import tokens from "@somenergia/design-tokens"
+```
+
+```css
+.card {
+  font-family: var(--som-font-family);
+  color: var(--som-color-text);
+  background: var(--som-color-surface);
+  padding: var(--som-space-4);
+  border-radius: var(--som-radius-lg);
+}
+```
+
+CSS tokens follow the system preference unless `data-theme="light"` or
+`data-theme="dark"` is set on `<html>`. Storybook's theme selector keeps this
+attribute in sync. The palettes below show both modes side by side for comparison.
+
+## Logos
+
+Light and dark variants are loaded from `@somenergia/brand/logos/`.
+The monochrome variant uses `currentColor` and must be embedded as inline SVG
+to inherit the text color; an `<img>` does not inherit it.
+
+<Logos />
+
+Use of the name and logos requires express authorization from Som Energia.
+Outfit is distributed under the SIL Open Font License 1.1; package CSS and
+documentation are licensed under AGPL-3.0-only. See the package licenses.
+
+## Typography
+
+Outfit is loaded from local files in `@somenergia/brand`, without external
+services. Each sample uses the text style exported by the tokens.
+For bold variants, combine the style with `--som-font-weight-bold`.
+
+<Typography />
+
+## Colors
+
+All semantic, table and chart colors are included.
+Each sample shows the CSS variable name and its value.
+
+For status colors, use `*-text` on `*-surface` (a WCAG AA-compliant pairing).
+The base color is intended for icons, borders and fills, not text.
+
+<Colors />
+
+## Spacing
+
+<Spacing />
+
+## Radii
+
+<Radii />

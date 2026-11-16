@@ -18,15 +18,32 @@ npm install --save @somenergia/somenergia-ui
 
 ## Loading fonts
 
-If your project uses `SomEnergiaTheme` or `GlobalTheming`, load the Som Energia font in the host application so the components render with the intended typography.
+`SomEnergiaTheme` uses `Outfit` as the default font family. Load it once in the host application
+from [`@somenergia/brand`](https://github.com/Som-Energia/somenergia-design/tree/main/packages/brand)
+(a dependency of this library), which ships the font files, so you don't depend on Google Fonts:
 
-```html
-<link
-  href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-  rel="stylesheet" />
+```js
+import "@somenergia/brand/fonts.css"
 ```
 
-`SomEnergiaTheme` uses `Outfit` as the default font family. If the host application does not load the font, the browser will fall back to `Helvetica`, `Arial`, and `sans-serif`.
+If the host application does not load the font, the browser falls back to the system sans-serif font.
+
+## Design tokens
+
+Som Energia colors, typography, radii and spacing live in
+[`@somenergia/design-tokens`](https://github.com/Som-Energia/somenergia-design/tree/main/packages/design-tokens),
+the single source of truth maintained in the `somenergia-design` repository.
+`SomEnergiaTheme` builds the MUI theme from it, and it is re-exported here as `tokens`:
+
+```js
+import { tokens } from "@somenergia/somenergia-ui"
+```
+
+Projects without MUI should install `@somenergia/design-tokens` alone and import its CSS custom
+properties (`@somenergia/design-tokens/tokens.css`).
+
+`GlobalTheming` sets `data-theme` on `<html>` following the color mode, so plain CSS using the tokens
+and MUI components always match.
 
 ## Configuring i18n on your project with somenergia-ui components
 
@@ -66,7 +83,7 @@ registerSomEnergiaI18n(i18n)
 
 ## Adding dependencies
 
-- Do not add them in `package.json`'s `dependencies` key
+- Do not add them in `package.json`'s `dependencies` key (except `@somenergia/design-tokens` and `@somenergia/brand`)
 - Add them both in `peerDependencies` and `developmentDependencies`
 - Ensure they are filtered by the `externals` in `vite-config.js`' `build.rollupOptions.externals`
 - If the build creates a `vendor-***.js` as output, means that you failed to filter it
@@ -75,13 +92,13 @@ registerSomEnergiaI18n(i18n)
 
 ## Using unreleased components in another project
 
-First build the library locally
+First build the library locally:
 
 ```bash
 npm run build
 ```
 
-From the other project run:
+Then install it from the other project:
 
 ```bash
 npm install ../somenergia-ui
@@ -89,32 +106,73 @@ npm install ../somenergia-ui
 
 ## Release process
 
-- Update version package.json and CHANGES.md
-- Tag the release somenergia-ui-M.m.p
-- On pushing the version tag, automated CI will publish the package in npm
-- Right now the storybook of the CI is failing so the following command must be run by hand
+Tokens and brand assets are released from the `somenergia-design` repository. If a new
+`@somenergia/design-tokens` or `@somenergia/brand` major version is needed, publish it there first,
+update its range in `package.json` and run `npm install` so `package-lock.json` follows.
+A tokens major bump that changes how components look is a major bump here too.
+
+### 1. Prepare the release commit
+
+- Update the version in `package.json`
+- Move the `Unreleased` entries of `CHANGES.md` under the new version and date
+- Check everything passes as in CI:
+
+```bash
+npm ci
+npm run lint
+npm run test:ci
+npm run build
+```
+
+- Review what will be published:
+
+```bash
+npm pack --dry-run   # dist/
+```
+
+### 2. Publish
+
+#### Automatic (CI)
+
+- Tag the release `somenergia-ui-M.m.p` and push the tag. Don't also create a GitHub release:
+  the workflow runs on both, and the second run fails because the version is already on npm
+- The `publish.yaml` workflow publishes `@somenergia/somenergia-ui`
+- The workflow's last step, "Deploy Storybook", fails: `gh-pages` can't push to the `gh-pages` branch
+  because the job has no git credentials (`fatal: could not read Username for 'https://github.com'`)
+  and only `contents: read` permission. The npm package is already published by then.
+  Deploy Storybook by hand from your machine:
 
 ```bash
 npm run deploy-storybook
 ```
 
-## Manual publish version
-
-Create a tag and update package.json version and execute:
+#### Manual
 
 ```bash
 NPM_TOKEN=[...token] npm publish
 ```
 
-The release is an existing version update
+`prepare` builds the library, so there is no need to build by hand.
+
+If the release is an existing version update:
 
 ```bash
 NPM_TOKEN=[...token] npm dist-tag add @somenergia/somenergia-ui@[...version] latest
 ```
 
+### 3. After publishing
+
+- Check the version is on npm:
+
+```bash
+npm view @somenergia/somenergia-ui version
+```
+
+- Install the new version in a consuming project and check it looks right in light and dark mode
+
 ## Alpha publications
 
-Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`
+Create and use alpha tag and update package.json version. Example: `1.0.0-alpha.1`.
 
 ```bash
 NPM_TOKEN=[...token] npm publish --tag alpha
